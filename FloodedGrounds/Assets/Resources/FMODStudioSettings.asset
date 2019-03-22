@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets\Audio\VRZFPS\VRZFPS.fspro
-  SourceProjectPathUnformatted: Assets\Audio\VRZFPS\VRZFPS.fspro
-  SourceBankPathUnformatted: Assets\Audio\VRZFPS\Build
+  sourceProjectPath: /Users/johnnyhuynh/Downloads/VRZFPS/VRZFPS.fspro
+  SourceProjectPathUnformatted: /Users/johnnyhuynh/Downloads/VRZFPS/VRZFPS.fspro
+  SourceBankPathUnformatted: /Users/johnnyhuynh/Downloads/VRZFPS/Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
@@ -62,4 +62,5 @@ MonoBehaviour:
   MasterBanks:
   - Master Bank
   Banks:
+  - FloodedGrounds
   - Test Bank
