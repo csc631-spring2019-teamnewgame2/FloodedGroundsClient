@@ -31,29 +31,56 @@ public class PlayerMovement2 : MonoBehaviour
     void Update()
     {
         Movement();
-        GetInput();
+        GetMouseInput();
+        Shooting();
     }
 
-    void GetInput()
+    void GetMouseInput()
     {
-        if (controller.isGrounded)
+        if (Input.GetMouseButton(0)) // left mouse button is held down
         {
-            if (Input.GetMouseButton(0)) // left mouse button is held down
-            {
-                if (anim.GetBool("isWalking") == true)
-                {
-                    anim.SetBool("isWalking", false);
-                }
-
-                else
-                    anim.SetBool("isAttacking", true);
-            }
-
-            if (Input.GetMouseButtonUp(0)) // left mouse button is let go
-            {
-                anim.SetBool("isAttacking", false);
-            }
+            anim.SetBool("isAttacking", true);
         }
+
+        if (Input.GetMouseButtonUp(0)) // left mouse button is let go
+        {
+            Attacking();
+        }
+    }
+
+    void Attacking()
+    {
+        StartCoroutine(AttackRoutine());
+    }
+
+    IEnumerator AttackRoutine()
+    {
+        yield return new WaitForSeconds(2);
+        anim.SetBool("isAttacking", false);
+    }
+
+    void Shooting()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            GameObject tempBullet = (GameObject)Instantiate(bullet);
+            tempBullet.transform.position = gunPoint.position;
+            Destroy(tempBullet, 1f);
+        }
+    }
+
+    void Jumping()
+    {
+        //Vector3 directionVector = new Vector3(hdir, 0, vdir);
+        //Vector3 unitVector = directionVector.normalized;
+        //Vector3 forceVector = unitVector * speed * Time.deltaTime;
+
+        //rb.AddForce(forceVector);
+
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rb.AddForce(Vector3.up * jumpHeight);
+        //}
     }
 
     void Movement()
@@ -64,7 +91,10 @@ public class PlayerMovement2 : MonoBehaviour
             {
                 if (anim.GetBool("isAttacking") == true)
                 {
-                    return;
+                    anim.SetFloat("Speed", 0);
+                    moveDir = new Vector3(0, 0, 0);
+                    moveDir *= speed;
+                    moveDir = transform.TransformDirection(moveDir);
                 }
 
                 else if (anim.GetBool("isAttacking") == false)
@@ -86,7 +116,10 @@ public class PlayerMovement2 : MonoBehaviour
             {
                 if (anim.GetBool("isAttacking") == true)
                 {
-                    return;
+                    anim.SetFloat("Speed", 0);
+                    moveDir = new Vector3(0, 0, 0);
+                    moveDir *= speed;
+                    moveDir = transform.TransformDirection(moveDir);
                 }
 
                 else if (anim.GetBool("isAttacking") == false)
@@ -111,26 +144,4 @@ public class PlayerMovement2 : MonoBehaviour
         moveDir.y -= gravity * Time.deltaTime;
         controller.Move(moveDir * Time.deltaTime);
     }
-
-        //float hdir = Input.GetAxisRaw("Horizontal");
-        //float vdir = Input.GetAxisRaw("Vertical");
-
-        //Vector3 directionVector = new Vector3(hdir, 0, vdir);
-        //Vector3 unitVector = directionVector.normalized;
-        //Vector3 forceVector = unitVector * speed * Time.deltaTime;
-
-        //rb.AddForce(forceVector);
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    rb.AddForce(Vector3.up * jumpHeight);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    GameObject tempBullet = (GameObject)Instantiate(bullet);
-        //    tempBullet.transform.position = gunPoint.position;
-        //    Destroy(tempBullet, 1f);
-        //}
-    //}
 }

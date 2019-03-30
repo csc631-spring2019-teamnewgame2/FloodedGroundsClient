@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: /Users/johnnyhuynh/Downloads/VRZFPS/VRZFPS.fspro
-  SourceProjectPathUnformatted: /Users/johnnyhuynh/Downloads/VRZFPS/VRZFPS.fspro
-  SourceBankPathUnformatted: /Users/johnnyhuynh/Downloads/VRZFPS/Build
+  sourceProjectPath: Assets/VRZFPS/VRZFPS.fspro
+  SourceProjectPathUnformatted: Assets/VRZFPS/VRZFPS.fspro
+  SourceBankPathUnformatted: Assets/VRZFPS/Build
   AutomaticEventLoading: 1
   AutomaticSampleLoading: 0
   ImportType: 0
