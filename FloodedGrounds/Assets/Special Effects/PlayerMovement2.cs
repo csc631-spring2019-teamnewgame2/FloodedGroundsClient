@@ -85,61 +85,124 @@ public class PlayerMovement2 : MonoBehaviour
 
     void Movement()
     {
-        if (controller.isGrounded)
+        //////////////////////////// Forward
+        if (Input.GetKey(KeyCode.W))
         {
-            if (Input.GetKey(KeyCode.W))
+            if (anim.GetBool("isAttacking") == true)
             {
-                if (anim.GetBool("isAttacking") == true)
-                {
-                    anim.SetFloat("Speed", 0);
-                    moveDir = new Vector3(0, 0, 0);
-                    moveDir *= speed;
-                    moveDir = transform.TransformDirection(moveDir);
-                }
-
-                else if (anim.GetBool("isAttacking") == false)
-                {
-                    anim.SetFloat("Speed", speed);
-                    moveDir = new Vector3(0, 0, 1);
-                    moveDir *= speed;
-                    moveDir = transform.TransformDirection(moveDir);
-                }
-            }
-
-            if (Input.GetKeyUp(KeyCode.W))
-            {
+                anim.SetBool("isWalking", false);
                 anim.SetFloat("Speed", 0);
                 moveDir = new Vector3(0, 0, 0);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
             }
 
-            if (Input.GetKey(KeyCode.S))
+            else if (anim.GetBool("isAttacking") == false)
             {
-                if (anim.GetBool("isAttacking") == true)
-                {
-                    anim.SetFloat("Speed", 0);
-                    moveDir = new Vector3(0, 0, 0);
-                    moveDir *= speed;
-                    moveDir = transform.TransformDirection(moveDir);
-                }
-
-                else if (anim.GetBool("isAttacking") == false)
-                {
-                    anim.SetFloat("Speed", speed);
-                    moveDir = new Vector3(0, 0, -1);
-                    moveDir *= speed;
-                    moveDir = transform.TransformDirection(moveDir);
-                }
-            }
-
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                anim.SetFloat("Speed", 0);
-                moveDir = new Vector3(0, 0, 0);
+                anim.SetBool("isWalking", true);
+                anim.SetFloat("Speed", speed);
+                moveDir = new Vector3(0, 0, 1);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
             }
         }
 
-        rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
-        transform.eulerAngles = new Vector3(0, rot, 0);
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetFloat("Speed", 0);
+            moveDir = new Vector3(0, 0, 0);
+        }
+
+        //////////////////////////// Backward
+        if (Input.GetKey(KeyCode.S))
+        {
+            if (anim.GetBool("isAttacking") == true)
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetFloat("Speed", 0);
+                moveDir = new Vector3(0, 0, 0);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
+            }
+
+            else if (anim.GetBool("isAttacking") == false)
+            {
+                anim.SetBool("isWalking", true);
+                anim.SetFloat("Speed", speed);
+                moveDir = new Vector3(0, 0, -1);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetFloat("Speed", 0);
+            moveDir = new Vector3(0, 0, 0);
+        }
+
+        //////////////////////////// Left
+        if (Input.GetKey(KeyCode.A))
+        {
+            if (anim.GetBool("isAttacking") == true)
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetFloat("Speed", 0);
+                moveDir = new Vector3(0, 0, 0);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
+            }
+
+            else if (anim.GetBool("isAttacking") == false)
+            {
+                anim.SetBool("isWalking", true);
+                anim.SetFloat("Speed", speed);
+                moveDir = new Vector3(-1, 0, 0);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetFloat("Speed", 0);
+            moveDir = new Vector3(0, 0, 0);
+        }
+
+        //////////////////////////// Right
+        if (Input.GetKey(KeyCode.D))
+        {
+            if (anim.GetBool("isAttacking") == true)
+            {
+                anim.SetBool("isWalking", false);
+                anim.SetFloat("Speed", 0);
+                moveDir = new Vector3(0, 0, 0);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
+            }
+
+            else if (anim.GetBool("isAttacking") == false)
+            {
+                anim.SetBool("isWalking", true);
+                anim.SetFloat("Speed", speed);
+                moveDir = new Vector3(1, 0, 0);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetFloat("Speed", 0);
+            moveDir = new Vector3(0, 0, 0);
+        }
+
+        //rot += Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
+        //transform.eulerAngles = new Vector3(0, rot, 0);
 
         moveDir.y -= gravity * Time.deltaTime;
         controller.Move(moveDir * Time.deltaTime);

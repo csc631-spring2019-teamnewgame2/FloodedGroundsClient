@@ -9,15 +9,29 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight;
     public Transform gunPoint;
     public GameObject bullet;
+    Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        Movement();
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            GameObject tempBullet = (GameObject)Instantiate(bullet);
+            tempBullet.transform.position = gunPoint.position;
+            Destroy(tempBullet, 1f);
+        }
+    }
+
+    void Movement()
     {
         float hdir = Input.GetAxisRaw("Horizontal");
         float vdir = Input.GetAxisRaw("Vertical");
@@ -32,13 +46,5 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpHeight);
         }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            GameObject tempBullet = (GameObject)Instantiate(bullet);
-            tempBullet.transform.position = gunPoint.position;
-            Destroy(tempBullet, 1f);
-        }
-
     }
 }
