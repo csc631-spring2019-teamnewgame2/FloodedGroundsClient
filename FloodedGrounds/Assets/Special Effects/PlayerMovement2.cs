@@ -55,7 +55,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     IEnumerator AttackRoutine()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         anim.SetBool("isAttacking", false);
     }
 
@@ -85,6 +85,18 @@ public class PlayerMovement2 : MonoBehaviour
 
     void Movement()
     {
+        if (anim.GetBool("isWalking") && Input.GetKey(KeyCode.Q))
+        {
+            anim.SetBool("isRunning", true);
+            speed = 3;
+        }
+
+        else
+        {
+            anim.SetBool("isRunning", false);
+            speed = 1;
+        }
+
         //////////////////////////// Forward
         if (Input.GetKey(KeyCode.W))
         {
