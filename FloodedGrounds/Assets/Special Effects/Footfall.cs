@@ -41,19 +41,11 @@ public class Footfall : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Indoors")
-        {
-            isIndoors = true;
-        }
+        isIndoors |= other.gameObject.tag == "Indoors";
     }
 
     void OnTriggerExit(Collider other)
     {
         isIndoors = false;
-    }
-
-    void OnDisable()
-    {
-        isMoving = false;
     }
 }

@@ -53,14 +53,14 @@
             <destination>{f37629d1-f307-48d2-a115-13fe01fecdd9}</destination>
         </relationship>
         <relationship name="output">
-            <destination>{fdf24f58-6478-42ad-a9a6-78d93f451c54}</destination>
+            <destination>{46fae1a7-cba9-4466-867c-8051fade3bea}</destination>
         </relationship>
     </object>
     <object class="EventAutomatableProperties" id="{81ff1fe3-8319-411c-a23d-8af92b8785de}"/>
     <object class="MarkerTrack" id="{85fc3750-646c-43fa-9c75-36668fc215c4}"/>
     <object class="GroupTrack" id="{bd6b5587-379d-4b29-9a02-82f8d1f668d4}">
         <relationship name="modules">
-            <destination>{316fcac7-98c8-46dc-8c21-83807e9a68b7}</destination>
+            <destination>{f06d7d18-7803-409f-87fc-66d753b2e8ab}</destination>
         </relationship>
         <relationship name="mixerGroup">
             <destination>{0260f0fd-1220-47db-a698-1414ab39dcf7}</destination>
@@ -68,7 +68,7 @@
     </object>
     <object class="Timeline" id="{378768be-5ca3-4446-9310-e5e6cf747f46}">
         <relationship name="modules">
-            <destination>{316fcac7-98c8-46dc-8c21-83807e9a68b7}</destination>
+            <destination>{f06d7d18-7803-409f-87fc-66d753b2e8ab}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{6e5125b2-b0b5-4a2c-bd70-21f8336438af}">
@@ -88,12 +88,18 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{f37629d1-f307-48d2-a115-13fe01fecdd9}"/>
-    <object class="SingleSound" id="{316fcac7-98c8-46dc-8c21-83807e9a68b7}">
+    <object class="SingleSound" id="{f06d7d18-7803-409f-87fc-66d753b2e8ab}">
         <property name="length">
-            <value>0.19206349206349208</value>
+            <value>2.3281451247165554</value>
+        </property>
+        <property name="timelockedOffset">
+            <value>0.018000000000000002</value>
+        </property>
+        <property name="volume">
+            <value>-3.5</value>
         </property>
         <relationship name="audioFile">
-            <destination>{92aaf043-bdab-4a0f-8a3e-a4fdd0fc9e0c}</destination>
+            <destination>{518941f1-fbc8-4893-a065-714bd6948865}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{0260f0fd-1220-47db-a698-1414ab39dcf7}">
