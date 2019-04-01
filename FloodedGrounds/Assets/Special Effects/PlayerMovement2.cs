@@ -13,9 +13,10 @@ public class PlayerMovement2 : MonoBehaviour
 
     CharacterController controller;
     Animator anim;
-
     private Rigidbody rb;
+
     public float jumpHeight;
+
     public Transform gunPoint;
     public GameObject bullet;
 
@@ -85,7 +86,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     void Movement()
     {
-        if (anim.GetBool("isWalking") && Input.GetKey(KeyCode.Q))
+        if (anim.GetBool("isWalking") && Input.GetKey(KeyCode.LeftShift))
         {
             anim.SetBool("isRunning", true);
             speed = 3;

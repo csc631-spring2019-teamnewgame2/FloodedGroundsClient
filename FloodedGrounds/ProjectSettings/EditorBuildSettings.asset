@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Special Effects/TinaParticleExample.unity
+    guid: 98fb6d71fe4080e48b5547ef3afe3127
   m_configObjects: {}
