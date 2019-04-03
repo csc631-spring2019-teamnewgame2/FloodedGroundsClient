@@ -19,10 +19,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float hdir = Input.GetAxisRaw("Horizontal");
-        float vdir = Input.GetAxisRaw("Vertical");
+        float hdir = Input.GetAxis("Horizontal");
+        float vdir = Input.GetAxis("Vertical");
 
-        Vector3 directionVector = new Vector3(hdir, 0, vdir);
+        Vector3 directionVector = new Vector3(hdir/5, 0, vdir/5);
         Vector3 unitVector = directionVector.normalized;
         Vector3 forceVector = unitVector * speed * Time.deltaTime;
 
