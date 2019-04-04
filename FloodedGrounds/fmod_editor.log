@@ -293,3 +293,10 @@
 [LOG] SoundI::release                          :     FPS_SFX_BulletFlyBy5 (0x1562b2d28)
 [LOG] SoundI::release                          :  (0x152ec58d8)
 [LOG] SoundI::release                          :     FPS_SFX_BulletFlyBy1 (0x1a2213068)
+[LOG] Thread::callback                         : FMOD Studio bank load thread finished.
+[LOG] Thread::callback                         : FMOD Studio sample load thread finished.
+[LOG] LiveUpdate::release                      : 
+[LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
+[LOG] Thread::callback                         : FMOD stream thread finished.
+[LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] SystemI::close                           : Closed.

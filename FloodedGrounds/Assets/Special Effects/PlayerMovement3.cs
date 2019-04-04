@@ -18,6 +18,8 @@ public class PlayerMovement3 : MonoBehaviour
     public Transform gunPoint;
     public GameObject bullet;
 
+    public Transform spine;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class PlayerMovement3 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Movement();
         GetMouseInput();
@@ -100,6 +102,27 @@ public class PlayerMovement3 : MonoBehaviour
         {
             anim.SetBool("isWalking", false);
             anim.SetFloat("Speed", 0.0f);
+        }
+
+        // Turn body leftward
+        if (hdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(-45, 0, 0);
+        }
+
+        // Turn body rightward
+        else if (hdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(45, 0, 0);
+        }
+
+        else
+        {
+            rot = 0;
         }
 
         moveDir = new Vector3(hdir, 0, vdir);
