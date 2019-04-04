@@ -6,6 +6,7 @@ public class PlayerMovement3 : MonoBehaviour
 {
     public float speed = 1.0f;
     public float gravity = 50f;
+    public float jumpHeight = 5.0f;
 
     Vector3 moveDir = Vector3.zero;
 
@@ -15,6 +16,7 @@ public class PlayerMovement3 : MonoBehaviour
 
     public Transform gunPoint;
     public GameObject bullet;
+    public GameObject shout;
 
     public Transform spine;
     public Transform leftLeg;
@@ -57,11 +59,11 @@ public class PlayerMovement3 : MonoBehaviour
             if (anim.GetBool("isJumping") == false)
             {
                 anim.SetBool("isJumping", true);
-                moveDir = new Vector3(0, 10, 0);
-                moveDir *= speed;
-                moveDir = transform.TransformDirection(moveDir);
-                moveDir.y -= gravity * Time.deltaTime;
-                controller.Move(moveDir * Time.deltaTime);
+                //moveDir = new Vector3(0, jumpHeight, 0);
+                //moveDir *= speed;
+                //moveDir = transform.TransformDirection(moveDir);
+                //moveDir.y -= gravity * Time.deltaTime;
+                //controller.Move(moveDir * Time.deltaTime);
             }
 
             else
@@ -76,15 +78,23 @@ public class PlayerMovement3 : MonoBehaviour
         }
 
         // Shout
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.X) && anim.GetBool("isShouting") == false)
         {
-
+            anim.SetBool("isShouting", true);
+            GameObject tempShout = (GameObject)Instantiate(shout);
+            tempShout.transform.position = gunPoint.position;
+            Destroy(tempShout, 5.0f);
         }
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-
+            Shouting();
         }
+    }
+
+    void Shouting()
+    {
+        StartCoroutine(ShoutRoutine());
     }
 
     void Attacking()
@@ -109,13 +119,19 @@ public class PlayerMovement3 : MonoBehaviour
         anim.SetBool("isJumping", false);
     }
 
+    IEnumerator ShoutRoutine()
+    {
+        yield return new WaitForSeconds(3.5f);
+        anim.SetBool("isShouting", false);
+    }
+
     void Shooting()
     {
         if (Input.GetKeyDown(KeyCode.Z))
         {
             GameObject tempBullet = (GameObject)Instantiate(bullet);
             tempBullet.transform.position = gunPoint.position;
-            Destroy(tempBullet, 1f);
+            Destroy(tempBullet, 1.0f);
         }
     }
 

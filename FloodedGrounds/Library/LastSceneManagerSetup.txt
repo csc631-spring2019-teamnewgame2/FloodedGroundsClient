@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Special Effects/TinaParticleExample.unity
+- path: Assets/Main Scenes/2_InGame.unity
   isLoaded: 1
   isActive: 1
