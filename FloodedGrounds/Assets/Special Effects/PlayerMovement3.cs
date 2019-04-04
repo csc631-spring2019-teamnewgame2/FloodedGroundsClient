@@ -5,9 +5,6 @@ using UnityEngine;
 public class PlayerMovement3 : MonoBehaviour
 {
     public float speed = 1.0f;
-    float rotAngle = 45.0f;
-    float rot = 0f;
-    float smooth = 5.0f;
     public float gravity = 10f;
 
     Vector3 moveDir = Vector3.zero;
@@ -35,11 +32,12 @@ public class PlayerMovement3 : MonoBehaviour
     void LateUpdate()
     {
         Movement();
-        GetMouseInput();
+        Jumping();
+        GetInput();
         Shooting();
     }
 
-    void GetMouseInput()
+    void GetInput()
     {
         if (Input.GetMouseButton(0)) // left mouse button is held down
         {
@@ -50,6 +48,25 @@ public class PlayerMovement3 : MonoBehaviour
         {
             Attacking();
         }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("JUMP");
+            if (anim.GetBool("isJumping") == false)
+            {
+                anim.SetBool("isJumping", true);
+            }
+
+            else
+            {
+                anim.SetBool("isJumping", false);
+            }
+        }
+
+        else
+        {
+            anim.SetBool("isJumping", false);
+        }
     }
 
     void Attacking()
@@ -57,10 +74,21 @@ public class PlayerMovement3 : MonoBehaviour
         StartCoroutine(AttackRoutine());
     }
 
+    void Jumping()
+    {
+        StartCoroutine(JumpRoutine());
+    }
+
     IEnumerator AttackRoutine()
     {
         yield return new WaitForSeconds(1.5f);
         anim.SetBool("isAttacking", false);
+    }
+
+    IEnumerator JumpRoutine()
+    {
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("isJumping", false);
     }
 
     void Shooting()
@@ -172,19 +200,5 @@ public class PlayerMovement3 : MonoBehaviour
         moveDir = transform.TransformDirection(moveDir);
         moveDir.y -= gravity * Time.deltaTime;
         controller.Move(moveDir * Time.deltaTime);
-    }
-
-    void Jumping()
-    {
-        //Vector3 directionVector = new Vector3(hdir, 0, vdir);
-        //Vector3 unitVector = directionVector.normalized;
-        //Vector3 forceVector = unitVector * speed * Time.deltaTime;
-
-        //rb.AddForce(forceVector);
-
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    rb.AddForce(Vector3.up * jumpHeight);
-        //}
     }
 }

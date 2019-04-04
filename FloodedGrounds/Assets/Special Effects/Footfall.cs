@@ -22,7 +22,7 @@ public class Footfall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (anim.GetBool("isWalking") || anim.GetBool("isRunning"))
+        if (anim.GetBool("isWalking"))
         {
             isMoving = true;
         }
