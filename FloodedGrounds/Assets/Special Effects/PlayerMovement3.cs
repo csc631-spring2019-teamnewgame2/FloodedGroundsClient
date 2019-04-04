@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement3 : MonoBehaviour
 {
     public float speed = 1.0f;
-    public float gravity = 10f;
+    public float gravity = 50f;
 
     Vector3 moveDir = Vector3.zero;
 
@@ -39,6 +39,7 @@ public class PlayerMovement3 : MonoBehaviour
 
     void GetInput()
     {
+        // Attack
         if (Input.GetMouseButton(0)) // left mouse button is held down
         {
             anim.SetBool("isAttacking", true);
@@ -49,12 +50,18 @@ public class PlayerMovement3 : MonoBehaviour
             Attacking();
         }
 
+        // Jump
         if (Input.GetKey(KeyCode.Space))
         {
             Debug.Log("JUMP");
             if (anim.GetBool("isJumping") == false)
             {
                 anim.SetBool("isJumping", true);
+                moveDir = new Vector3(0, 10, 0);
+                moveDir *= speed;
+                moveDir = transform.TransformDirection(moveDir);
+                moveDir.y -= gravity * Time.deltaTime;
+                controller.Move(moveDir * Time.deltaTime);
             }
 
             else
@@ -66,6 +73,17 @@ public class PlayerMovement3 : MonoBehaviour
         else
         {
             anim.SetBool("isJumping", false);
+        }
+
+        // Shout
+        if (Input.GetKey(KeyCode.X))
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+
         }
     }
 

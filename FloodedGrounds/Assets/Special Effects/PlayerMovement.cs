@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         float hdir = Input.GetAxis("Horizontal");
         float vdir = Input.GetAxis("Vertical");
 
-        Vector3 directionVector = new Vector3(hdir/5, 0, vdir/5);
+        Vector3 directionVector = new Vector3(hdir, 0, vdir);
         Vector3 unitVector = directionVector.normalized;
         Vector3 forceVector = unitVector * speed * Time.deltaTime;
 
