@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerMovement3 : MonoBehaviour
 {
     public float speed = 1.0f;
-    float rotSpeed = 80f;
+    float rotAngle = 45.0f;
     float rot = 0f;
-    float gravity = 10f;
+    float smooth = 5.0f;
+    public float gravity = 10f;
 
     Vector3 moveDir = Vector3.zero;
 
@@ -19,6 +20,8 @@ public class PlayerMovement3 : MonoBehaviour
     public GameObject bullet;
 
     public Transform spine;
+    public Transform leftLeg;
+    public Transform rightLeg;
     
     // Start is called before the first frame update
     void Start()
@@ -104,25 +107,64 @@ public class PlayerMovement3 : MonoBehaviour
             anim.SetFloat("Speed", 0.0f);
         }
 
-        // Turn body leftward
-        if (hdir > 0)
+        // Turn body left+forward
+        if (hdir > 0 && vdir > 0)
         {
             anim.SetBool("isWalking", true);
             anim.SetFloat("Speed", speed);
             spine.transform.Rotate(-45, 0, 0);
+            leftLeg.transform.Rotate(15, 0, 0);
+            rightLeg.transform.Rotate(15, 0, 0);
         }
 
-        // Turn body rightward
+        // Turn body left+backward
+        else if (hdir > 0 && vdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetFloat("Speed", -speed);
+            spine.transform.Rotate(-45, 0, 0);
+            leftLeg.transform.Rotate(15, 0, 0);
+            rightLeg.transform.Rotate(15, 0, 0);
+        }
+
+        // Turn body right+forward
+        else if (hdir < 0 && vdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(45, 0, 0);
+            leftLeg.transform.Rotate(-15, 0, 0);
+            rightLeg.transform.Rotate(-15, 0, 0);
+        }
+
+        // Turn body right+backward
+        else if (hdir < 0 && vdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetFloat("Speed", -speed);
+            spine.transform.Rotate(45, 0, 0);
+            leftLeg.transform.Rotate(-15, 0, 0);
+            rightLeg.transform.Rotate(-15, 0, 0);
+        }
+
+        // Turn body left
         else if (hdir < 0)
         {
             anim.SetBool("isWalking", true);
             anim.SetFloat("Speed", speed);
             spine.transform.Rotate(45, 0, 0);
+            leftLeg.transform.Rotate(-15, 0, 0);
+            rightLeg.transform.Rotate(-15, 0, 0);
         }
 
-        else
+        // Turn body right
+        else if (hdir > 0)
         {
-            rot = 0;
+            anim.SetBool("isWalking", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(-45, 0, 0);
+            leftLeg.transform.Rotate(15, 0, 0);
+            rightLeg.transform.Rotate(15, 0, 0);
         }
 
         moveDir = new Vector3(hdir, 0, vdir);
