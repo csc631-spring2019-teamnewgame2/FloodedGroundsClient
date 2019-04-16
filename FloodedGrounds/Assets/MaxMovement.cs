@@ -208,60 +208,65 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
+        else if (hdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isRight", true);
+            anim.SetFloat("Speed", speed);
+        }
+
+        else if (hdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isLeft", true);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Turn body left+forward
+        else if (hdir < 0 && vdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isForward", true);
+            anim.SetBool("isLeft", true);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Turn body left+backward
+        else if (hdir < 0 && vdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isBackward", true);
+            anim.SetBool("isLeft", true);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Turn body right+forward
+        else if (hdir > 0 && vdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isForward", true);
+            anim.SetBool("isRight", true);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Turn body right+backward
+        else if (hdir > 0 && vdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isBackward", true);
+            anim.SetBool("isRight", true);
+            anim.SetFloat("Speed", speed);
+        }
+
         else
         {
             anim.SetBool("isWalking", false);
+            anim.SetBool("isLeft", false);
+            anim.SetBool("isRight", false);
             anim.SetBool("isForward", false);
             anim.SetBool("isBackward", false);
             anim.SetFloat("Speed", 0.0f);
         }
-
-        //// Turn body left+forward
-        //if (hdir > 0 && vdir > 0)
-        //{
-        //    anim.SetBool("isWalking", true);
-        //    anim.SetBool("isForward", true);
-        //    anim.SetBool("isLeft", true);
-        //    anim.SetFloat("Speed", speed);
-        //}
-
-        //// Turn body left+backward
-        //else if (hdir > 0 && vdir < 0)
-        //{
-        //    anim.SetBool("isWalking", true);
-        //    anim.SetBool("isBackward", true);
-        //    anim.SetBool("isLeft", true);
-        //    anim.SetFloat("Speed", speed);
-        //}
-
-        //// Turn body right+forward
-        //else if (hdir < 0 && vdir > 0)
-        //{
-        //    anim.SetBool("isWalking", true);
-        //    anim.SetBool("isForward", true);
-        //    anim.SetBool("isRight", true);
-        //    anim.SetFloat("Speed", speed);
-        //}
-
-        //// Turn body right+backward
-        //else if (hdir < 0 && vdir < 0)
-        //{
-        //    anim.SetBool("isWalking", true);
-        //    anim.SetBool("isBackward", true);
-        //    anim.SetBool("isRight", true);
-        //    anim.SetFloat("Speed", speed);
-        //}
-
-         
-
-        //else
-        //{
-        //    anim.SetBool("isForward", false);
-        //    anim.SetBool("isBackward", false);
-        //    anim.SetBool("isLeft", false);
-        //    anim.SetBool("isRight", false);
-        //    anim.SetBool("isWalking", false);
-        //}
 
         moveDir = new Vector3(hdir, gravity, vdir);
         moveDir *= speed;
