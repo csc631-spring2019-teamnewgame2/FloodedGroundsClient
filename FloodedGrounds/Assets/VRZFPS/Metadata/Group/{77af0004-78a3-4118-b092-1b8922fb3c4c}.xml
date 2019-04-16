@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.10.00">
     <object class="MixerGroup" id="{77af0004-78a3-4118-b092-1b8922fb3c4c}">
+        <property name="color">
+            <value>Yellow</value>
+        </property>
         <property name="name">
             <value>Environment</value>
         </property>
@@ -18,6 +21,7 @@
         <relationship name="effects">
             <destination>{5e55366d-7c2f-4a54-9091-7e03df783e11}</destination>
             <destination>{0daac717-376d-4dd6-86f1-7edb4ad849b9}</destination>
+            <destination>{d1b2b76f-26e7-4eba-a85a-06ae3a329e19}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{942f8b88-cfee-4cd0-a70e-47741c243e55}"/>
@@ -34,6 +38,23 @@
         </property>
         <property name="releaseTime">
             <value>420</value>
+        </property>
+        <property name="sidechainEnabled">
+            <value>true</value>
+        </property>
+    </object>
+    <object class="CompressorEffect" id="{d1b2b76f-26e7-4eba-a85a-06ae3a329e19}">
+        <property name="threshold">
+            <value>-53</value>
+        </property>
+        <property name="ratio">
+            <value>12</value>
+        </property>
+        <property name="attackTime">
+            <value>0.100000001</value>
+        </property>
+        <property name="releaseTime">
+            <value>3500</value>
         </property>
         <property name="sidechainEnabled">
             <value>true</value>

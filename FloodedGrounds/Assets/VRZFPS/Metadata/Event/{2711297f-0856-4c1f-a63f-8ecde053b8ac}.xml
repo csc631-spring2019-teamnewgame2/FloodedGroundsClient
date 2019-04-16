@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{2711297f-0856-4c1f-a63f-8ecde053b8ac}">
         <property name="name">
-            <value>Nested Event (2)</value>
+            <value>Indoor</value>
         </property>
         <property name="outputFormat">
             <value>1</value>
@@ -218,10 +218,10 @@
     </object>
     <object class="LoopRegion" id="{a61142a6-dc7a-4677-9f5e-18662e6dd9e4}">
         <property name="position">
-            <value>0</value>
+            <value>1.5</value>
         </property>
         <property name="length">
-            <value>25</value>
+            <value>23</value>
         </property>
         <relationship name="timeline">
             <destination>{9a88c14d-327e-4b97-bdec-aedbf8247af3}</destination>
