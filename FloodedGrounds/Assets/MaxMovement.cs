@@ -188,12 +188,14 @@ public class MaxMovement : MonoBehaviour
             speed = 3.0f;
         }
 
+        // Is not running
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             anim.SetBool("isRunning", false);
             speed = 1.0f;
         }
 
+        // Moving forward
         if (vdir > 0)
         {
             anim.SetBool("isWalking", true);
@@ -201,6 +203,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
+        // Moving backwards
         else if (vdir < 0)
         {
             anim.SetBool("isWalking", true);
@@ -208,6 +211,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
+        // Moving towards right
         else if (hdir > 0)
         {
             anim.SetBool("isWalking", true);
@@ -215,6 +219,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
+        // Moving towards left
         else if (hdir < 0)
         {
             anim.SetBool("isWalking", true);
@@ -222,7 +227,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
-        // Turn body left+forward
+        // Moving forward-left
         else if (hdir < 0 && vdir > 0)
         {
             anim.SetBool("isWalking", true);
@@ -231,7 +236,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
-        // Turn body left+backward
+        // Moving backwards-left
         else if (hdir < 0 && vdir < 0)
         {
             anim.SetBool("isWalking", true);
@@ -240,7 +245,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
-        // Turn body right+forward
+        // Moving forward-right
         else if (hdir > 0 && vdir > 0)
         {
             anim.SetBool("isWalking", true);
@@ -249,7 +254,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
-        // Turn body right+backward
+        // Moving backwards-right
         else if (hdir > 0 && vdir < 0)
         {
             anim.SetBool("isWalking", true);
@@ -258,6 +263,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", speed);
         }
 
+        // Stationary
         else
         {
             anim.SetBool("isWalking", false);
@@ -268,6 +274,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", 0.0f);
         }
 
+        // Update character's location and gravity
         moveDir = new Vector3(hdir, gravity, vdir);
         moveDir *= speed;
         moveDir = transform.TransformDirection(moveDir);

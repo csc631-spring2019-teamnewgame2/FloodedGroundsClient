@@ -271,6 +271,7 @@ public class MonsterMovement : MonoBehaviour
         {
             gravity = 0f;
         }
+
         else
         {
             gravity = -9.8f;
