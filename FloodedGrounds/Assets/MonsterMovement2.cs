@@ -6,8 +6,7 @@ public class MonsterMovement2 : MonoBehaviour
 {
     public float speed = 1.0f;
     public float gravity = -9.8f;
-    public float jumpHeight = 5.0f;
-
+    public bool gravityEnabled = true;
     Vector3 moveDir = Vector3.zero;
 
     Animator anim;
@@ -47,7 +46,6 @@ public class MonsterMovement2 : MonoBehaviour
         CheckCamera();
         CheckForWaterHeight();
         Movement();
-        //Jumping();
         GetInput();
     }
 
@@ -104,17 +102,13 @@ public class MonsterMovement2 : MonoBehaviour
         // Jump
         if (Input.GetKey(KeyCode.Space))
         {
-            if (anim.GetBool("isJumping") == false)
-            {
-                anim.SetBool("isJumping", true);
-            }
+            anim.SetBool("isJumping", true);
         }
 
         // Shout
-        if (Input.GetKey(KeyCode.X) && anim.GetBool("isShouting") == false)
+        if (Input.GetKey(KeyCode.X))
         {
             anim.SetBool("isShouting", true);
-            Shouting();
         }
     }
 
@@ -141,8 +135,56 @@ public class MonsterMovement2 : MonoBehaviour
             speed = 1.0f;
         }
 
+        // Moving forward-left
+        if (hdir < 0 && vdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isForward", true);
+            anim.SetBool("isLeft", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(45, 0, 0);
+            leftLeg.transform.Rotate(-15, 0, 0);
+            rightLeg.transform.Rotate(-15, 0, 0);
+        }
+
+        // Moving backwards-left
+        else if (hdir < 0 && vdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isBackward", true);
+            anim.SetBool("isLeft", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(45, 0, 0);
+            leftLeg.transform.Rotate(-15, 0, 0);
+            rightLeg.transform.Rotate(-15, 0, 0);
+        }
+
+        // Moving forward-right
+        else if (hdir > 0 && vdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isForward", true);
+            anim.SetBool("isRight", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(-45, 0, 0);
+            leftLeg.transform.Rotate(15, 0, 0);
+            rightLeg.transform.Rotate(15, 0, 0);
+        }
+
+        // Moving backwards-right
+        else if (hdir > 0 && vdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isBackward", true);
+            anim.SetBool("isRight", true);
+            anim.SetFloat("Speed", speed);
+            spine.transform.Rotate(-45, 0, 0);
+            leftLeg.transform.Rotate(15, 0, 0);
+            rightLeg.transform.Rotate(15, 0, 0);
+        }
+
         // Moving forward
-        if (vdir > 0)
+        else if (vdir > 0)
         {
             anim.SetBool("isWalking", true);
             anim.SetBool("isForward", true);
@@ -179,54 +221,6 @@ public class MonsterMovement2 : MonoBehaviour
             rightLeg.transform.Rotate(-15, 0, 0);
         }
 
-        // Moving forward-left
-        else if (hdir < 0 && vdir > 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isForward", true);
-            anim.SetBool("isLeft", true);
-            anim.SetFloat("Speed", speed);
-            spine.transform.Rotate(-45, 0, 0);
-            leftLeg.transform.Rotate(15, 0, 0);
-            rightLeg.transform.Rotate(15, 0, 0);
-        }
-
-        // Moving backwards-left
-        else if (hdir < 0 && vdir < 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isBackward", true);
-            anim.SetBool("isLeft", true);
-            anim.SetFloat("Speed", speed);
-            spine.transform.Rotate(-45, 0, 0);
-            leftLeg.transform.Rotate(15, 0, 0);
-            rightLeg.transform.Rotate(15, 0, 0);
-        }
-
-        // Moving forward-right
-        else if (hdir > 0 && vdir > 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isForward", true);
-            anim.SetBool("isRight", true);
-            anim.SetFloat("Speed", speed);
-            spine.transform.Rotate(45, 0, 0);
-            leftLeg.transform.Rotate(-15, 0, 0);
-            rightLeg.transform.Rotate(-15, 0, 0);
-        }
-
-        // Moving backwards-right
-        else if (hdir > 0 && vdir < 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isBackward", true);
-            anim.SetBool("isRight", true);
-            anim.SetFloat("Speed", speed);
-            spine.transform.Rotate(45, 0, 0);
-            leftLeg.transform.Rotate(-15, 0, 0);
-            rightLeg.transform.Rotate(-15, 0, 0);
-        }
-
         // Stationary
         else
         {
@@ -239,10 +233,12 @@ public class MonsterMovement2 : MonoBehaviour
         }
 
         // Update character's location and gravity
-        moveDir = new Vector3(hdir, gravity, vdir);
+        if (gravityEnabled)
+            moveDir = new Vector3(hdir, gravity, vdir);
+        else
+            moveDir = new Vector3(hdir, 0, vdir);
         moveDir *= speed;
         moveDir = transform.TransformDirection(moveDir);
-        //moveDir.y -= gravity * Time.deltaTime;
         controller.Move(moveDir * Time.deltaTime);
     }
 

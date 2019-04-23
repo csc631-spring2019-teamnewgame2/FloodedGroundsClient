@@ -1295,12 +1295,8 @@ GameObject:
   - component: {fileID: 5445030458129638792}
   - component: {fileID: 5445030458129638795}
   - component: {fileID: 5445030458129638794}
-  - component: {fileID: 5445030458129638797}
-  - component: {fileID: 5445030458129638796}
   - component: {fileID: 5445030458129638799}
-  - component: {fileID: 5445030458129638798}
   - component: {fileID: 5445030458129638833}
-  - component: {fileID: 5445030458129638832}
   m_Layer: 0
   m_Name: Bog_lord
   m_TagString: Player
@@ -1382,43 +1378,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &5445030458129638797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5445030458129638835}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fd8e1ba1e227f74c8b5b342ec73eecb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1000
-  jumpHeight: 0
-  gunPoint: {fileID: 0}
-  bullet: {fileID: 6212224959121384807, guid: adc82ef1185137a4a822ec9e4ae81438, type: 3}
---- !u!114 &5445030458129638796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5445030458129638835}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6a175f9d22cd4111ba43007ef2a6fd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  gravity: 10
-  jumpHeight: 0
-  gunPoint: {fileID: 0}
-  bullet: {fileID: 6212224959121384807, guid: adc82ef1185137a4a822ec9e4ae81438, type: 3}
-  spine: {fileID: 0}
-  leftLeg: {fileID: 0}
-  rightLeg: {fileID: 0}
-  WaterHeight: 15.5
 --- !u!114 &5445030458129638799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,20 +1396,6 @@ MonoBehaviour:
     type: 3}
   waterStep: {fileID: 3002379604959960162, guid: 63d747dcdd688624eb457b5e88617444,
     type: 3}
---- !u!136 &5445030458129638798
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5445030458129638835}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &5445030458129638833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,29 +1411,6 @@ MonoBehaviour:
   inputSFX: event:/Characters/Footsteps/PlayerFootsteps
   isIndoors: 0
   isMoving: 0
---- !u!114 &5445030458129638832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5445030458129638835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bac90181991f847e790a10dc505e0788, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  gravity: 10
-  jumpHeight: 5
-  shout: {fileID: 8564523658907494715, guid: 543d443c966c94a7e82b7b99bb2824d9, type: 3}
-  spine: {fileID: 5445030457814748425}
-  leftLeg: {fileID: 5445030457833994947}
-  rightLeg: {fileID: 5445030458633862688}
-  sensitivity: 30
-  WaterHeight: 15.5
-  cam: {fileID: 5445030458866923056}
-  webGLRightClickRotation: 1
 --- !u!1 &5445030458132418419
 GameObject:
   m_ObjectHideFlags: 0

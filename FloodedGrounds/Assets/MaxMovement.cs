@@ -42,7 +42,6 @@ public class MaxMovement : MonoBehaviour
         //CheckCamera();
         CheckForWaterHeight();
         Movement();
-        Jumping();
         GetInput();
         Shooting();
     }
@@ -78,102 +77,29 @@ public class MaxMovement : MonoBehaviour
     {
         // Attack
         if (Input.GetMouseButton(0)) // left mouse button is held down
-        {
-            anim.SetBool("isAttacking", true);
-        }
-
-        if (Input.GetMouseButtonUp(0)) // left mouse button is let go
-        {
-            Attacking();
-        }
+            anim.SetBool("isShooting", true);
 
         // Jump
         if (Input.GetKey(KeyCode.Space))
-        {
-            Debug.Log("JUMP");
-            if (anim.GetBool("isJumping") == false)
-            {
-                anim.SetBool("isJumping", true);
-                //moveDir = new Vector3(0, jumpHeight, 0);
-                //moveDir *= speed;
-                //moveDir = transform.TransformDirection(moveDir);
-                //moveDir.y -= gravity * Time.deltaTime;
-                //controller.Move(moveDir * Time.deltaTime);
-            }
-
-            else
-            {
-                anim.SetBool("isJumping", false);
-            }
-        }
-
-        else
-        {
-            anim.SetBool("isJumping", false);
-        }
-
-        //// Shout
-        //if (Input.GetKey(KeyCode.X) && anim.GetBool("isShouting") == false)
-        //{
-        //anim.SetBool("isShouting", true);
-        //GameObject tempShout = (GameObject)Instantiate(shout);
-        //tempShout.transform.position = gunPoint.position;
-        //Destroy(tempShout, 5.0f);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.X))
-        //{
-        //    Shouting();
-        //}
+            anim.SetBool("isJumping", true);
     }
 
-    //void Shouting()
-    //{
-    //    StartCoroutine(ShoutRoutine());
-    //}
-
-    void Attacking()
+    void EndAttack()
     {
-        StartCoroutine(AttackRoutine());
-    }
-
-    void Jumping()
-    {
-        StartCoroutine(JumpRoutine());
-    }
-
-    IEnumerator AttackRoutine()
-    {
-        yield return new WaitForSeconds(1.5f);
         anim.SetBool("isAttacking", false);
     }
 
-    IEnumerator JumpRoutine()
+    void EndJump()
     {
-        yield return new WaitForSeconds(0.5f);
         anim.SetBool("isJumping", false);
     }
 
-    //IEnumerator ShoutRoutine()
-    //{
-    //    yield return new WaitForSeconds(3.5f);
-    //    anim.SetBool("isShouting", false);
-    //}
-
     void Shooting()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            anim.SetBool("isShooting", true);
-            GameObject tempBullet = (GameObject)Instantiate(bullet);
-            tempBullet.transform.position = gunPoint.position;
-            Destroy(tempBullet, 1.0f);
-        }
-
-        else
-        {
-            anim.SetBool("isShooting", false);
-        }
+        anim.SetBool("isShooting", true);
+        GameObject tempBullet = (GameObject)Instantiate(bullet);
+        tempBullet.transform.position = gunPoint.position;
+        Destroy(tempBullet, 1.0f);
     }
 
     void Movement()
@@ -285,12 +211,9 @@ public class MaxMovement : MonoBehaviour
     void CheckForWaterHeight()
     {
         if (transform.position.y < WaterHeight)
-        {
             gravity = 0f;
-        }
+
         else
-        {
             gravity = -9.8f;
-        }
     }
 }

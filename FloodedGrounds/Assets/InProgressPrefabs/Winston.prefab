@@ -5404,7 +5404,6 @@ GameObject:
   - component: {fileID: 1300103518273317170}
   - component: {fileID: 1300103518273317169}
   - component: {fileID: 1300103518273317168}
-  - component: {fileID: 1300103518273317180}
   m_Layer: 0
   m_Name: Winston
   m_TagString: Player
@@ -5493,20 +5492,6 @@ MonoBehaviour:
   gunPoint: {fileID: 1300103517032596474}
   bullet: {fileID: 6212224959121384807, guid: adc82ef1185137a4a822ec9e4ae81438, type: 3}
   WaterHeight: 15.5
---- !u!114 &1300103518273317180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1300103518273317175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7298c73bac3954bda8c96a904c9825cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunPoint: {fileID: 1300103517032596474}
-  bullet: {fileID: 6212224959121384807, guid: adc82ef1185137a4a822ec9e4ae81438, type: 3}
 --- !u!1 &1300103518298044256
 GameObject:
   m_ObjectHideFlags: 0
