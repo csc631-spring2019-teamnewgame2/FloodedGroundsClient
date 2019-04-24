@@ -43,7 +43,6 @@ public class MaxMovement : MonoBehaviour
         CheckForWaterHeight();
         Movement();
         GetInput();
-        Shooting();
     }
 
     //void CameraRotation(GameObject cam, float rotX, float rotY)
@@ -84,9 +83,9 @@ public class MaxMovement : MonoBehaviour
             anim.SetBool("isJumping", true);
     }
 
-    void EndAttack()
+    void EndShooting()
     {
-        anim.SetBool("isAttacking", false);
+        anim.SetBool("isShooting", false);
     }
 
     void EndJump()
@@ -96,7 +95,6 @@ public class MaxMovement : MonoBehaviour
 
     void Shooting()
     {
-        anim.SetBool("isShooting", true);
         GameObject tempBullet = (GameObject)Instantiate(bullet);
         tempBullet.transform.position = gunPoint.position;
         Destroy(tempBullet, 1.0f);
