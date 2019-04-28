@@ -77,7 +77,7 @@ public class MaxMovement : MonoBehaviour
         // Attack
         if (Input.GetMouseButton(0)) // left mouse button is held down
             anim.SetBool("isShooting", true);
-
+            anim.SetTrigger("Attack");
         // Jump
         if (Input.GetKey(KeyCode.Space))
             anim.SetBool("isJumping", true);
