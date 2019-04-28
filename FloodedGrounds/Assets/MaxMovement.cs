@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaxMovement : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float speed = 3.0f;
     public float gravity = -9.8f;
     public float jumpHeight = 5.0f;
 
@@ -109,14 +109,14 @@ public class MaxMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             anim.SetBool("isRunning", true);
-            speed = 3.0f;
+            speed = 6.0f;
         }
 
         // Is not running
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             anim.SetBool("isRunning", false);
-            speed = 1.0f;
+            speed = 3.0f;
         }
 
         // Moving forward
