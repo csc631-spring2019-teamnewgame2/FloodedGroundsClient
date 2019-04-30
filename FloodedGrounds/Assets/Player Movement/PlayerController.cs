@@ -15,14 +15,14 @@ public class PlayerController : MonoBehaviour
     public Transform gunPoint;
     public Animator anim;
     public ManagementHUD counter;
-    public PlayerRaycasting pickup;
+    //public PlayerRaycasting pickup;
 
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
         anim = GetComponent<Animator>();
         counter = GetComponent<ManagementHUD>();
-        pickup = GetComponentInChildren<PlayerRaycasting>();
+        //pickup = GetComponentInChildren<PlayerRaycasting>();
     }
 
     void Update()
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         Movement();
         Shooting();
         Reload();
-        Interact();
+        //Interact();
     }
 
     public void Movement()
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Interact()
+    /*public void Interact()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -127,6 +127,7 @@ public class PlayerController : MonoBehaviour
             {
                 pickup.medPack = false;
                 counter.MedCounter(1);
+                Destroy(pickup.hit.collider.gameObject);
             }
             if (pickup.smokeGrenade)
             {
@@ -138,8 +139,8 @@ public class PlayerController : MonoBehaviour
                 pickup.grenade = false;
                 counter.GrenadeCounter(1);
             }
-            //Debug.Log("Picked Up Item");
+            Debug.Log("Picked Up Item");
         }
-    }
+    }*/
     
 }

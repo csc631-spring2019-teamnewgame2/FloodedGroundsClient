@@ -77,7 +77,14 @@ public class ManagementHUD : MonoBehaviour
         medpack.text = _medPack.ToString();
     }
 
-    public void SmokeCounter(int add)
+    public void AmmoPickup(int add)
+    {
+        ammoOut += add;
+
+        ammoDisplay.text = ammoIn.ToString() + " <size=8>/ " + ammoOut.ToString() + "</size>";
+    }
+
+    /*public void SmokeCounter(int add)
     {
         _smokeGrenade += add;
 
@@ -89,7 +96,7 @@ public class ManagementHUD : MonoBehaviour
         _grenade += add;
 
         grenade.text = _grenade.ToString();
-    }
+    }*/
 
     // Update is called once per frame
     void Update()

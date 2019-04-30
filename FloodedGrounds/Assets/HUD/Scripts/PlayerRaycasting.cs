@@ -7,6 +7,7 @@ public class PlayerRaycasting : MonoBehaviour
     //public GameObject _medpack, _smokeGrenade, grenade;
     public RaycastHit hit;
     public Ray ray;
+    public ManagementHUD counter;
 
     public bool medPack, smokeGrenade, grenade;
     public float maxDistance = 5;
@@ -16,8 +17,9 @@ public class PlayerRaycasting : MonoBehaviour
     void Start()
     {
         medPack = false;
-        smokeGrenade = false;
-        grenade = false;
+        counter = GetComponentInParent<ManagementHUD>();
+        //smokeGrenade = false;
+        //grenade = false;
         //var screen
         //ray = cam.transform.position;
     }
@@ -30,20 +32,34 @@ public class PlayerRaycasting : MonoBehaviour
         if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "MedPack")
         {
             //isInteractable = true;
-            medPack = true;
+            //medPack = true;
             //Debug.Log("Medpack is interactable");
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Destroy(hit.collider.gameObject);
+                //medPack = false;
+                counter.MedCounter(1);
+            }
         }
-        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "SmokeGrenade")
+        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Ammo")
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Destroy(hit.collider.gameObject);
+                counter.AmmoPickup(120);
+            }
+        }
+        /*if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "SmokeGrenade")
         {
             //isInteractable = true;
             smokeGrenade = true;
             //Debug.Log("Smoke Grenade is interactable");
         }
-        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Grenade")
+        else if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Grenade")
         {
             //isInteractable = true;
             grenade = true;
             //Debug.Log("Grenade is interactable");
-        }
+        }*/
     }
 }

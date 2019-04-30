@@ -13,6 +13,7 @@ TagManager:
   - MedPack
   - SmokeGrenade
   - Grenade
+  - Ammo
   layers:
   - Default
   - TransparentFX
