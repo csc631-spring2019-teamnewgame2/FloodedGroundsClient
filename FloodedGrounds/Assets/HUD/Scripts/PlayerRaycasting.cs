@@ -1,72 +1,105 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerRaycasting : MonoBehaviour
 {
-    //public GameObject _medpack, _smokeGrenade, grenade;
-    public RaycastHit hit;
-    public Ray ray;
     public ManagementHUD counter;
+    public Animator medAnim;
+    public Animator ammoAnim;
 
-    public bool medPack;
-    public float maxDistance = 5;
+    public float maxDistance = 3;
+    public float sphereRadius = 0.5f;
 
-    //private Vector3 raycastPos;
+    private float currentHitDistance;
     
         
     // Start is called before the first frame update
     void Start()
     {
-        medPack = false;
-
-        //foreach (Transform t in transform.GetComponentInChildren<Transform>(true))
-        //    if (t.gameObject.name == "CC_Base_Eye")
-        //        raycastPos = t.gameObject.transform.position;
-
-        //counter = GetComponentInParent<ManagementHUD>();
-        //smokeGrenade = false;
-        //grenade = false;
-        //var screen
-        //ray = cam.transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawRay(this.transform.position, this.transform.forward * maxDistance, Color.magenta);
+        //Debug.DrawRay(this.transform.position, this.transform.forward * maxDistance, Color.magenta);
+        //Gizmos.DrawWireSphere(this.transform.position + this.transform.forward * maxDistance, sphereRadius);
 
-        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Medpack")
+        RaycastHit hit;
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Medpack")
         {
-            //isInteractable = true;
-            //medPack = true;
-            //Debug.Log("Medpack is interactable");
+            medAnim = hit.collider.gameObject.GetComponent<Animator>();
+            medAnim.enabled = true;
+
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
             if (Input.GetKeyDown(KeyCode.E))
-            {
-                Destroy(hit.collider.gameObject);
-                //medPack = false;
-                counter.MedCounter(1);
-            }
+                {
+                    Destroy(hit.collider.gameObject);
+                    counter.MedCounter(1);
+                }
         }
-        if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Ammo")
+        else
         {
+            currentHitDistance = maxDistance;
+        }
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Ammo")
+        {
+            ammoAnim = hit.collider.gameObject.GetComponent<Animator>();
+            ammoAnim.enabled = true;
+
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Destroy(hit.collider.gameObject);
                 counter.AmmoPickup(120);
             }
         }
-        /*if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "SmokeGrenade")
+        else
         {
-            //isInteractable = true;
-            smokeGrenade = true;
-            //Debug.Log("Smoke Grenade is interactable");
+            currentHitDistance = maxDistance;
         }
-        else if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Grenade")
-        {
-            //isInteractable = true;
-            grenade = true;
-            //Debug.Log("Grenade is interactable");
-        }*/
+
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Debug.DrawLine(this.transform.position, this.transform.position + this.transform.forward * currentHitDistance);
+        Gizmos.DrawWireSphere(this.transform.position + this.transform.forward * currentHitDistance, sphereRadius);
+    }
+
 }
+
+//if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Medpack")
+//{
+//    medAnim = hit.collider.gameObject.GetComponent<Animator>();
+//    medAnim.enabled = true;
+
+//    if (Input.GetKeyDown(KeyCode.E))
+//    {
+//        Destroy(hit.collider.gameObject);
+//        //medPack = false;
+//        counter.MedCounter(1);
+//    }
+//}
+//if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Ammo")
+//{
+//    ammoAnim = hit.collider.gameObject.GetComponent<Animator>();
+//    ammoAnim.enabled = true;
+
+//    if (Input.GetKeyDown(KeyCode.E))
+//    {
+//        Destroy(hit.collider.gameObject);
+//        counter.AmmoPickup(120);
+//    }
+//}

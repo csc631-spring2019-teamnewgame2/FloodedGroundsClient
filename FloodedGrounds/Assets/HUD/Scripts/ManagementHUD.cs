@@ -13,6 +13,14 @@ public class ManagementHUD : MonoBehaviour
     public Text ammoDisplay;
     public Text medpack;
 
+    public Text interactHint;
+    private TextFadeOut hintText;
+
+    void Start()
+    {
+        hintText = interactHint.GetComponent<TextFadeOut>();
+    }
+
     public void AmmoCounter(int amount)
     {
         ammoIn -= amount;
@@ -78,6 +86,13 @@ public class ManagementHUD : MonoBehaviour
         ammoOut += add;
 
         ammoDisplay.text = ammoIn.ToString() + " <size=8>/ " + ammoOut.ToString() + "</size>";
+    }
+
+    public void InteractHint()
+    {
+        //Display hint to interact with objects 
+        interactHint.enabled = true;
+        hintText.FadeOut();
     }
 
     // Update is called once per frame
