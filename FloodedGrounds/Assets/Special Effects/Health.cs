@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 {
     public const int maxHealth = 100;
     public int currentHealth = maxHealth;
-    public RectTransform healthbar;
+    //public RectTransform healthbar;
     public RectTransform healthHUD;
     Animator anim;
 
@@ -25,8 +25,8 @@ public class Health : MonoBehaviour
             StartCoroutine(Respawn());
         }
 
-        //healthHUD.sizeDelta = new Vector2((float)(currentHealth * 1.5), healthHUD.sizeDelta.y);
-        healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
+        healthHUD.sizeDelta = new Vector2((float)(currentHealth * 1.5), healthHUD.sizeDelta.y);
+        //healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
     }
     
     IEnumerator Respawn()
@@ -39,7 +39,8 @@ public class Health : MonoBehaviour
         anim.SetBool("isDead", false);
         anim.Play("idle");
         currentHealth = 100;
-        healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
+        healthHUD.sizeDelta = new Vector2((float)(currentHealth * 1.5), healthHUD.sizeDelta.y);
+        //healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
         canvas.enabled = true;
         rend.enabled = true;
     }

@@ -99,7 +99,7 @@ MonoBehaviour:
   - {fileID: 114548035044166550}
   StringsBanks:
   - {fileID: 114647546166874228}
-  stringsBankWriteTime: 636910200087070116
+  stringsBankWriteTime: 636921792531571560
   cacheVersion: 3
 --- !u!114 &114001503168926500
 MonoBehaviour:
@@ -188,6 +188,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 3277
+--- !u!114 &114003239519136196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Bullet distance (meters)
+  Min: 0
+  Max: 5
+  Default: 0
 --- !u!114 &114004098611878484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,6 +337,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 2507
+--- !u!114 &114025569195368674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Pace
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114027458694153610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -893,6 +925,22 @@ MonoBehaviour:
   Min: 0
   Max: 100
   Default: 0
+--- !u!114 &114074160576893084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: MonsterFootFall
+  Min: 0
+  Max: 2
+  Default: 0
 --- !u!114 &114074177490676462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,6 +964,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 192
+--- !u!114 &114074412297075798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Location
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114078522261123290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1004,6 +1068,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 192
+--- !u!114 &114085272652467124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Health
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114087431749246296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,6 +1115,22 @@ MonoBehaviour:
   Name: Occlusion
   Min: 0
   Max: 1
+  Default: 0
+--- !u!114 &114087728233535122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Bullet distance (meters)
+  Min: 0
+  Max: 5
   Default: 0
 --- !u!114 &114090055211474850
 MonoBehaviour:
@@ -1118,8 +1214,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114174695006509886}
-  - {fileID: 114916288961698856}
+  - {fileID: 114087728233535122}
+  - {fileID: 114950873872166586}
   MinDistance: 1
   MaxDistance: 20
   Length: 840
@@ -1143,7 +1239,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114045713271240782}
+  - {fileID: 114282361661580466}
   MinDistance: 0
   MaxDistance: 0
   Length: 3277
@@ -1677,7 +1773,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114006158407247438}
+  - {fileID: 114085272652467124}
   MinDistance: 0
   MaxDistance: 0
   Length: 1342
@@ -2009,6 +2105,22 @@ MonoBehaviour:
   Min: 0
   Max: 10
   Default: 0
+--- !u!114 &114187559920423798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: DistanceFrom Monster(meters)
+  Min: 0
+  Max: 50
+  Default: 0
 --- !u!114 &114188596591107180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2084,8 +2196,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114110789373253712}
-  - {fileID: 114677004169974460}
+  - {fileID: 114003239519136196}
+  - {fileID: 114689276784597592}
   MinDistance: 0
   MaxDistance: 0
   Length: 1100
@@ -2164,7 +2276,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114289279559746984}
+  - {fileID: 114763162208592138}
   MinDistance: 1
   MaxDistance: 20
   Length: 1660
@@ -2244,7 +2356,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 114671929024098606}
+  - {fileID: 114489532257637710}
   MinDistance: 0
   MaxDistance: 0
   Length: 55200
@@ -2936,6 +3048,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 192
+--- !u!114 &114282361661580466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Health
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114283716837316492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3758,6 +3886,22 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &114367223173852586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Occlusion
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114373678740359520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4078,6 +4222,22 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 192
+--- !u!114 &114395892046253574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Health
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114395969576687900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4413,7 +4573,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114800911714687304}
+  - {fileID: 114525611492324488}
   MinDistance: 0
   MaxDistance: 0
   Length: 210
@@ -4478,7 +4638,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114846004816680670}
+  - {fileID: 114187559920423798}
   MinDistance: 0
   MaxDistance: 0
   Length: 1849
@@ -4774,7 +4934,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114072175464747116}
+  - {fileID: 114395892046253574}
   MinDistance: 0
   MaxDistance: 0
   Length: 2331
@@ -4941,7 +5101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\Andrew\Documents\GitHub\FloodedGroundsClient\FloodedGrounds\Assets\VRZFPS\Build\Desktop\Test
     Bank.bank
-  lastModified: 636910200087249585
+  lastModified: 636921792532030369
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -5205,7 +5365,39 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &114489532257637710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Location
+  Min: 0
+  Max: 10
+  Default: 0
 --- !u!114 &114490714038880542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: DistanceFrom Monster(meters)
+  Min: 0
+  Max: 50
+  Default: 0
+--- !u!114 &114491481566162714
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5538,6 +5730,22 @@ MonoBehaviour:
   Min: 0
   Max: 5
   Default: 0
+--- !u!114 &114525611492324488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Health
+  Min: 0
+  Max: 100
+  Default: 0
 --- !u!114 &114528498805846740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5776,8 +5984,8 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114922964134574278}
-  - {fileID: 114697625313632018}
+  - {fileID: 114596943012570616}
+  - {fileID: 114367223173852586}
   MinDistance: 1
   MaxDistance: 20
   Length: 82
@@ -5794,7 +6002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: C:\Users\Andrew\Documents\GitHub\FloodedGroundsClient\FloodedGrounds\Assets\VRZFPS\Build\Desktop\FloodedGrounds.bank
-  lastModified: 636910200087020208
+  lastModified: 636921792531501777
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -5884,7 +6092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: C:\Users\Andrew\Documents\GitHub\FloodedGroundsClient\FloodedGrounds\Assets\VRZFPS\Build\Desktop\Master
     Bank.bank
-  lastModified: 636910200087050130
+  lastModified: 636921792531541650
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -6197,6 +6405,22 @@ MonoBehaviour:
   Name: Surface_index
   Min: 0
   Max: 3.1
+  Default: 0
+--- !u!114 &114596943012570616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Auto Stop
+  Min: 0
+  Max: 1
   Default: 0
 --- !u!114 &114597563789952572
 MonoBehaviour:
@@ -6733,7 +6957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\VRZFPS\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636910200087070116
+  lastModified: 636921792531571560
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -6805,7 +7029,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 1
   Parameters:
-  - {fileID: 114862482012209704}
+  - {fileID: 114491481566162714}
   MinDistance: 0
   MaxDistance: 0
   Length: 6784
@@ -7047,6 +7271,22 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1100
+--- !u!114 &114689276784597592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Bullet Degrees
+  Min: 0
+  Max: 3.6
+  Default: 0
 --- !u!114 &114694751121830328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7775,6 +8015,22 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2328
+--- !u!114 &114763162208592138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Occlusion
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114763230424133388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8931,9 +9187,9 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 114058368653865296}
-  - {fileID: 114665682571923580}
-  - {fileID: 114080521363631832}
+  - {fileID: 114952650939328434}
+  - {fileID: 114025569195368674}
+  - {fileID: 114074160576893084}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -9861,6 +10117,22 @@ MonoBehaviour:
   Min: 0
   Max: 1
   Default: 0
+--- !u!114 &114950873872166586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Bullet Degrees
+  Min: 0
+  Max: 3.6
+  Default: 0
 --- !u!114 &114951378451938866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9900,6 +10172,22 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 192
+--- !u!114 &114952650939328434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Surface_index
+  Min: 0
+  Max: 3.1
+  Default: 0
 --- !u!114 &114954649375154396
 MonoBehaviour:
   m_ObjectHideFlags: 0
