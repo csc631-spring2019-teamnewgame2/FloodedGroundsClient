@@ -7,14 +7,15 @@ public class Health : MonoBehaviour
 {
     public const int maxHealth = 100;
     public int currentHealth = maxHealth;
-    //public RectTransform healthbar;
-    public RectTransform healthHUD;
+    private float num1, num2;
+    public RectTransform healthbar;
+    //public RectTransform healthHUD;
     Animator anim;
 
     public SkinnedMeshRenderer rend;
     public Canvas canvas;
 
-    public void takeDamage(int amount)
+    public void TakeDamage(int amount)
     {
         currentHealth -= amount;
         if(currentHealth <= 0)
@@ -22,11 +23,13 @@ public class Health : MonoBehaviour
             currentHealth = 0;
             anim.SetBool("isDead", true);
             Debug.Log("Dead");
+            num1 = Random.Range(-10.0f, 10.0f);
+            num2 = Random.Range(-10.0f, 10.0f);
             StartCoroutine(Respawn());
         }
 
-        healthHUD.sizeDelta = new Vector2((float)(currentHealth * 1.5), healthHUD.sizeDelta.y);
-        //healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
+        //healthHUD.sizeDelta = new Vector2((float)(currentHealth * 1.5), healthHUD.sizeDelta.y);
+        healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
     }
     
     IEnumerator Respawn()
@@ -35,14 +38,14 @@ public class Health : MonoBehaviour
         yield return new WaitForSeconds(2);
         rend.enabled = false;
         yield return new WaitForSeconds(3);
-        this.transform.position = new Vector3(8, 0, 8);
+        this.transform.position = new Vector3(num1, 0, num2);
         anim.SetBool("isDead", false);
         anim.Play("idle");
         currentHealth = 100;
-        healthHUD.sizeDelta = new Vector2((float)(currentHealth * 1.5), healthHUD.sizeDelta.y);
-        //healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
-        canvas.enabled = true;
+        //healthHUD.sizeDelta = new Vector2((float)(currentHealth * 1.5), healthHUD.sizeDelta.y);
+        healthbar.sizeDelta = new Vector2(currentHealth, healthbar.sizeDelta.y);
         rend.enabled = true;
+        canvas.enabled = true;
     }
 
     void Start()

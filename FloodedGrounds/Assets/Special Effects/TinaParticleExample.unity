@@ -708,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 100
-  healthbar: {fileID: 383361186}
+  healthbar: {fileID: 0}
   healthHUD: {fileID: 0}
   rend: {fileID: 0}
   canvas: {fileID: 0}
@@ -2068,6 +2068,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
+--- !u!1 &909982347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 242371787, guid: bd78f164df4554280a1e6b3e0f29f8a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1871740327}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &909982348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909982347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11cb13395c629d04586ed8a46b82f58c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  gravity: 50
+  gunPoint: {fileID: 2143136258}
+  bullet: {fileID: 6212224959121384807, guid: adc82ef1185137a4a822ec9e4ae81438, type: 3}
+  spine: {fileID: 1348216076}
+  leftLeg: {fileID: 2022621066}
+  rightLeg: {fileID: 109954082}
 --- !u!1 &910244686
 GameObject:
   m_ObjectHideFlags: 0
@@ -3303,7 +3328,8 @@ PrefabInstance:
       propertyPath: leftLeg
       value: 
       objectReference: {fileID: 2022621066}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 242371797, guid: bd78f164df4554280a1e6b3e0f29f8a2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bd78f164df4554280a1e6b3e0f29f8a2, type: 3}
 --- !u!1 &1888496606
 GameObject:

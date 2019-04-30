@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement3 : MonoBehaviour
+public class PlayerMovement5 : MonoBehaviour
 {
     public float speed = 1.0f;
     public float gravity = 50f;
@@ -19,7 +19,7 @@ public class PlayerMovement3 : MonoBehaviour
     public Transform spine;
     public Transform leftLeg;
     public Transform rightLeg;
-    
+
     // Start is called before the first frame update
     void Start()
     {
