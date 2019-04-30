@@ -11,5 +11,6 @@ public class RequestRegister : NetworkRequest
     public void send()
     {
         packet = new GamePacket(request_id);
+        Debug.Log("Already Register");
     }
 }

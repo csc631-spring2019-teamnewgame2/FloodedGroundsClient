@@ -13,6 +13,8 @@ public class ResponseGetLobbies : NetworkResponse
     override
     public ExtendedEventArgs process()
     {
+        //Debug.Log("Received Lobby List");
+        //Debug.Log("Failed To Get Lobbies");
         return null;
     }
 }

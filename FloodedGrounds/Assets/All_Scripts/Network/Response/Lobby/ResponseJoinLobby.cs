@@ -13,6 +13,8 @@ public class ResponseJoinLobby : NetworkResponse
     override
     public ExtendedEventArgs process()
     {
+        //Debug.Log("Joined Lobby");
+        //Debug.Log("Failed To Join Lobby");
         return null;
     }
 }

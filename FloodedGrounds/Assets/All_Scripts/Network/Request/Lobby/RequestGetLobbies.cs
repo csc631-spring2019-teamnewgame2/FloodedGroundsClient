@@ -11,5 +11,6 @@ public class RequestGetLobbies : NetworkRequest
     public void send()
     {
         packet = new GamePacket(request_id);
+        Debug.Log("Requested Lobby List");
     }
 }

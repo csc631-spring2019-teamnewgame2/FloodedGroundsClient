@@ -13,6 +13,8 @@ public class ResponseStartGame : NetworkResponse
     override
     public ExtendedEventArgs process()
     {
+        //Debug.Log("Game Started");
+        //Debug.Log("Failed To Start Game");
         return null;
     }
 }

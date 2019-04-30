@@ -13,6 +13,8 @@ public class ResponseRegister : NetworkResponse
     override
     public ExtendedEventArgs process()
     {
+        //Debug.Log("Registed");
+        //Debug.Log("Register Failed");
         return null;
     }
 }

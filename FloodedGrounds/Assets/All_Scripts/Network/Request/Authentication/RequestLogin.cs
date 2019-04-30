@@ -13,5 +13,6 @@ public class RequestLogin : NetworkRequest {
 		packet.addString(Constants.CLIENT_VERSION);
 		packet.addString(username);
 		packet.addString(password);
-	}
+        Debug.Log("Requested Login");
+    }
 }

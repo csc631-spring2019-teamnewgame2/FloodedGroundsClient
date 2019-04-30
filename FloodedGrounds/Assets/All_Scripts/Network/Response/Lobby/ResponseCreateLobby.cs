@@ -13,6 +13,8 @@ public class ResponseCreateLobby : NetworkResponse
     override
     public ExtendedEventArgs process()
     {
+        //Debug.Log("Lobby Created");
+        //Debug.Log("Failed To Create Lobby");
         return null;
     }
 }

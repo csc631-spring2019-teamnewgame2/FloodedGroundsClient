@@ -38,8 +38,11 @@ public class ResponseLogin : NetworkResponse {
 			args.status = status;
 			args.user_id = user_id;
 			args.username = username;
-		}
+            Debug.Log("Logged In");
+        }
+        else
+            Debug.Log("Login Failed");
 
-		return args;
+        return args;
 	}
 }
