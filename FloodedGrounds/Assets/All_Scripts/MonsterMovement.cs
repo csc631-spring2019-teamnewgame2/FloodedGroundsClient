@@ -7,6 +7,7 @@ public class MonsterMovement : MonoBehaviour
     public float speed = 1.0f;
     public float gravity = -9.8f;
     public float jumpHeight = 5.0f;
+    public bool gravityEnabled = false;
 
     Vector3 moveDir = Vector3.zero;
 
@@ -258,7 +259,11 @@ public class MonsterMovement : MonoBehaviour
             rightLeg.transform.Rotate(15, 0, 0);
         }
 
-        moveDir = new Vector3(hdir, gravity, vdir);
+        if(gravityEnabled)
+            moveDir = new Vector3(hdir, gravity, vdir);
+        else
+            moveDir = new Vector3(hdir, 0, vdir);
+
         moveDir *= speed;
         moveDir = transform.TransformDirection(moveDir);
         //moveDir.y -= gravity * Time.deltaTime;

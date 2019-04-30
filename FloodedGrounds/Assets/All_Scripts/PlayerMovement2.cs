@@ -7,6 +7,7 @@ public class PlayerMovement2 : MonoBehaviour
     public float speed = 1.0f;
     public float gravity = -9.8f;
     public float jumpHeight = 5.0f;
+    public bool gravityEnabled = false;
 
     Vector3 moveDir = Vector3.zero;
 
@@ -22,11 +23,11 @@ public class PlayerMovement2 : MonoBehaviour
     public Transform leftLeg;
     public Transform rightLeg;
 
-    //public float sensitivity = 30.0f;
+    public float sensitivity = 30.0f;
     public float WaterHeight = 15.5f;
-    //public GameObject cam;
-    //float rotX, rotY;
-    //public bool webGLRightClickRotation = true;
+    public GameObject cam;
+    float rotX, rotY;
+    public bool webGLRightClickRotation = true;
 
     // Start is called before the first frame update
     void Start()
@@ -35,50 +36,50 @@ public class PlayerMovement2 : MonoBehaviour
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
 
-        ////LockCursor ();
-        //if (Application.isEditor)
-        //{
-        //    webGLRightClickRotation = false;
-        //    sensitivity = sensitivity * 1.5f;
-        //}
+        //LockCursor ();
+        if (Application.isEditor)
+        {
+            webGLRightClickRotation = false;
+            sensitivity = sensitivity * 1.5f;
+        }
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        //CheckCamera();
+        CheckCamera();
         CheckForWaterHeight();
         Movement();
         GetInput();
         Shooting();
     }
 
-    //void CameraRotation(GameObject cam, float rotX, float rotY)
-    //{
-    //    transform.Rotate(0, rotX * Time.deltaTime, 0);
-    //    cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
-    //}
+    void CameraRotation(GameObject cam, float rotX, float rotY)
+    {
+        transform.Rotate(0, rotX * Time.deltaTime, 0);
+        cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
+    }
 
-    //void CheckCamera()
-    //{
-    //    rotX = Input.GetAxis("Mouse X") * sensitivity;
-    //    rotY = Input.GetAxis("Mouse Y") * sensitivity;
+    void CheckCamera()
+    {
+        rotX = Input.GetAxis("Mouse X") * sensitivity;
+        rotY = Input.GetAxis("Mouse Y") * sensitivity;
 
-    //    if (webGLRightClickRotation)
-    //    {
-    //        if (Input.GetKey(KeyCode.Mouse0))
-    //        {
-    //            CameraRotation(cam, rotX, rotY);
-    //        }
-    //    }
+        if (webGLRightClickRotation)
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                CameraRotation(cam, rotX, rotY);
+            }
+        }
 
-    //    else if (!webGLRightClickRotation)
-    //    {
-    //        CameraRotation(cam, rotX, rotY);
-    //    }
+        else if (!webGLRightClickRotation)
+        {
+            CameraRotation(cam, rotX, rotY);
+        }
 
-    //    moveDir = transform.rotation * moveDir;
-    //}
+        moveDir = transform.rotation * moveDir;
+    }
 
     void GetInput()
     {
@@ -203,7 +204,11 @@ public class PlayerMovement2 : MonoBehaviour
             rightLeg.transform.Rotate(15, 0, 0);
         }
 
-        moveDir = new Vector3(hdir, gravity, vdir);
+        if (gravityEnabled)
+            moveDir = new Vector3(hdir, gravity, vdir);
+        else
+            moveDir = new Vector3(hdir, 0, vdir);
+
         moveDir *= speed;
         moveDir = transform.TransformDirection(moveDir);
         //moveDir.y -= gravity * Time.deltaTime;

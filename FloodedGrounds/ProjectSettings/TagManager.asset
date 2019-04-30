@@ -10,6 +10,11 @@ TagManager:
   - Monster
   - Human
   - Indoors
+  - Fire
+  - Winston
+  - Izzy
+  - Max
+  - Bog_lord
   layers:
   - Default
   - TransparentFX
