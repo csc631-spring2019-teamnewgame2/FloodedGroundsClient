@@ -25,10 +25,30 @@ public class ResponseJoinGame : NetworkResponse
         //Disble the network movement script
         player.GetComponent<NetworkMovement>().enabled = false;
 
-        //Enable the first person camera
+        //Find the first person camera for this character
+        GameObject myCamera = null;
+
         foreach (Transform t in player.transform.GetComponentsInChildren<Transform>(true))
             if (t.gameObject.name == "FPS Camera")
-                t.gameObject.SetActive(true);
+                myCamera = t.gameObject;
+
+        //Enable the first person camera
+        myCamera.SetActive(true);
+
+        //Make all of the player tags face the camera
+
+        //Loop through all of the characters
+        foreach (string name in Constants.characterIDs.Values)
+            //Skip the character being played
+            if (name != Main.getCharacter())
+                //Loop through all of the children of the object
+                foreach (Transform t in GameObject.FindGameObjectWithTag(name).transform.GetComponentsInChildren<Transform>(true))
+                    //If the child is the player status, enable the billboard script and set it's camera to this camera
+                    if (t.gameObject.name == "PlayerStatus")
+                    {
+                        t.gameObject.SetActive(true);
+                        t.gameObject.GetComponent<Billboard>().cam = myCamera.GetComponent<Camera>();
+                    }
 
         //Enable the movement script and enable gravity for this player
         switch (movementScript)
