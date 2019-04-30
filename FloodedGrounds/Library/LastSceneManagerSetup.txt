@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/HUD/Scenes/FPS.unity
+- path: Assets/Special Effects/TinaParticleExample.unity
   isLoaded: 1
   isActive: 1

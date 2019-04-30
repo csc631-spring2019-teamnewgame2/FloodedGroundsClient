@@ -492,7 +492,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   healthbar: {fileID: 153344104}
-  healthHUD: {fileID: 0}
   rend: {fileID: 1698139961}
   canvas: {fileID: 458350532}
 --- !u!54 &266839928
@@ -709,7 +708,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 100
   healthbar: {fileID: 0}
-  healthHUD: {fileID: 0}
   rend: {fileID: 0}
   canvas: {fileID: 0}
 --- !u!1 &383361185
