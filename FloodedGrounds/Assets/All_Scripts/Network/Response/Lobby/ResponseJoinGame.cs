@@ -67,6 +67,8 @@ public class ResponseJoinGame : NetworkResponse
                 break;
         }
 
+        Debug.Log("Joined Game");
+
         return null;
     }
 }

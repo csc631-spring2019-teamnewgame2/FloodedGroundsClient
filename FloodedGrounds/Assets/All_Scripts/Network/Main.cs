@@ -4,10 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-public class Main : MonoBehaviour {
+public class Main : MonoBehaviour
+{
+    //Determine what state the game is in
     private static bool loggedIn = false;
     private static bool inGame = false;
     private static string character;
+    private static ConnectionManager cManager;
+
+    //How long in seconds the client will wait for a response before sending the request again
+    private const int requestDelay = 1;
+    //The times when login or joinGame were last requested
+    float lastLogin = 0;
+    float lastJoinGame = 0;
 
     public static void setLoggedIn(bool _loggedIn)
     {
@@ -29,50 +38,66 @@ public class Main : MonoBehaviour {
         return character;
     }
 
-    void Awake() {
-		DontDestroyOnLoad(gameObject);
-		
-		gameObject.AddComponent<MessageQueue>();
-		gameObject.AddComponent<ConnectionManager>();
-		
-		NetworkRequestTable.init();
-		NetworkResponseTable.init();
-	}
-	
-	// Use this for initialization
-	void Start () {
-		//SceneManager.LoadScene ("Login");
-		ConnectionManager cManager = gameObject.GetComponent<ConnectionManager>();
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
 
-		if (cManager) {
-			cManager.setupSocket();
+        gameObject.AddComponent<MessageQueue>();
+        gameObject.AddComponent<ConnectionManager>();
 
-            StartCoroutine(UpdateLoop(1f/Constants.updatesPerSecond));
-		}
-	}
+        NetworkRequestTable.init();
+        NetworkResponseTable.init();
+    }
 
-	public IEnumerator UpdateLoop(float updateDelay) {
-		yield return new WaitForSeconds(updateDelay);
+    // Use this for initialization
+    void Start()
+    {
+        //SceneManager.LoadScene ("Login");
+        cManager = gameObject.GetComponent<ConnectionManager>();
 
-		ConnectionManager cManager = gameObject.GetComponent<ConnectionManager>();
-
-		if (cManager)
+        if (cManager)
         {
+            cManager.setupSocket();
+
+            StartCoroutine(UpdateLoop(1f / Constants.updatesPerSecond));
+        }
+    }
+
+    public IEnumerator UpdateLoop(float updateDelay)
+    {
+        yield return new WaitForSeconds(updateDelay);
+
+        if (cManager)
+        {
+            //If the user is not logged in and enough time has passed since the last request, send a login request
             if (!loggedIn)
             {
-                RequestLogin requestLogin = new RequestLogin();
-                //Temporary credentials
-                requestLogin.send("username", "password");
-                cManager.send(requestLogin);
+                if (Time.time > lastLogin + requestDelay)
+                {
+                    //Create the request
+                    RequestLogin requestLogin = new RequestLogin();
+                    //Populate it with the temporary credentials
+                    requestLogin.send("Temp", "Temp");
+                    //Send the request
+                    cManager.send(requestLogin);
+                    //Set the last login time
+                    lastLogin = Time.time;
+                }
             }
             else
             {
-                //Temporary: If not ingame, request access to connect to the game
+                //If the user is not in the game and enough time has passed since the request, send a join game request
                 if (!inGame)
                 {
-                    RequestJoinGame joinGame = new RequestJoinGame();
-                    joinGame.send();
-                    cManager.send(joinGame); 
+                    if (Time.time > lastJoinGame + requestDelay)
+                    {
+                        RequestJoinGame joinGame = new RequestJoinGame();
+                        joinGame.send();
+                        cManager.send(joinGame);
+
+                        //Set the last join game time
+                        lastJoinGame = Time.time;
+                    }
                 }
                 else
                 {
@@ -89,8 +114,8 @@ public class Main : MonoBehaviour {
                     cManager.send(pushUpdate);
                 }
             }
-		}
+        }
 
-		StartCoroutine(UpdateLoop(updateDelay));
-	}
+        StartCoroutine(UpdateLoop(updateDelay));
+    }
 }
