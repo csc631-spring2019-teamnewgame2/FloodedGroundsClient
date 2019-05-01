@@ -11,6 +11,7 @@ public class RequestJoinGame : NetworkRequest
     public void send()
     {
         packet = new GamePacket(request_id);
+        packet.addString(Constants.CLIENT_VERSION);
         Debug.Log("Requested Join Game");
     }
 }
