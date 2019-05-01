@@ -1,20 +1,43 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using System.Text;
 
-public class ResponseCreateLobby : NetworkResponse
+
+public class ResponseCreateLobbyEventArgs : ExtendedEventArgs
 {
-    override
-    public void parse()
-    {
+    public short status { get; set; }
+    public int port { get; set; }
 
+    public ResponseCreateLobbyEventArgs()
+    {
+        event_id = Constants.SMSG_CREATELOBBY;
+    }
+}
+
+
+class ResponseCreateLobby : NetworkResponse
+{
+    private short status;
+    private int port;
+
+    public override void parse()
+    {
+        status = DataReader.ReadShort(dataStream);
+        if (status == 0)
+            port = DataReader.ReadInt(dataStream);
     }
 
-    override
-    public ExtendedEventArgs process()
+    public override ExtendedEventArgs process()
     {
-        //Debug.Log("Lobby Created");
-        //Debug.Log("Failed To Create Lobby");
-        return null;
+        ResponseCreateLobbyEventArgs args = null;
+        if (status == 0)
+        {
+            args = new ResponseCreateLobbyEventArgs();
+            args.status = status;
+            args.port = port;
+        }
+
+        return args;
     }
 }

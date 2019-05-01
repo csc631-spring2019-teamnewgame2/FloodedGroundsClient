@@ -8,6 +8,7 @@ public class Main : MonoBehaviour
 {
     //Determine what state the game is in
     private static bool loggedIn = false;
+    private static bool inLobby = false;
     private static bool inGame = false;
     private static string character;
     private static ConnectionManager cManager;
@@ -36,6 +37,16 @@ public class Main : MonoBehaviour
     public static string getCharacter()
     {
         return character;
+    }
+
+    public static bool joinLobby(Lobby lobby)
+    {
+        // make sure the player can actually join a lobby
+        if (!loggedIn || inLobby || inGame) return false;
+        
+
+
+        return true;
     }
 
     void Awake()
