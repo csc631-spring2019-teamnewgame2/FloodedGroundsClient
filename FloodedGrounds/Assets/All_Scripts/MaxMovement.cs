@@ -78,7 +78,7 @@ public class MaxMovement : MonoBehaviour
         // Attack
         if (Input.GetMouseButton(0)) // left mouse button is held down
             anim.SetBool("isShooting", true);
-            anim.SetTrigger("Attack");
+
         // Jump
         if (Input.GetKey(KeyCode.Space))
             anim.SetBool("isJumping", true);
@@ -120,44 +120,15 @@ public class MaxMovement : MonoBehaviour
             speed = 3.0f;
         }
 
-        // Moving forward
-        if (vdir > 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isForward", true);
-            anim.SetFloat("Speed", speed);
-        }
-
-        // Moving backwards
-        else if (vdir < 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isBackward", true);
-            anim.SetFloat("Speed", speed);
-        }
-
-        // Moving towards right
-        else if (hdir > 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isRight", true);
-            anim.SetFloat("Speed", speed);
-        }
-
-        // Moving towards left
-        else if (hdir < 0)
-        {
-            anim.SetBool("isWalking", true);
-            anim.SetBool("isLeft", true);
-            anim.SetFloat("Speed", speed);
-        }
-
         // Moving forward-left
-        else if (hdir < 0 && vdir > 0)
+        if (hdir < 0 && vdir > 0)
         {
             anim.SetBool("isWalking", true);
             anim.SetBool("isForward", true);
             anim.SetBool("isLeft", true);
+
+            anim.SetBool("isRight", false);
+            anim.SetBool("isBackward", false);
             anim.SetFloat("Speed", speed);
         }
 
@@ -167,6 +138,9 @@ public class MaxMovement : MonoBehaviour
             anim.SetBool("isWalking", true);
             anim.SetBool("isBackward", true);
             anim.SetBool("isLeft", true);
+
+            anim.SetBool("isRight", false);
+            anim.SetBool("isForward", false);
             anim.SetFloat("Speed", speed);
         }
 
@@ -176,6 +150,9 @@ public class MaxMovement : MonoBehaviour
             anim.SetBool("isWalking", true);
             anim.SetBool("isForward", true);
             anim.SetBool("isRight", true);
+
+            anim.SetBool("isLeft", false);
+            anim.SetBool("isBackward", false);
             anim.SetFloat("Speed", speed);
         }
 
@@ -185,6 +162,57 @@ public class MaxMovement : MonoBehaviour
             anim.SetBool("isWalking", true);
             anim.SetBool("isBackward", true);
             anim.SetBool("isRight", true);
+
+            anim.SetBool("isLeft", false);
+            anim.SetBool("isForward", false);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Moving forward
+        else if (vdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isForward", true);
+
+            anim.SetBool("isBackward", false);
+            anim.SetBool("isRight", false);
+            anim.SetBool("isLeft", false);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Moving backwards
+        else if (vdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isBackward", true);
+
+            anim.SetBool("isForward", false);
+            anim.SetBool("isRight", false);
+            anim.SetBool("isLeft", false);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Moving towards right
+        else if (hdir > 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isRight", true);
+
+            anim.SetBool("isForward", false);
+            anim.SetBool("isBackward", false);
+            anim.SetBool("isLeft", false);
+            anim.SetFloat("Speed", speed);
+        }
+
+        // Moving towards left
+        else if (hdir < 0)
+        {
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isLeft", true);
+
+            anim.SetBool("isForward", false);
+            anim.SetBool("isBackward", false);
+            anim.SetBool("isRight", false);
             anim.SetFloat("Speed", speed);
         }
 
