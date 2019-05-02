@@ -26,8 +26,15 @@ public class Charactermovement : MonoBehaviour
 
     void Inputs()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)){
-            anim.SetTrigger("isRunning");
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            anim.SetBool("isRunning", true);
+            moveSpeed = 8f;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            anim.SetBool("isRunning", false);
+            moveSpeed = 4f;
         }
     }
 
@@ -42,28 +49,15 @@ public class Charactermovement : MonoBehaviour
         Vector3 velocity = direction * moveSpeed * Time.deltaTime;
         cc.Move(velocity);
 
-        if (!Input.GetKeyUp(KeyCode.W) && Input.GetKeyUp(KeyCode.A) && Input.GetKeyUp(KeyCode.S) && Input.GetKeyUp(KeyCode.D))
-        {
-            hdir = 0.0f;
-            vdir = 0.0f;
-        }
-
-
         Debug.Log("hdir: " + hdir + "\n" + "vdir: " + vdir);
 
         MoveAnimations(hdir,vdir);
 
-
-        //hdir = 0.0f;
-        //vdir = 0.0f;
     }
 
     void MoveAnimations(float hdir, float vdir)
     {
-
         anim.SetFloat("horizontal", hdir);
-        anim.SetFloat("vertical", vdir);
-
-        
+        anim.SetFloat("vertical", vdir); 
     }
 }
