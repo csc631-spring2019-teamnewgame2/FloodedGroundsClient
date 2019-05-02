@@ -5,7 +5,7 @@
             <value>Pickup9mm</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>0</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -115,7 +115,6 @@
             <destination>{8bc1335b-a674-411b-b7ab-092d16ece62c}</destination>
             <destination>{9e99da0b-fcab-4d77-af38-95feecec9515}</destination>
             <destination>{b3cee3b0-f349-4397-a7b8-825f6544338f}</destination>
-            <destination>{f0fc8665-ace4-468f-9aa4-a5e7b51b25cb}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{d066cfcd-28a3-4d5e-9b3e-a3f0703ca2ea}"/>
@@ -166,7 +165,6 @@
             <destination>{a1aa9197-dcb5-4c7f-88b2-8bb37cbca534}</destination>
         </relationship>
     </object>
-    <object class="SpatialiserEffect" id="{f0fc8665-ace4-468f-9aa4-a5e7b51b25cb}"/>
     <object class="MixerBusFader" id="{4788df48-86d3-4a6e-9166-b5029367268a}"/>
     <object class="Automator" id="{d6a58ef5-4198-4bfe-9e78-88c37b1060bc}">
         <property name="nameOfPropertyBeingAutomated">

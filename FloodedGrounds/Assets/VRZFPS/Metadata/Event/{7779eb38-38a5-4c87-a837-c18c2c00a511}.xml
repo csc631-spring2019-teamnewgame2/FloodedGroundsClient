@@ -5,7 +5,7 @@
             <value>Respawn</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>0</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -115,7 +115,6 @@
             <destination>{2495ffce-4b65-489b-ba64-220045e7d891}</destination>
             <destination>{36026034-40d0-4e31-b7aa-97f08214ac40}</destination>
             <destination>{3c9bf8b3-6261-45db-bbc3-e542efca6f34}</destination>
-            <destination>{70888aaa-e1cd-4022-9e06-49298a64135b}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{2538f82b-a352-4c5a-bb01-ebb9d8df5e2c}"/>
@@ -166,7 +165,6 @@
             <destination>{2544fde5-5458-4239-8190-43f56610ada4}</destination>
         </relationship>
     </object>
-    <object class="SpatialiserEffect" id="{70888aaa-e1cd-4022-9e06-49298a64135b}"/>
     <object class="MixerBusFader" id="{a35817e8-2399-4e25-8936-618e3c5f5625}"/>
     <object class="Automator" id="{b7658aad-1f80-41cf-9a8e-759c48b39fa9}">
         <property name="nameOfPropertyBeingAutomated">
