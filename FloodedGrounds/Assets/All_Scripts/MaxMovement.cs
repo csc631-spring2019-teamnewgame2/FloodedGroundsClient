@@ -78,7 +78,7 @@ public class MaxMovement : MonoBehaviour
         // Attack
         if (Input.GetMouseButton(0)) // left mouse button is pressed
         {
-            Shooting();
+            anim.SetBool("isShooting", true);
         }
 
         // Jump
