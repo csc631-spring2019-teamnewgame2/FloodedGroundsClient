@@ -88,9 +88,7 @@ public class MaxMovement : MonoBehaviour
 
     void Shooting()
     {
-        GameObject tempBullet = (GameObject)Instantiate(bullet);
-        tempBullet.transform.position = gunPoint.position;
-        Destroy(tempBullet, 1.0f);
+        Debug.Log("Shots fired");
     }
 
     void Movement()
