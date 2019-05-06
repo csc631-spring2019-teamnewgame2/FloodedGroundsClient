@@ -5,35 +5,28 @@ using System.Collections.Generic;
 
 public class NetworkResponseTable {
 
-	public static Dictionary<short, Type> responseTable { get; set; }
+	public static Dictionary<short, NetworkResponse> responseTable { get; set; }
 	
 	public static void init() {
-		responseTable = new Dictionary<short, Type>();
-        add(Constants.SMSG_HEARTBEAT, "ResponseHeartbeat");
+		responseTable = new Dictionary<short, NetworkResponse>();
+        responseTable.Add(Constants.SMSG_HEARTBEAT, new ResponseHeartbeat());
+        responseTable.Add(Constants.SMSG_REGISTER, new ResponseRegister());
+        responseTable.Add(Constants.SMSG_LOGIN, new ResponseLogin());
 
-        add(Constants.SMSG_REGISTER, "ResponseRegister");
-        add(Constants.SMSG_LOGIN, "ResponseLogin");
-
-        add(Constants.SMSG_GETLOBBIES, "ResponseGetLobbies");
-        add(Constants.SMSG_CREATELOBBY, "ResponseCreateLobby");
-        add(Constants.SMSG_JOINLOBBY, "ResponsetJoinLobby");
-        add(Constants.SMSG_STARTGAME, "ResponseStartGame");
-        add(Constants.SMSG_JOINGAME, "ResponseJoinGame");
+        responseTable.Add(Constants.SMSG_GETLOBBIES, new ResponseGetLobbies());
+        responseTable.Add(Constants.SMSG_CREATELOBBY, new ResponseCreateLobby());
+        responseTable.Add(Constants.SMSG_JOINLOBBY, new ResponseJoinLobby());
+        responseTable.Add(Constants.SMSG_STARTGAME, new ResponseStartGame());
+        responseTable.Add(Constants.SMSG_JOINGAME, new ResponseJoinGame());
     }
-	
-	public static void add(short response_id, string name) {
-		responseTable.Add(response_id, Type.GetType(name));
-	}
 	
 	public static NetworkResponse get(short response_id) {
 		init ();
 		NetworkResponse response = null;
-		if (responseTable.ContainsKey(response_id)) {
-			response = (NetworkResponse) Activator.CreateInstance(responseTable[response_id]);
-			response.response_id = response_id;
-		} else {
+		if (responseTable.ContainsKey(response_id))
+			response = responseTable[response_id];
+		else
 			Debug.Log("Response [" + response_id + "] Not Found");
-		}
 		
 		return response;
 	}

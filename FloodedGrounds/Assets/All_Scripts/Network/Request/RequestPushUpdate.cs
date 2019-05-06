@@ -5,12 +5,20 @@ public class RequestPushUpdate : NetworkRequest
 {
     //A reference to the player object
     private GameObject player;
+    private string test;
 
     public RequestPushUpdate()
     {
         request_id = Constants.CMSG_PUSHUPDATE;
-        //Get the player object based on the character string assigned by the server
-        player = GameObject.FindWithTag(Main.getCharacter());
+    }
+
+    public void setPlayer(string playerName)
+    {
+        //Get the player object by the character name assigned by the server
+        if(Main.getCharacter() != null)
+            player = GameObject.FindWithTag(Main.getCharacter());
+        else
+            Debug.Log("RequestPushUpdate: No character set");
     }
 
     public void send()

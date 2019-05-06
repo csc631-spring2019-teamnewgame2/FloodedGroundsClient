@@ -10,7 +10,7 @@ public class Main : MonoBehaviour
     private static bool loggedIn = false;
     private static bool inLobby = false;
     private static bool inGame = false;
-    private static string character;
+    private static string character = null;
     private static ConnectionManager cManager;
 
     //How long in seconds the client will wait for a response before sending the request again
@@ -86,7 +86,7 @@ public class Main : MonoBehaviour
                 if (Time.time > lastLogin + requestDelay)
                 {
                     //Create the request
-                    RequestLogin requestLogin = new RequestLogin();
+                    RequestLogin requestLogin = (RequestLogin)NetworkRequestTable.get(Constants.CMSG_LOGIN);
                     //Populate it with the temporary credentials
                     requestLogin.send("Temp", "Temp");
                     //Send the request
@@ -102,7 +102,7 @@ public class Main : MonoBehaviour
                 {
                     if (Time.time > lastJoinGame + requestDelay)
                     {
-                        RequestJoinGame joinGame = new RequestJoinGame();
+                        RequestJoinGame joinGame = (RequestJoinGame)NetworkRequestTable.get(Constants.CMSG_JOINGAME);
                         joinGame.send();
                         cManager.send(joinGame);
 
@@ -113,8 +113,8 @@ public class Main : MonoBehaviour
                 else
                 {
                     //Create the two request objects that will be sent to the server
-                    RequestHeartbeat heartbeat = new RequestHeartbeat();
-                    RequestPushUpdate pushUpdate = new RequestPushUpdate();
+                    RequestHeartbeat heartbeat = (RequestHeartbeat)NetworkRequestTable.get(Constants.CMSG_HEARTBEAT);
+                    RequestPushUpdate pushUpdate = (RequestPushUpdate)NetworkRequestTable.get(Constants.CMSG_PUSHUPDATE);
 
                     //Create the messages to be sent
                     heartbeat.send();

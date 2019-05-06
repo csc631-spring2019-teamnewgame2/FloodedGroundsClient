@@ -67,6 +67,9 @@ public class ResponseJoinGame : NetworkResponse
                 break;
         }
 
+        //Set the player object in the RequestPushUpdate script
+        ((RequestPushUpdate)NetworkRequestTable.get(Constants.CMSG_PUSHUPDATE)).setPlayer(character);
+
         Debug.Log("Joined Game");
 
         return null;
