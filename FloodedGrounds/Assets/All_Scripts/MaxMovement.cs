@@ -86,16 +86,6 @@ public class MaxMovement : MonoBehaviour
             anim.SetBool("isJumping", true);
     }
 
-    void EndShooting()
-    {
-        anim.SetBool("isShooting", false);
-    }
-
-    void EndJump()
-    {
-        anim.SetBool("isJumping", false);
-    }
-
     void Shooting()
     {
         GameObject tempBullet = (GameObject)Instantiate(bullet);

@@ -76,21 +76,6 @@ public class MonsterMovement2 : MonoBehaviour
         moveDir = transform.rotation * moveDir;
     }
 
-    void EndAttack()
-    {
-        anim.SetBool("isAttacking", false);
-    }
-
-    void EndJump()
-    {
-        anim.SetBool("isJumping", false);
-    }
-
-    void EndShout()
-    {
-        anim.SetBool("isShouting", false);
-    }
-
     void GetInput()
     {
         // Attack

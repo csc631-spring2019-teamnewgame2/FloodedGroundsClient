@@ -21,9 +21,13 @@ public class NetworkMovement : MonoBehaviour
     //The time when the last update was received
     private float startTime;
 
+    Animator anim;
+
     //Set dummy variables for the target parameters
     private void Start()
     {
+        anim = GetComponent<Animator>();
+
         targetPosition = transform.position;
         targetLookAngle = new Vector3();
         targetYRotation = transform.rotation.eulerAngles.y;
@@ -62,5 +66,26 @@ public class NetworkMovement : MonoBehaviour
         transform.position = Vector3.Lerp(oldPosition, targetPosition, interpolationProgress);
         Vector3.LerpUnclamped(oldLookAngle, targetLookAngle, interpolationProgress);
         transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, Mathf.LerpAngle(oldYRotation, targetYRotation, interpolationProgress), transform.rotation.eulerAngles.z);
+    }
+
+    // Ends the animation states
+    void EndShooting()
+    {
+        anim.SetBool("isShooting", false);
+    }
+
+    void EndJump()
+    {
+        anim.SetBool("isJumping", false);
+    }
+
+    void EndShout()
+    {
+        anim.SetBool("isShouting", false);
+    }
+
+    void EndAttack()
+    {
+        anim.SetBool("isAttacking", false);
     }
 }
