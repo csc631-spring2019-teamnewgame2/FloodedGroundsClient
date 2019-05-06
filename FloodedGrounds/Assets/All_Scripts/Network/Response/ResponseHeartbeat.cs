@@ -32,12 +32,8 @@ public class ResponseHeartbeat : NetworkResponse
             
             //Set the speed of the animation
             animator.SetFloat("Speed", DataReader.ReadFloat(dataStream));
-
-            //Set the general parameters
-            foreach (string parameter in Constants.generalAnimParams)
-                animator.SetBool(parameter, DataReader.ReadBool(dataStream));
-
-            //Set the character specific parameters
+            
+            //Set the animation parameters based on the player
             foreach (string parameter in Constants.characterAnimations[character])
                 animator.SetBool(parameter, DataReader.ReadBool(dataStream));
 

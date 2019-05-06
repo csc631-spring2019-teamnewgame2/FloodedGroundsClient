@@ -71,10 +71,8 @@ public class Constants {
     public static Dictionary<int, string> characterIDs;
 
     //Animation Parameters
-    public static readonly string[] generalAnimParams = { "isJumping", "isWalking" };
-    public static readonly string[] monsterAnimParams = { "isDead", "isAttacking", "isHit", "isShouting" };
-    public static readonly string[] girlAnimParams = { "isDead", "isShooting" };
-    public static readonly string[] maxAnimParams = { "isShooting", "isRunning", "isForward", "isBackward", "isLeft", "isRight" };
+    public static readonly string[] monsterAnimParams = { "isJumping", "isWalking", "isDead", "isAttacking", "isHit", "isShouting" };
+    public static readonly string[] humanAnimParams = { "isJumping", "isWalking", "isShooting", "isRunning", "isForward", "isBackward", "isLeft", "isRight" };
 
     //Dictionary to map characters to animation parameters
     public static Dictionary<string, string[]> characterAnimations;
@@ -94,9 +92,9 @@ public class Constants {
 
         characterAnimations = new Dictionary<string, string[]>();
         characterAnimations.Add(MONSTER, monsterAnimParams);
-        characterAnimations.Add(GIRL, girlAnimParams);
-        characterAnimations.Add(GUY1, maxAnimParams);
-        characterAnimations.Add(GUY2, maxAnimParams);
+        characterAnimations.Add(GIRL, humanAnimParams);
+        characterAnimations.Add(GUY1, humanAnimParams);
+        characterAnimations.Add(GUY2, humanAnimParams);
 
         movementScripts = new Dictionary<string, string>();
         movementScripts.Add(MONSTER, "MonsterMovement");

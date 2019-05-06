@@ -45,10 +45,6 @@ public class RequestPushUpdate : NetworkRequest
         //Add the speed of the animation
         packet.addFloat32(animator.GetFloat("Speed"));
         
-        //Add the shared parameters
-        foreach(string param in Constants.generalAnimParams)
-            packet.addBool(animator.GetBool(param));
-
         //Add the parameters for the specific character
         foreach (string param in Constants.characterAnimations[Main.getCharacter()])
             packet.addBool(animator.GetBool(param));
