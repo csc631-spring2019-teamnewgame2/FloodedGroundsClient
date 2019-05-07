@@ -20,10 +20,14 @@ public class MaxMovement : MonoBehaviour
     public Transform gunPoint;
     public GameObject bullet;
 
-    public float sensitivity = 30.0f;
     public float WaterHeight = 15.5f;
+     
+    // Camera Code
+    public float sensitivity = 30.0f;
     public GameObject cam;
-    float rotX, rotY;
+    public float minVert = -45.0f;
+    public float maxVert = 45.0f;
+    public float rotX, rotY;
     public bool webGLRightClickRotation = true;
 
     void Start()
@@ -32,6 +36,8 @@ public class MaxMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
 
+        Cursor.lockState = CursorLockMode.Locked;
+        
         //LockCursor ();
         if (Application.isEditor)
         {
@@ -42,19 +48,17 @@ public class MaxMovement : MonoBehaviour
 
     void LateUpdate()
     {
-        CheckCamera();
+        //CheckCamera();
         CheckForWaterHeight();
         CheckIfDead();
         Movement();
         GetInput();
     }
-
+    
     void CameraRotation(GameObject cam, float rotX, float rotY)
     {
-        
-            transform.Rotate(0, rotX * Time.deltaTime, 0);
-            cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
-        
+        transform.Rotate(0, rotX * Time.deltaTime, 0);
+        cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
     }
 
     void CheckCamera()
@@ -62,6 +66,8 @@ public class MaxMovement : MonoBehaviour
         rotX = Input.GetAxis("Mouse X") * sensitivity;
         rotY = Input.GetAxis("Mouse Y") * sensitivity;
 
+        rotY = Mathf.Clamp(rotY, minVert, maxVert);
+        
         if (webGLRightClickRotation)
         {
             if (Input.GetKey(KeyCode.Mouse0))
@@ -261,9 +267,5 @@ public class MaxMovement : MonoBehaviour
             //Turn off shooting layer
             anim.SetLayerWeight(1, 0);
         }
-
-
-        
-
     }
 }

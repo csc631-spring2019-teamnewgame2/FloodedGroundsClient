@@ -28,7 +28,7 @@ public class MonsterMovement2 : MonoBehaviour
     public float sensitivity = 30.0f;
     public float WaterHeight = 15.5f;
     public GameObject cam;
-    float rotX, rotY;
+    public float rotX, rotY;
     public bool webGLRightClickRotation = true;
 
     // Start is called before the first frame update
@@ -49,7 +49,7 @@ public class MonsterMovement2 : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        CheckCamera();
+        //CheckCamera();
         CheckForWaterHeight();
         
         Movement();
@@ -72,7 +72,7 @@ public class MonsterMovement2 : MonoBehaviour
     {
         rotX = Input.GetAxis("Mouse X") * sensitivity;
         rotY = Input.GetAxis("Mouse Y") * sensitivity;
-
+        Debug.Log("rotY: " + rotY);
         if (webGLRightClickRotation)
         {
             if (Input.GetKey(KeyCode.Mouse0))
@@ -237,6 +237,7 @@ public class MonsterMovement2 : MonoBehaviour
                 moveDir = new Vector3(hdir, gravity, vdir);
             else
                 moveDir = new Vector3(hdir, 0, vdir);
+
             moveDir *= speed;
             moveDir = transform.TransformDirection(moveDir);
             controller.Move(moveDir * Time.deltaTime);
@@ -259,7 +260,7 @@ public class MonsterMovement2 : MonoBehaviour
     void CheckIfDead()
     {
         playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
-       // Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
+        // Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
         if (playerHealth <= 0)
         {
             anim.SetBool("isDead", true);
@@ -271,16 +272,12 @@ public class MonsterMovement2 : MonoBehaviour
         if(died == true)
         {
             //Debug.Log("i die");
-            
-
             if (recoveringHP < maxHP)
             {
-                
-                    HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, recoveringHP);
-                    recoveringHP += 10f * Time.deltaTime;
-                
-
+                HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, recoveringHP);
+                recoveringHP += 10f * Time.deltaTime;
             }
+
             else
             {
                 died = false;
@@ -293,19 +290,18 @@ public class MonsterMovement2 : MonoBehaviour
 
     void checkIfHit()
     {
-        //If receive raycast shot
+        // If receive raycast shot
         if (!died)
         {
             anim.SetBool("isHit", true);
         }
+
         else if (died)
         {
             anim.SetBool("isDead", true);
         }
 
-        //If not receiving raycast shot
-            anim.SetBool("isHit", false);
-
-
+        // If not receiving raycast shot
+        anim.SetBool("isHit", false);
     }
 }
