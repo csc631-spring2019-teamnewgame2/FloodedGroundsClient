@@ -88,7 +88,7 @@ public class Main : MonoBehaviour
                     //Create the request
                     RequestLogin requestLogin = (RequestLogin)NetworkRequestTable.get(Constants.CMSG_LOGIN);
                     //Populate it with the temporary credentials
-                    requestLogin.send("Temp3", "Temp");
+                    requestLogin.send("Temp4", "Temp");
                     //Send the request
                     cManager.send(requestLogin);
                     //Set the last login time

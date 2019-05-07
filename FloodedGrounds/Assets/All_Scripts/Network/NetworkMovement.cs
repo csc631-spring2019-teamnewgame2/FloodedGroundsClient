@@ -41,10 +41,15 @@ public class NetworkMovement : MonoBehaviour
     //Update the paramters
     public void updateParams(Vector3 newPosition, Vector3 newLookAngle, float newYRotation)
     {
+        //Set the old parameters to the current position
+        //oldPosition = transform.position;
+        //oldLookAngle = new Vector3();
+        //oldYRotation = transform.rotation.eulerAngles.y;
+
         //Set the old parameters to the target parameters of last update
-        oldPosition = transform.position;
-        oldLookAngle = new Vector3();
-        oldYRotation = transform.rotation.eulerAngles.y;
+        oldPosition = targetPosition;
+        oldLookAngle = targetLookAngle;
+        oldYRotation = targetYRotation;
 
         //Set the new target parameters
         targetPosition = newPosition;
@@ -66,6 +71,10 @@ public class NetworkMovement : MonoBehaviour
         transform.position = Vector3.Lerp(oldPosition, targetPosition, interpolationProgress);
         Vector3.LerpUnclamped(oldLookAngle, targetLookAngle, interpolationProgress);
         transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, Mathf.LerpAngle(oldYRotation, targetYRotation, interpolationProgress), transform.rotation.eulerAngles.z);
+
+        //No interpolation
+        //transform.position = targetPosition;
+        //transform.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, targetYRotation, transform.rotation.eulerAngles.z);
     }
 
     // Ends the animation states
