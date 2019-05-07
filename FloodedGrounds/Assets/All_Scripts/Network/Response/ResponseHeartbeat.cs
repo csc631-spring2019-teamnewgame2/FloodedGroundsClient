@@ -18,18 +18,18 @@ public class ResponseHeartbeat : NetworkResponse
         {
             //Get the character this update is for
             string character = Constants.characterIDs[DataReader.ReadShort(dataStream)];
-            GameObject player = GameObject.FindWithTag(character);
+            GameObject player = Constants.components[character].player;
 
             //Get the parameters for the character model
             Vector3 position = new Vector3(DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream));
             Vector3 lookAngle = new Vector3(DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream));
             float rotation = DataReader.ReadFloat(dataStream);
             //Update the model
-            player.GetComponent<NetworkMovement>().updateParams(position, lookAngle, rotation);
+            Constants.components[character].networkMovement.updateParams(position, lookAngle, rotation);
 
             //Get the animator for the player
-            Animator animator = player.GetComponent<Animator>();
-            
+            Animator animator = Constants.components[character].animController;
+
             //Set the speed of the animation
             animator.SetFloat("Speed", DataReader.ReadFloat(dataStream));
             

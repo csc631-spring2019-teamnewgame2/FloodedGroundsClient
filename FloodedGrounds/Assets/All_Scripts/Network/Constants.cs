@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Constants {
 
@@ -7,7 +8,7 @@ public class Constants {
     public static readonly string REMOTE_HOST = "13.52.133.88";
     //public static readonly string REMOTE_HOST = "localhost";
     public static readonly int REMOTE_PORT = 9252;
-    public static readonly int updatesPerSecond = 30;
+    public static readonly int updatesPerSecond = 120;
 
     //Net code
     //Request: 1xx
@@ -80,6 +81,24 @@ public class Constants {
     //Dictionary to map characters to movement scripts
     public static Dictionary<string, string> movementScripts;
 
+    //A struct to store the components attatched to a character
+    public struct characterComponents
+    {
+        public GameObject player;
+        public NetworkMovement networkMovement;
+        public Animator animController;
+
+        public characterComponents(GameObject player, NetworkMovement networkMovement, Animator animController)
+        {
+            this.player = player;
+            this.networkMovement = networkMovement;
+            this.animController = animController;
+        }
+    }
+
+    //A table to map characters to their components
+    public static Dictionary<string, characterComponents> components;
+
 
     //Static constructor to populate the dictionarys
     static Constants()
@@ -101,5 +120,15 @@ public class Constants {
         movementScripts.Add(GIRL, "PlayerMovement2");
         movementScripts.Add(GUY1, "MaxMovement");
         movementScripts.Add(GUY2, "MaxMovement");
+
+        components = new Dictionary<string, characterComponents>();
+        GameObject monster = GameObject.FindWithTag(MONSTER);
+        components.Add(MONSTER, new characterComponents(monster, monster.GetComponent<NetworkMovement>(), monster.GetComponent<Animator>()));
+        GameObject girl = GameObject.FindWithTag(GIRL);
+        components.Add(GIRL, new characterComponents(girl, girl.GetComponent<NetworkMovement>(), girl.GetComponent<Animator>()));
+        GameObject guy1 = GameObject.FindWithTag(GUY1);
+        components.Add(GUY1, new characterComponents(guy1, guy1.GetComponent<NetworkMovement>(), guy1.GetComponent<Animator>()));
+        GameObject guy2 = GameObject.FindWithTag(GUY2);
+        components.Add(GUY2, new characterComponents(guy2, guy2.GetComponent<NetworkMovement>(), guy2.GetComponent<Animator>()));
     }
 }
