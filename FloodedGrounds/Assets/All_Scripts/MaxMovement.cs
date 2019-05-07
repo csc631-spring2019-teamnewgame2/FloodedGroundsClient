@@ -8,7 +8,9 @@ public class MaxMovement : MonoBehaviour
     public float gravity = -9.8f;
     public float jumpHeight = 5.0f;
     public bool gravityEnabled = false;
-
+    public GameObject HPCanvas;
+    private bool died = false;
+    private float playerHealth;
     Vector3 moveDir = Vector3.zero;
 
     Animator anim;
@@ -42,14 +44,17 @@ public class MaxMovement : MonoBehaviour
     {
         CheckCamera();
         CheckForWaterHeight();
+        CheckIfDead();
         Movement();
         GetInput();
     }
 
     void CameraRotation(GameObject cam, float rotX, float rotY)
     {
-        transform.Rotate(0, rotX * Time.deltaTime, 0);
-        cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
+        
+            transform.Rotate(0, rotX * Time.deltaTime, 0);
+            cam.transform.Rotate(-rotY * Time.deltaTime, 0, 0);
+        
     }
 
     void CheckCamera()
@@ -82,8 +87,10 @@ public class MaxMovement : MonoBehaviour
         }
 
         // Jump
-        if (Input.GetKey(KeyCode.Space))
-            anim.SetBool("isJumping", true);
+        if (Input.GetKeyDown(KeyCode.Space)) { 
+            anim.SetBool("isJumping",true);
+            Debug.Log("jump");
+        }
     }
 
     void Shooting()
@@ -217,16 +224,20 @@ public class MaxMovement : MonoBehaviour
             anim.SetFloat("Speed", 0.0f);
         }
 
-        // Update character's location and gravity
-        if (gravityEnabled)
-            moveDir = new Vector3(hdir, gravity, vdir);
-        else
-            moveDir = new Vector3(hdir, 0, vdir);
 
-        moveDir *= speed;
-        moveDir = transform.TransformDirection(moveDir);
-        //moveDir.y -= gravity * Time.deltaTime;
-        controller.Move(moveDir * Time.deltaTime);
+        if (!died)
+        {
+            // Update character's location and gravity
+            if (gravityEnabled)
+                moveDir = new Vector3(hdir, gravity, vdir);
+            else
+                moveDir = new Vector3(hdir, 0, vdir);
+
+            moveDir *= speed;
+            moveDir = transform.TransformDirection(moveDir);
+            //moveDir.y -= gravity * Time.deltaTime;
+            controller.Move(moveDir * Time.deltaTime);
+        }
     }
 
     void CheckForWaterHeight()
@@ -236,5 +247,23 @@ public class MaxMovement : MonoBehaviour
 
         else
             gravity = -9.8f;
+    }
+
+    void CheckIfDead()
+    {
+        playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
+        //Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
+        if (playerHealth <= 0)
+        {
+            anim.SetBool("isDead", true);
+            // Debug.Log("Is dead");
+            died = true;
+            //Turn off shooting layer
+            anim.SetLayerWeight(1, 0);
+        }
+
+
+        
+
     }
 }

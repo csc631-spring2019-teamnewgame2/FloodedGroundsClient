@@ -230,14 +230,17 @@ public class MonsterMovement2 : MonoBehaviour
             anim.SetFloat("Speed", 0.0f);
         }
 
-        // Update character's location and gravity
-        if (gravityEnabled)
-            moveDir = new Vector3(hdir, gravity, vdir);
-        else
-            moveDir = new Vector3(hdir, 0, vdir);
-        moveDir *= speed;
-        moveDir = transform.TransformDirection(moveDir);
-        controller.Move(moveDir * Time.deltaTime);
+        if (!died)
+        {
+            // Update character's location and gravity
+            if (gravityEnabled)
+                moveDir = new Vector3(hdir, gravity, vdir);
+            else
+                moveDir = new Vector3(hdir, 0, vdir);
+            moveDir *= speed;
+            moveDir = transform.TransformDirection(moveDir);
+            controller.Move(moveDir * Time.deltaTime);
+        }
     }
 
     void CheckForWaterHeight()
@@ -256,7 +259,7 @@ public class MonsterMovement2 : MonoBehaviour
     void CheckIfDead()
     {
         playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
-        Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
+       // Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
         if (playerHealth <= 0)
         {
             anim.SetBool("isDead", true);
@@ -281,9 +284,28 @@ public class MonsterMovement2 : MonoBehaviour
             else
             {
                 died = false;
+                anim.SetBool("isDead", false);
                 recoveringHP = 0f;
             }
         }
+
+    }
+
+    void checkIfHit()
+    {
+        //If receive raycast shot
+        if (!died)
+        {
+            anim.SetBool("isHit", true);
+        }
+        else if (died)
+        {
+            anim.SetBool("isDead", true);
+        }
+
+        //If not receiving raycast shot
+            anim.SetBool("isHit", false);
+
 
     }
 }
