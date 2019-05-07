@@ -8,6 +8,12 @@ public class MonsterMovement2 : MonoBehaviour
     public float gravity = -9.8f;
     public bool gravityEnabled = true;
     Vector3 moveDir = Vector3.zero;
+    public float maxHP = 150f;
+    float recoveringHP = 0f;
+    private bool died = false;
+
+    private float playerHealth;
+    public GameObject HPCanvas;
 
     Animator anim;
     private Rigidbody rb;
@@ -31,7 +37,7 @@ public class MonsterMovement2 : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-
+        
         //LockCursor ();
         if (Application.isEditor)
         {
@@ -45,8 +51,15 @@ public class MonsterMovement2 : MonoBehaviour
     {
         CheckCamera();
         CheckForWaterHeight();
+        
         Movement();
         GetInput();
+    }
+
+    private void FixedUpdate()
+    {
+       Invoke("CheckIfDead", 1f);
+       //CheckIfDead();
     }
 
     void CameraRotation(GameObject cam, float rotX, float rotY)
@@ -238,5 +251,39 @@ public class MonsterMovement2 : MonoBehaviour
         {
             gravity = -9.8f;
         }
+    }
+
+    void CheckIfDead()
+    {
+        playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
+        Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
+        if (playerHealth <= 0)
+        {
+            anim.SetBool("isDead", true);
+           // Debug.Log("Is dead");
+            died = true;
+        }
+        
+
+        if(died == true)
+        {
+            //Debug.Log("i die");
+            
+
+            if (recoveringHP < maxHP)
+            {
+                
+                    HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, recoveringHP);
+                    recoveringHP += 10f * Time.deltaTime;
+                
+
+            }
+            else
+            {
+                died = false;
+                recoveringHP = 0f;
+            }
+        }
+
     }
 }
