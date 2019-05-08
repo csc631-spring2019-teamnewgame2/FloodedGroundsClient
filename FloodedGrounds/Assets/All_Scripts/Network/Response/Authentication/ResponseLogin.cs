@@ -33,7 +33,7 @@ public class ResponseLogin : NetworkResponse {
 	public override void parse() {
 		status = DataReader.ReadShort(dataStream);
 		if (status == 0) {
-			user_id = DataReader.ReadInt(dataStream);
+			user_id = DataReader.ReadLong(dataStream);
 			username = DataReader.ReadString(dataStream);
             email = DataReader.ReadString(dataStream);
             gamesPlayed = DataReader.ReadInt(dataStream);
@@ -45,7 +45,7 @@ public class ResponseLogin : NetworkResponse {
 	public override ExtendedEventArgs process() {
 		ResponseLoginEventArgs args = null;
 		if (status == 0) {
-            Main.setLoggedIn(true);
+            // Main.setLoggedIn(true);
             args = new ResponseLoginEventArgs();
 			args.status = status;
 			args.user_id = user_id;

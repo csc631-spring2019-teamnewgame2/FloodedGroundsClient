@@ -20,7 +20,8 @@ public class Constants {
     public static readonly short CMSG_HEARTBEAT = 101;
     public static readonly short SMSG_HEARTBEAT = 201;
     public static readonly short CMSG_PUSHUPDATE = 102;
-
+    public static readonly short CMSG_KEEPALIVE = 103;
+    
     //Authentication:  x1x
     public static readonly short CMSG_REGISTER = 111;
     public static readonly short SMSG_REGISTER = 211;
@@ -122,6 +123,12 @@ public class Constants {
         movementScripts.Add(GIRL, "PlayerMovement2");
         movementScripts.Add(GUY1, "MaxMovement");
         movementScripts.Add(GUY2, "MaxMovement");
+    }
+
+    // static method to populate scene specific dictionary
+    public static void loadSceneAConstants()
+    {
+       
 
         components = new Dictionary<string, characterComponents>();
         GameObject monster = GameObject.FindWithTag(MONSTER);

@@ -15,8 +15,15 @@ public class DataReader {
 		dataStream.Read(buffer, 0, 4);
 		return BitConverter.ToInt32(buffer, 0);;
 	}
-	
-	public static float ReadFloat(MemoryStream dataStream) {
+
+    public static long ReadLong(MemoryStream dataStream)
+    {
+        byte[] buffer = new byte[8];
+        dataStream.Read(buffer, 0, 8);
+        return BitConverter.ToInt64(buffer, 0); ;
+    }
+
+    public static float ReadFloat(MemoryStream dataStream) {
 		byte[] buffer = new byte[4];
 		dataStream.Read(buffer, 0, 4);
 		return BitConverter.ToSingle(buffer, 0);;

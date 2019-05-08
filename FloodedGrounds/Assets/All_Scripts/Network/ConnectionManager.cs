@@ -85,7 +85,7 @@ public class ConnectionManager : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-        while(theStream.DataAvailable)
+        while(theStream != null && theStream.DataAvailable)
 		    readSocket();
 	}
 
