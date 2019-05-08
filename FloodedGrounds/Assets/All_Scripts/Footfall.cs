@@ -36,6 +36,7 @@ public class Footfall : MonoBehaviour
         if (isMoving && isIndoors)
         {
             FMODUnity.RuntimeManager.PlayOneShot(inputSFX);
+            Debug.Log("Playing footstep sounds...");
         }
     }
 
