@@ -11,6 +11,9 @@ public class MonsterMovement2 : MonoBehaviour
     public float maxHP = 150f;
     float recoveringHP = 0f;
     private bool died = false;
+    public GameObject rightHand;
+    public GameObject leftHand;
+
 
     private float playerHealth;
     public GameObject HPCanvas;
@@ -34,6 +37,10 @@ public class MonsterMovement2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set hand attack colliders false on game start
+        rightHand.SetActive(false);
+        leftHand.SetActive(false);
+
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -303,5 +310,17 @@ public class MonsterMovement2 : MonoBehaviour
 
         // If not receiving raycast shot
         anim.SetBool("isHit", false);
+    }
+
+    void StartCollider()
+    {
+        rightHand.SetActive(true);
+        leftHand.SetActive(true);
+    }
+
+    void EndCollider()
+    {
+        rightHand.SetActive(false);
+        leftHand.SetActive(false);
     }
 }

@@ -268,4 +268,13 @@ public class MaxMovement : MonoBehaviour
             anim.SetLayerWeight(1, 0);
         }
     }
+
+    public void TakeDamageFromBogLord()
+    {
+        //Store current visual HP bar into "Playerhealth"
+        playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
+
+        //Set the new visual HP bar's stat the same width minus 50
+        HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerHealth - 50f);
+    }
 }
