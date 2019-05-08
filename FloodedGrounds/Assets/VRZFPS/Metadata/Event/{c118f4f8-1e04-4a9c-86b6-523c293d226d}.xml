@@ -5,7 +5,7 @@
             <value>MonsterIncap</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -122,6 +122,7 @@
             <destination>{180f2295-0545-4593-82ca-4ec4ba7b56f3}</destination>
             <destination>{2c8bead3-31e3-4cbd-98ff-5ae6d0179c03}</destination>
             <destination>{4133c845-8125-41e8-af34-c0859720e3e8}</destination>
+            <destination>{43597a98-3242-4cc2-844f-c740c133a040}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{10c713bb-3944-4db6-be6d-8633edb2ac5a}"/>
@@ -166,6 +167,7 @@
             <destination>{56ac9737-c6a3-4226-b7a3-c547dbc32640}</destination>
         </relationship>
     </object>
+    <object class="SpatialiserEffect" id="{43597a98-3242-4cc2-844f-c740c133a040}"/>
     <object class="Automator" id="{7322ac46-a492-415a-99e1-7efe9f408305}">
         <property name="nameOfPropertyBeingAutomated">
             <value>lowGain</value>

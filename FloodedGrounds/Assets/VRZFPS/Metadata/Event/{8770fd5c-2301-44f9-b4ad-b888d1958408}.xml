@@ -5,7 +5,7 @@
             <value>PickupHealth</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -115,6 +115,7 @@
             <destination>{56752ab5-d810-4cfb-85c7-2cd00968526f}</destination>
             <destination>{ffc8660c-b645-4793-bca2-dc2ee335d5e9}</destination>
             <destination>{13488009-2af3-4263-8bdb-81ac2e981696}</destination>
+            <destination>{9f75fae1-386a-4354-af08-07661320cef3}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{6bd3f413-b9e7-4419-8a8c-f898627dbb26}"/>
@@ -165,6 +166,7 @@
             <destination>{7282e293-1c59-4f02-b975-2ed4465765b9}</destination>
         </relationship>
     </object>
+    <object class="SpatialiserEffect" id="{9f75fae1-386a-4354-af08-07661320cef3}"/>
     <object class="MixerBusFader" id="{249c85c1-6bd5-40c1-a7bd-153669494ef7}"/>
     <object class="Automator" id="{5a7ae17b-8c78-40eb-bb59-f94ed3c3e6cc}">
         <property name="nameOfPropertyBeingAutomated">

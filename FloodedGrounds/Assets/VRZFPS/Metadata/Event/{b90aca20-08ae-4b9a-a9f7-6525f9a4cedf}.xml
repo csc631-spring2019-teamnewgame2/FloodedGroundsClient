@@ -5,7 +5,7 @@
             <value>InterstitialVO1</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -131,6 +131,7 @@
             <destination>{9253f119-0da8-4418-a2af-cbbb722089a9}</destination>
             <destination>{5bb92b79-a530-4f30-8eb9-ff0e762a7251}</destination>
             <destination>{035fde7b-9698-4ea7-9aa0-c15dd6ea0ce0}</destination>
+            <destination>{4585217b-164c-4389-99a5-7b50d86fd087}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{8d8ea1b4-18b4-46bc-aa19-2bde57bc9e08}"/>
@@ -175,6 +176,7 @@
             <destination>{bf092cfb-a1eb-4625-b157-474fe7d4fee9}</destination>
         </relationship>
     </object>
+    <object class="SpatialiserEffect" id="{4585217b-164c-4389-99a5-7b50d86fd087}"/>
     <object class="Automator" id="{f7adac93-a2ee-416a-9eb9-256b4296f0a7}">
         <property name="nameOfPropertyBeingAutomated">
             <value>lowGain</value>

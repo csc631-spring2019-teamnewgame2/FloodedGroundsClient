@@ -102,13 +102,10 @@
             <value>true</value>
         </property>
         <property name="triggerProbability">
-            <value>55</value>
-        </property>
-        <property name="start">
-            <value>1</value>
+            <value>65</value>
         </property>
         <property name="length">
-            <value>29</value>
+            <value>35</value>
         </property>
         <property name="playlistMode">
             <value>0</value>
@@ -127,13 +124,13 @@
             <value>true</value>
         </property>
         <property name="triggerProbability">
-            <value>46.5</value>
+            <value>63.5</value>
         </property>
         <property name="start">
-            <value>30</value>
+            <value>35</value>
         </property>
         <property name="length">
-            <value>70</value>
+            <value>65</value>
         </property>
         <relationship name="modulators">
             <destination>{e11fb681-34d9-4e63-8653-adbe6072fa01}</destination>

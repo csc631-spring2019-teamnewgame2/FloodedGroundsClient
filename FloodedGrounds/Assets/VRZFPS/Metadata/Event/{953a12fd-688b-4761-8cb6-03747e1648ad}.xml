@@ -5,7 +5,7 @@
             <value>MonsterDead</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -122,6 +122,7 @@
             <destination>{dff6f785-b0c8-4177-8107-2c0968ab099e}</destination>
             <destination>{7ea1d86f-8484-4158-9a32-7d653a88b834}</destination>
             <destination>{2fa977c1-8a19-44a7-ace5-8907c782c280}</destination>
+            <destination>{2fca521a-f68d-48ca-bba4-d303d6a04264}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{719e3e65-0292-416b-8e6b-e2076b58c241}"/>
@@ -166,6 +167,7 @@
             <destination>{d3f5b8b1-e076-4db7-a708-30a85cc43d22}</destination>
         </relationship>
     </object>
+    <object class="SpatialiserEffect" id="{2fca521a-f68d-48ca-bba4-d303d6a04264}"/>
     <object class="Automator" id="{27a0bb7f-e9f0-4ed5-a225-a86bf9dc8703}">
         <property name="nameOfPropertyBeingAutomated">
             <value>lowGain</value>

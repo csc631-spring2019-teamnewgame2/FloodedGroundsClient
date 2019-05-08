@@ -5,7 +5,7 @@
             <value>PickupShotgun</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -113,6 +113,7 @@
     <object class="MixerBusEffectChain" id="{4dd47952-b05f-4c39-98da-2a1fb884aa9b}">
         <relationship name="effects">
             <destination>{e4bb1c26-0590-4b5a-a71a-2913c38278d5}</destination>
+            <destination>{d0e9b1f4-adcf-4f30-bbdc-b3158f5071e3}</destination>
             <destination>{decfacab-b15e-4621-a427-bbfb16bca3d2}</destination>
             <destination>{0a821d5b-2181-4b46-b605-f165359722b1}</destination>
         </relationship>
@@ -126,6 +127,7 @@
     </object>
     <object class="MixerBusPanner" id="{20d23c1e-3002-46e0-a797-d3b0cb567fab}"/>
     <object class="MixerBusFader" id="{e4bb1c26-0590-4b5a-a71a-2913c38278d5}"/>
+    <object class="SpatialiserEffect" id="{d0e9b1f4-adcf-4f30-bbdc-b3158f5071e3}"/>
     <object class="ThreeEQEffect" id="{decfacab-b15e-4621-a427-bbfb16bca3d2}">
         <property name="lowGain">
             <value>-32</value>

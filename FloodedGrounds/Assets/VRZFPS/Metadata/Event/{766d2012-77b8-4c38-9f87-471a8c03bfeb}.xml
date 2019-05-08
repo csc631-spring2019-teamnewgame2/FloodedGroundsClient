@@ -5,7 +5,7 @@
             <value>Shooting</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -118,6 +118,7 @@
             <destination>{101ff4d0-392e-47c6-accc-8e88725be3d1}</destination>
             <destination>{b75071a1-582c-452a-901f-f7fe77913bc5}</destination>
             <destination>{82266795-8761-4940-9168-9318e81563dc}</destination>
+            <destination>{0e315c54-754f-46c5-b5ff-19510803395e}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{17217cd2-7e37-4422-8120-afa429a4583a}"/>
@@ -168,6 +169,7 @@
             <destination>{f24b972f-e10b-46de-87d4-1ed3ac78b44d}</destination>
         </relationship>
     </object>
+    <object class="SpatialiserEffect" id="{0e315c54-754f-46c5-b5ff-19510803395e}"/>
     <object class="MixerBusFader" id="{7e90461d-2ba0-40b9-bdfe-39172cbe3c89}"/>
     <object class="Automator" id="{e50f3af0-a978-4287-8d29-18810b4c3a74}">
         <property name="nameOfPropertyBeingAutomated">

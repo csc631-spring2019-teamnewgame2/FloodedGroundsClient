@@ -5,7 +5,7 @@
             <value>Start</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -113,6 +113,7 @@
     <object class="MixerBusEffectChain" id="{9ebf31dd-8c30-4b6a-bc5f-fbb86077a3a2}">
         <relationship name="effects">
             <destination>{cc7b2db7-2423-4313-b899-6f4504d06499}</destination>
+            <destination>{c104687c-f847-44f5-bf4e-4bbc6c8504fa}</destination>
             <destination>{4d18a617-68eb-4881-85f6-c52c31024a63}</destination>
             <destination>{ccf34b16-6942-45ad-98cf-f7766ae61661}</destination>
         </relationship>
@@ -126,6 +127,7 @@
     </object>
     <object class="MixerBusPanner" id="{8f60383e-7007-414c-8cf9-6352a26ce9e8}"/>
     <object class="MixerBusFader" id="{cc7b2db7-2423-4313-b899-6f4504d06499}"/>
+    <object class="SpatialiserEffect" id="{c104687c-f847-44f5-bf4e-4bbc6c8504fa}"/>
     <object class="ThreeEQEffect" id="{4d18a617-68eb-4881-85f6-c52c31024a63}">
         <property name="lowGain">
             <value>-32</value>

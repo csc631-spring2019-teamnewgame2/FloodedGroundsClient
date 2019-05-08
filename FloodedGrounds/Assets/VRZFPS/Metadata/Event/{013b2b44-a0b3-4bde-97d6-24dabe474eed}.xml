@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.10.00">
     <object class="Event" id="{013b2b44-a0b3-4bde-97d6-24dabe474eed}">
         <property name="name">
-            <value>Sniper  Reload</value>
+            <value>SniperReload</value>
         </property>
         <property name="outputFormat">
             <value>2</value>
@@ -114,7 +114,7 @@
             <value>true</value>
         </property>
         <property name="start">
-            <value>0.3359375</value>
+            <value>0.22</value>
         </property>
         <property name="length">
             <value>0.22</value>

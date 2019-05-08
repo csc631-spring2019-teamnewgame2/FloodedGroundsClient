@@ -5,7 +5,7 @@
             <value>PickupSniper</value>
         </property>
         <property name="outputFormat">
-            <value>0</value>
+            <value>2</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -116,6 +116,7 @@
     <object class="MixerBusEffectChain" id="{ad71a2da-6010-4143-a3b3-9f704e4e9d2b}">
         <relationship name="effects">
             <destination>{3f61c86b-39fd-4a40-99e1-34fb5694e76b}</destination>
+            <destination>{c22dfc4f-4c07-4f85-99c2-36bf4efbcdfd}</destination>
             <destination>{4ea8851e-174d-4c4d-8185-885c62acce15}</destination>
             <destination>{a87440df-c395-45a4-bce3-63ed9b060df3}</destination>
         </relationship>
@@ -129,6 +130,7 @@
     </object>
     <object class="MixerBusPanner" id="{d5f830ab-701e-49e1-b93a-7d12bfb17606}"/>
     <object class="MixerBusFader" id="{3f61c86b-39fd-4a40-99e1-34fb5694e76b}"/>
+    <object class="SpatialiserEffect" id="{c22dfc4f-4c07-4f85-99c2-36bf4efbcdfd}"/>
     <object class="ThreeEQEffect" id="{4ea8851e-174d-4c4d-8185-885c62acce15}">
         <property name="lowGain">
             <value>-32</value>
