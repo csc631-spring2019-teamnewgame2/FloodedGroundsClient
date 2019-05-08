@@ -13,7 +13,7 @@ public class MonsterMovement2 : MonoBehaviour
     private bool died = false;
     public GameObject rightHand;
     public GameObject leftHand;
-
+    public GameObject youLoseScreen;
 
     private float playerHealth;
     public GameObject HPCanvas;
@@ -37,6 +37,8 @@ public class MonsterMovement2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        youLoseScreen.SetActive(false);
+
         //Set hand attack colliders false on game start
         rightHand.SetActive(false);
         leftHand.SetActive(false);
@@ -278,6 +280,7 @@ public class MonsterMovement2 : MonoBehaviour
 
         if(died == true)
         {
+            youLoseScreen.SetActive(true);
             //Debug.Log("i die");
             if (recoveringHP < maxHP)
             {
@@ -287,6 +290,7 @@ public class MonsterMovement2 : MonoBehaviour
 
             else
             {
+                youLoseScreen.SetActive(false);
                 died = false;
                 anim.SetBool("isDead", false);
                 recoveringHP = 0f;

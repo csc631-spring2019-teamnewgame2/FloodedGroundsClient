@@ -12,6 +12,7 @@ public class MaxMovement : MonoBehaviour
     private bool died = false;
     private float playerHealth;
     Vector3 moveDir = Vector3.zero;
+    public GameObject youLoseScreen;
 
     Animator anim;
     private Rigidbody rb;
@@ -35,6 +36,7 @@ public class MaxMovement : MonoBehaviour
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+        youLoseScreen.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         
@@ -261,11 +263,16 @@ public class MaxMovement : MonoBehaviour
         //Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
         if (playerHealth <= 0)
         {
+            youLoseScreen.SetActive(true);
             anim.SetBool("isDead", true);
             // Debug.Log("Is dead");
             died = true;
             //Turn off shooting layer
             anim.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            youLoseScreen.SetActive(false);
         }
     }
 
