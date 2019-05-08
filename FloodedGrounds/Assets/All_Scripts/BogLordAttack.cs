@@ -16,9 +16,14 @@ public class BogLordAttack : MonoBehaviour
         
     }
 
+    
+
     void OnCollisionEnter(Collision other)
     {
-        if(other.gameObject.tag == "Izzy")
+        //This onCollisionEnter function currently works on the (self) of whichever player you're controlling.
+        //Ex. If you hit "Max" and you're the bog lord, instead of his HP decreasing, your own decreases. This could be handled with networking.
+
+        if (other.gameObject.tag == "Izzy")
         {
             other.gameObject.GetComponent<MaxMovement>().TakeDamageFromBogLord();
             Debug.Log(other.gameObject.name + " was hit!!");
@@ -33,9 +38,6 @@ public class BogLordAttack : MonoBehaviour
             other.gameObject.GetComponent<MaxMovement>().TakeDamageFromBogLord();
             Debug.Log(other.gameObject.name + " was hit!!");
         }
-        else
-        {
-            Debug.Log("Something was hit");
-        }
+
     }
 }
