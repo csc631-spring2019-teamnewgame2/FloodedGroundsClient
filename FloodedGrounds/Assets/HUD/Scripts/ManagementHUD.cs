@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ManagementHUD : MonoBehaviour
 {
-    public int ammoIn = 30;
-    public int ammoOut = 120;
+    public int ammoIn, ammoOut;
+    public string gunEquipped;
+
+    private Dictionary<string, Tuple<int, int>> myGuns = new Dictionary<string, Tuple<int, int>>();
+    private Dictionary<string, int> maxMag = new Dictionary<string, int>();
 
     public int _medPack = 1;
 
@@ -18,59 +22,79 @@ public class ManagementHUD : MonoBehaviour
 
     void Start()
     {
+        myGuns.Add("Pistol", new Tuple<int, int>(12, 36));
+        myGuns.Add("AK-47", new Tuple<int, int>(30, 90));
+        myGuns.Add("Shotgun", new Tuple<int, int>(8, 24));
+        myGuns.Add("Knife", new Tuple<int, int>(0, 0));
+
+        maxMag.Add("Pistol", 12);
+        maxMag.Add("AK-47", 30);
+        maxMag.Add("Shotgun", 8);
+
+        ammoIn = 0;
+        ammoOut = 0;
+
         hintText = interactHint.GetComponent<TextFadeOut>();
     }
 
+    // Updating HUD depending on which weapon is equipped 
+    public void UpdateHUDAmmo()
+    {
+        if (gunEquipped == "Knife")
+        {
+            ammoIn = 0;
+            ammoOut = 0;
+            ammoDisplay.text = "\u221E <size=8>/ \u221E </size>";
+        }
+        else
+        {
+            ammoIn = (myGuns[gunEquipped]).Item1;
+            ammoOut = (myGuns[gunEquipped]).Item2;
+
+            ammoDisplay.text = ammoIn.ToString() + " <size=8>/ " + ammoOut.ToString() + "</size>";
+        }
+    }
+
+    public void UpdateAmmo()
+    {
+        myGuns[gunEquipped] = new Tuple<int, int>(ammoIn, ammoOut);
+    }
+
+    // General ammo counter for all guns
     public void AmmoCounter(int amount)
     {
         ammoIn -= amount;
 
-        if(ammoIn <= 0 && ammoOut <= 0)
+        if (ammoIn <= 0 && ammoOut <= 0)
         {
             ammoIn = 0;
             ammoOut = 0;
             Debug.Log("Out of ammo! Find more ammo!");
         }
-        else if(ammoIn <= 0 && ammoOut > 0)
+        else if (ammoIn <= 0 && ammoOut > 0)
         {
             ammoIn = 0;
             Debug.Log("Reload!");
         }
 
+        UpdateAmmo();
         ammoDisplay.text = ammoIn.ToString() + " <size=8>/ " + ammoOut.ToString() + "</size>";
     }
 
     public void AmmoReload()
     {
-        if(ammoIn > 0 && ammoOut >= 30)
+        if (maxMag[gunEquipped] - ammoIn >= ammoOut)
         {
-            ammoOut = ammoOut - (30 - ammoIn);
-            ammoIn = 30;
-        }
-        if(ammoIn == 0 && ammoOut >= 30)
-        {
-            ammoIn = 30;
-            ammoOut -= 30;
-        }
-        if(ammoIn > 0 && ammoOut < 30 && ammoIn + ammoOut <= 30)
-        {
-            if(ammoIn + ammoOut == 30)
-            {
-                ammoIn = 30;
-                ammoOut = 0;
-            }
-            else
-            {
-                ammoIn = ammoIn + ammoOut;
-                ammoOut = 0;
-            }
-        }
-        if(ammoIn == 0 && ammoOut < 30)
-        {
-            ammoIn = ammoOut;
+            ammoIn += ammoOut;
             ammoOut = 0;
         }
+        else
+        {
+            ammoOut -= (maxMag[gunEquipped] - ammoIn);
+            ammoIn = maxMag[gunEquipped];
+        }
 
+        UpdateAmmo();
         ammoDisplay.text = ammoIn.ToString() + " <size=8>/ " + ammoOut.ToString() + "</size>";
     }
 
@@ -95,9 +119,11 @@ public class ManagementHUD : MonoBehaviour
         hintText.FadeOut();
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
-       
+
     }
 }

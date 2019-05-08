@@ -35,6 +35,10 @@ public class Main : MonoBehaviour
         //Disble the network movement script
         player.GetComponent<NetworkMovement>().enabled = false;
 
+        //Set the movement script for the weapon select
+        if (character != Constants.MONSTER)
+            WeaponSelectionAnim.player = GameObject.Find(character).GetComponent<MaxMovement>();
+
         //Find the first person camera for this character
         GameObject myCamera = null;
 

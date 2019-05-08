@@ -21,7 +21,7 @@ public class MaxMovement : MonoBehaviour
     public GameObject bullet;
 
     public float WaterHeight = 15.5f;
-     
+
     // Camera Code
     public float sensitivity = 30.0f;
     public GameObject cam;
@@ -30,14 +30,24 @@ public class MaxMovement : MonoBehaviour
     public float rotX, rotY;
     public bool webGLRightClickRotation = true;
 
+    //ManagementHUD 
+    public ManagementHUD hud;
+
+    //ShootRaycast
+    ShootRaycast shootGun;
+
+    public List<GameObject> heldGuns = new List<GameObject>();
+    public GameObject equipped;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+        shootGun = GetComponentInChildren<ShootRaycast>();
 
         Cursor.lockState = CursorLockMode.Locked;
-        
+
         //LockCursor ();
         if (Application.isEditor)
         {
@@ -54,7 +64,7 @@ public class MaxMovement : MonoBehaviour
         Movement();
         GetInput();
     }
-    
+
     void CameraRotation(GameObject cam, float rotX, float rotY)
     {
         transform.Rotate(0, rotX * Time.deltaTime, 0);
@@ -67,7 +77,7 @@ public class MaxMovement : MonoBehaviour
         rotY = Input.GetAxis("Mouse Y") * sensitivity;
 
         rotY = Mathf.Clamp(rotY, minVert, maxVert);
-        
+
         if (webGLRightClickRotation)
         {
             if (Input.GetKey(KeyCode.Mouse0))
@@ -89,13 +99,22 @@ public class MaxMovement : MonoBehaviour
         // Attack
         if (Input.GetMouseButton(0)) // left mouse button is pressed
         {
+            shootGun.Shoot();
             anim.SetBool("isShooting", true);
         }
 
         // Jump
-        if (Input.GetKeyDown(KeyCode.Space)) { 
-            anim.SetBool("isJumping",true);
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            anim.SetBool("isJumping", true);
             Debug.Log("jump");
+        }
+
+        //Reload 
+        if (Input.GetKey(KeyCode.R))
+        {
+            hud.AmmoReload();
+            Debug.Log("Reloaded");
         }
     }
 
