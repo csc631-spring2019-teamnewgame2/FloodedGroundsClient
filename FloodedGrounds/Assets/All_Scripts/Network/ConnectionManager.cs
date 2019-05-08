@@ -13,6 +13,8 @@ public class ConnectionManager : MonoBehaviour
 	private TcpClient mySocket;
 	private NetworkStream theStream;
 	private bool socketReady = false;
+    //The packet number of the last update packet processed
+    private int latestUpdateNumber = -1;
 	
 	void Awake() {
 		mainObject = GameObject.Find("MainObject");
@@ -20,8 +22,8 @@ public class ConnectionManager : MonoBehaviour
 	
 	// Use this for initialization
 	void Start () {
-		setupSocket ();
-	}
+        setupSocket ();
+    }
 
 	public void setupSocket() {
 		if (socketReady) {
@@ -55,11 +57,12 @@ public class ConnectionManager : MonoBehaviour
 				response.dataStream = dataStream;
 				response.parse();
 				ExtendedEventArgs args = response.process();
-				//if (args != null) {
-				//	MessageQueue msgQueue = mainObject.GetComponent<MessageQueue>();
-				//	msgQueue.AddMessage(args.event_id, args);
-				//}
-			}
+                if (args != null)
+                {
+                    MessageQueue msgQueue = mainObject.GetComponent<MessageQueue>();
+                    msgQueue.AddMessage(args.event_id, args);
+                }
+            }
 		}
 	}
 
@@ -86,4 +89,13 @@ public class ConnectionManager : MonoBehaviour
 		    readSocket();
 	}
 
+    public void setUpdateNumber(int updateNumber)
+    {
+        latestUpdateNumber = updateNumber;
+    }
+
+    public int getUpdateNumber()
+    {
+        return latestUpdateNumber;
+    }
 }

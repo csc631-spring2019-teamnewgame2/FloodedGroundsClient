@@ -5,10 +5,12 @@ public class Constants {
 
     //Constants
     public static readonly string CLIENT_VERSION = "1.00";
-    public static readonly string REMOTE_HOST = "13.52.133.88";
-    //public static readonly string REMOTE_HOST = "localhost";
+    //public static readonly string REMOTE_HOST = "13.52.133.88";
+    public static readonly string REMOTE_HOST = "localhost";
     public static readonly int REMOTE_PORT = 9252;
-    public static readonly int updatesPerSecond = 120;
+    public static readonly int updatesPerSecond = 30;
+    public static readonly int maxUpdateNumber = 10000;
+    public static readonly int maxUpdateDistance = 1000;
 
     //Net code
     //Request: 1xx
