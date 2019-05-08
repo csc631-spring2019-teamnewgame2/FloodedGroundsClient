@@ -18,10 +18,11 @@ public class NetworkResponseTable {
         responseTable.Add(Constants.SMSG_JOINLOBBY, new ResponseJoinLobby());
         responseTable.Add(Constants.SMSG_STARTGAME, new ResponseStartGame());
         responseTable.Add(Constants.SMSG_JOINGAME, new ResponseJoinGame());
+
+        responseTable.Add(Constants.SMSG_PICKUP, new ResponsePickup());
     }
 	
 	public static NetworkResponse get(short response_id) {
-		init ();
 		NetworkResponse response = null;
 		if (responseTable.ContainsKey(response_id))
 			response = responseTable[response_id];

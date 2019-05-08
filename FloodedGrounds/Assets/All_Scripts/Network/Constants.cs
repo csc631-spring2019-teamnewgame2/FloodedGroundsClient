@@ -50,6 +50,9 @@ public class Constants {
 
 
     //Actions
+    //Pickups:  x4x
+    public static readonly short CMSG_PICKUP = 140;
+    public static readonly short SMSG_PICKUP = 240;
 
     //Other
     public static readonly string IMAGE_RESOURCES_PATH = "Images/";

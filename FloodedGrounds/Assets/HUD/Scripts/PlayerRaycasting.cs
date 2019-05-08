@@ -39,10 +39,15 @@ public class PlayerRaycasting : MonoBehaviour
             counter.InteractHint();
 
             if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Destroy(hit.collider.gameObject);
-                    counter.MedCounter(1);
-                }
+            {
+                RequestPickup pickup = new RequestPickup();
+                pickup.setPickupName(hit.collider.gameObject.name);
+                pickup.send();
+                Main.GetConnectionManager().send(pickup);
+
+                Destroy(hit.collider.gameObject);
+                counter.MedCounter(1);
+            }
         }
         else
         {
@@ -60,6 +65,11 @@ public class PlayerRaycasting : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E))
             {
+                RequestPickup pickup = new RequestPickup();
+                pickup.setPickupName(hit.collider.gameObject.name);
+                pickup.send();
+                Main.GetConnectionManager().send(pickup);
+
                 Destroy(hit.collider.gameObject);
                 counter.AmmoPickup(120);
             }

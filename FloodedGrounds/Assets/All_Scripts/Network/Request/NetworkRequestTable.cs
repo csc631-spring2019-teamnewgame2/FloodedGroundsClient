@@ -21,6 +21,8 @@ public class NetworkRequestTable {
         add(Constants.CMSG_JOINLOBBY, new RequestJoinGame());
         add(Constants.CMSG_STARTGAME, new RequestStartGame());
         add(Constants.CMSG_JOINGAME, new RequestJoinGame());
+
+        add(Constants.CMSG_PICKUP, new RequestPickup());
     }
 	
 	public static void add(short request_id, NetworkRequest request) {

@@ -51,7 +51,7 @@ public class NetworkMovement : MonoBehaviour
         targetLookAngle = newLookAngle;
         targetYRotation = newYRotation;
 
-        //Reset the interpolation progress and start passed
+        //Reset the interpolation progress and start time
         interpolationProgress = 0f;
         startTime = Time.time;
     }
