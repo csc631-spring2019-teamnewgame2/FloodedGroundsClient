@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MaxMovement : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MaxMovement : MonoBehaviour
     public bool gravityEnabled = false;
     public GameObject HPCanvas;
     private bool died = false;
+    public float GameOverResetTime;
     private float playerHealth;
     Vector3 moveDir = Vector3.zero;
     public GameObject youLoseScreen;
@@ -265,10 +267,16 @@ public class MaxMovement : MonoBehaviour
         {
             youLoseScreen.SetActive(true);
             anim.SetBool("isDead", true);
+
             // Debug.Log("Is dead");
             died = true;
+
             //Turn off shooting layer
             anim.SetLayerWeight(1, 0);
+
+            //Reset game in X amount of seconds
+            Invoke("GameOverSceneReset", GameOverResetTime);
+
         }
         else
         {
@@ -283,5 +291,11 @@ public class MaxMovement : MonoBehaviour
 
         //Set the new visual HP bar's stat the same width minus 50
         HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerHealth - 50f);
+    }
+
+    void GameOverSceneReset()
+    {
+        //Reloads current scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

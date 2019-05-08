@@ -14,6 +14,8 @@ public class MonsterMovement2 : MonoBehaviour
     public GameObject rightHand;
     public GameObject leftHand;
     public GameObject youLoseScreen;
+    
+
 
     private float playerHealth;
     public GameObject HPCanvas;
