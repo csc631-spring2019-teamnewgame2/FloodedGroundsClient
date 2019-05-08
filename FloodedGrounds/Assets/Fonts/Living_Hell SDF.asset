@@ -19,12 +19,12 @@ MonoBehaviour:
   m_fontInfo:
     Name: Living Hell
     PointSize: 145
-    Scale: 0
+    Scale: 1
     CharacterCount: 98
     LineHeight: 166.75
     Baseline: 0
     Ascender: 131.25
-    CapHeight: 0
+    CapHeight: 131.15625
     Descender: -30.71875
     CenterLine: 0
     SuperscriptOffset: 131.25
@@ -34,7 +34,7 @@ MonoBehaviour:
     UnderlineThickness: 10.620117
     strikethrough: 36.55682
     strikethroughThickness: 10.620117
-    TabWidth: 0
+    TabWidth: 402.8125
     Padding: 5
     AtlasWidth: 1024
     AtlasHeight: 1024
@@ -43,10 +43,10 @@ MonoBehaviour:
   - id: 32
     x: 6
     y: 1029
-    width: 0
-    height: 0
+    width: 40.28125
+    height: 161.96875
     xOffset: 0
-    yOffset: 0
+    yOffset: 131.25
     xAdvance: 40.28125
     scale: 1
   - id: 33
