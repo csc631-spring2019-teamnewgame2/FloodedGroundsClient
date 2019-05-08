@@ -30,11 +30,18 @@ public class MaxMovement : MonoBehaviour
     public float rotX, rotY;
     public bool webGLRightClickRotation = true;
 
+    //ShootRaycast
+    ShootRaycast shootGun;
+
+    public List<GameObject> heldGuns = new List<GameObject>();
+    public GameObject equipped;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
+        shootGun = GetComponentInChildren<ShootRaycast>();
 
         Cursor.lockState = CursorLockMode.Locked;
         
@@ -89,6 +96,7 @@ public class MaxMovement : MonoBehaviour
         // Attack
         if (Input.GetMouseButton(0)) // left mouse button is pressed
         {
+            shootGun.Shoot();
             anim.SetBool("isShooting", true);
         }
 

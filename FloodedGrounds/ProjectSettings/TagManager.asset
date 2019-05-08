@@ -17,6 +17,10 @@ TagManager:
   - Bog_lord
   - Medpack
   - Ammo
+  - MedPack
+  - Pistol
+  - Shotgun
+  - AK-47
   layers:
   - Default
   - TransparentFX

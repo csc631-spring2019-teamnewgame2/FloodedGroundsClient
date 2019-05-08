@@ -8,6 +8,8 @@ public class ManagementHUD : MonoBehaviour
     public int ammoIn = 30;
     public int ammoOut = 120;
 
+
+
     public int _medPack = 1;
 
     public Text ammoDisplay;
@@ -94,6 +96,8 @@ public class ManagementHUD : MonoBehaviour
         interactHint.enabled = true;
         hintText.FadeOut();
     }
+
+
 
     // Update is called once per frame
     void Update()

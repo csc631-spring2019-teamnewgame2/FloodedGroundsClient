@@ -13,12 +13,15 @@ public class PlayerRaycasting : MonoBehaviour
     public float sphereRadius = 0.5f;
 
     private float currentHitDistance;
+
+    public GameObject player;
+    private MaxMovement list;
     
         
     // Start is called before the first frame update
     void Start()
     {
-        
+        list = player.GetComponent<MaxMovement>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,60 @@ public class PlayerRaycasting : MonoBehaviour
             {
                 Destroy(hit.collider.gameObject);
                 counter.AmmoPickup(120);
+            }
+        }
+        else
+        {
+            currentHitDistance = maxDistance;
+        }
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Pistol")
+        {
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                list.heldGuns.Add(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(hit.collider.gameObject);
+            }
+        }
+        else
+        {
+            currentHitDistance = maxDistance;
+        }
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Shotgun")
+        {
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                list.heldGuns.Add(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(hit.collider.gameObject);
+            }
+        }
+        else
+        {
+            currentHitDistance = maxDistance;
+        }
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "AK-47")
+        {
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                list.heldGuns.Add(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(hit.collider.gameObject);
             }
         }
         else

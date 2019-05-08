@@ -18,6 +18,7 @@ public class ResponseJoinGame : NetworkResponse
     public ExtendedEventArgs process()
     {
         Main.setCharacter(character);
+        WeaponSelectionAnim.player = GameObject.Find(character).GetComponent<MaxMovement>();
         Main.setInGame(true);
 
         GameObject player = GameObject.FindGameObjectWithTag(character);
