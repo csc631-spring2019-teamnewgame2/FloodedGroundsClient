@@ -12,6 +12,10 @@ public class MonsterMovement2 : MonoBehaviour
     float recoveringHP = 0f;
     private bool died = false;
 
+    public GameObject rightHand;
+    public GameObject leftHand;
+    public GameObject youLoseScreen;
+
     private float playerHealth;
     public GameObject HPCanvas;
 
@@ -259,8 +263,8 @@ public class MonsterMovement2 : MonoBehaviour
 
     void CheckIfDead()
     {
-        playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
-        // Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.width);
+        playerHealth = HPCanvas.GetComponent<RectTransform>().rect.xMax;
+        Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.xMax);
         if (playerHealth <= 0)
         {
             anim.SetBool("isDead", true);
@@ -271,6 +275,7 @@ public class MonsterMovement2 : MonoBehaviour
 
         if(died == true)
         {
+            youLoseScreen.SetActive(true);
             //Debug.Log("i die");
             if (recoveringHP < maxHP)
             {
@@ -280,6 +285,7 @@ public class MonsterMovement2 : MonoBehaviour
 
             else
             {
+                youLoseScreen.SetActive(false);
                 died = false;
                 anim.SetBool("isDead", false);
                 recoveringHP = 0f;
@@ -303,5 +309,17 @@ public class MonsterMovement2 : MonoBehaviour
 
         // If not receiving raycast shot
         anim.SetBool("isHit", false);
+    }
+
+    void StartCollider()
+    {
+        rightHand.SetActive(true);
+        leftHand.SetActive(true);
+    }
+
+    void EndCollider()
+    {
+        rightHand.SetActive(false);
+        leftHand.SetActive(false);
     }
 }
