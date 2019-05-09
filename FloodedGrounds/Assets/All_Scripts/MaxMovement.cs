@@ -303,18 +303,18 @@ public class MaxMovement : MonoBehaviour
         }
     }
 
-    public void TakeDamageFromBogLord()
+    public void TakeDamageFromBogLord(float damage)
     {
         //Store current visual HP bar into "Playerhealth"
         playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
 
         //Set the new visual HP bar's stat the same width minus 50
-        HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerHealth - 50f);
+        HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerHealth - damage);
     }
 
     void GameOverSceneReset()
     {
         //Reloads current scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("SceneLoader");
     }
 }
