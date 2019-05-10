@@ -107,6 +107,7 @@ public class MonsterMovement2 : MonoBehaviour
         if (Input.GetKey(KeyCode.X))
         {
             anim.SetBool("isShouting", true);
+            Shouting();
         }
     }
 
