@@ -10,8 +10,11 @@ EditorBuildSettings:
     guid: 2a8812d2473d7614aad498ef9de08ecd
   - enabled: 1
     path: Assets/Main Menu and Login/Desktop.unity
-    guid: 0076590dd1830ff46a78b670ad95ae79
+    guid: 3073dfc0e6aab46abab980ab7f624eb6
   - enabled: 1
     path: Assets/Flooded_Grounds/Scenes/Scene_A.unity
     guid: c0d944ca9defd20449bc336e50d75a08
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: c2ebe48679bb3b7459511cfd9ab38da3
   m_configObjects: {}

@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
 {
@@ -14,9 +14,14 @@ public class SceneController : MonoBehaviour
     public event Action AfterSceneLoad;
 
     public CanvasGroup faderCanvasGroup;
+    public GameObject loadingScreenObj;
+    public Slider slider;
     public float fadeDuration = 1f;
     public string startingSceneName = "Desktop";
-    
+    private float _loadingProgress;
+    public float LoadingProgress { get { return _loadingProgress; } }
+
+
 
     private IEnumerator Start()
     {
@@ -52,7 +57,23 @@ public class SceneController : MonoBehaviour
     
     private IEnumerator LoadSceneAndSetActive(string sceneName)
     {
-        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        AsyncOperation asyncScene =  SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+        asyncScene.allowSceneActivation = false;
+        loadingScreenObj.SetActive(true);
+        while (!asyncScene.isDone)
+        {
+            // loading bar progress
+            slider.value = (asyncScene.progress / 0.9f) * 100;
+            // scene has loaded as much as possible, the last 10% can't be multi-threaded
+            if (asyncScene.progress >= 0.9f)
+            {
+                slider.value = 1f;
+                // we finally show the scenes
+                asyncScene.allowSceneActivation = true;
+            }
+
+            yield return null;
+        }
 
         Scene newlyLoadedScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
         SceneManager.SetActiveScene(newlyLoadedScene);
@@ -74,6 +95,7 @@ public class SceneController : MonoBehaviour
         isFading = false;
         faderCanvasGroup.blocksRaycasts = false;
     }
+
 }
 
 

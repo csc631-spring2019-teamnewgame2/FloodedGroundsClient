@@ -20,7 +20,7 @@ public class Main : MonoBehaviour
     //Determine what state the game is in
     private static string character = null;
     private static ConnectionManager cManager;
-       
+
     public static void setCharacter(string _character)
     {
         character = _character;
@@ -136,10 +136,10 @@ public class Main : MonoBehaviour
             {
 
                 case GameState.LOBBY:
-                    // will have specific request to keep it live at this point
-                    // but doesn't yet...
-                    // todo: add getLobbies code when lobbies are implemented
-                    // break;
+                // will have specific request to keep it live at this point
+                // but doesn't yet...
+                // todo: add getLobbies code when lobbies are implemented
+                // break;
                 case GameState.LOGIN:
                 case GameState.MAIN_MENU:
                     if (lastState == GameState.GAME) sceneController.FadeAndLoadScene("Desktop"); // reload menu after a game;
@@ -150,10 +150,11 @@ public class Main : MonoBehaviour
                     break;
 
                 case GameState.GAME:
-                    if (lastState == GameState.MAIN_MENU) {
+                    if (lastState == GameState.MAIN_MENU)
+                    {
                         sceneController.FadeAndLoadScene("Scene_A");
 
-                        while (SceneManager.GetActiveScene().name != "Scene_A") yield return null;
+                        //while (SceneManager.GetActiveScene().name != "Scene_A") yield return null;
 
                         Constants.loadSceneAConstants();
 
@@ -161,7 +162,7 @@ public class Main : MonoBehaviour
 
                         Debug.Log("Joined Game");
                     }
-                    
+
                     //Create the two request objects that will be sent to the server
                     RequestHeartbeat heartbeat = (RequestHeartbeat)NetworkRequestTable.get(Constants.CMSG_HEARTBEAT);
                     RequestPushUpdate pushUpdate = (RequestPushUpdate)NetworkRequestTable.get(Constants.CMSG_PUSHUPDATE);
