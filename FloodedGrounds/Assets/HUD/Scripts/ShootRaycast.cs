@@ -53,7 +53,7 @@ public class ShootRaycast : MonoBehaviour
         {
             Debug.DrawRay(this.transform.position, v, Color.magenta);
         }
-        //Debug.DrawRay(this.transform.position, this.transform.forward * gun_stats[equip].range, Color.magenta);
+        Debug.DrawRay(this.transform.position, this.transform.forward * gun_stats[equip].range, Color.magenta);
     }
 
     public void Shoot()
@@ -75,7 +75,8 @@ public class ShootRaycast : MonoBehaviour
             // 4. Applying pistol fire rate
             if ((equip == "Pistol" | equip == "AK-47") && Physics.Raycast(this.transform.position, this.transform.forward, out hit, gun_stats[equip].range) && hit.collider.gameObject.tag == "Bog_lord")
             {
-                Instantiate(monsterBlood, hit.collider.gameObject.transform);
+                var rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                Instantiate(monsterBlood, hit.point, rot);
                 Debug.Log("Bog lord has been shot with pistol/ak-47!");
             }
 
