@@ -17,11 +17,12 @@ public class MaxMovement : MonoBehaviour
     public GameObject youLoseScreen;
     public float GameOverResetTime;
 
+
     Animator anim;
     private Rigidbody rb;
     CharacterController controller;
 
-    public Transform gunPoint;
+    public GameObject gunPoint;
     public GameObject bullet;
 
     public float WaterHeight = 15.5f;
@@ -45,6 +46,9 @@ public class MaxMovement : MonoBehaviour
 
     void Start()
     {
+        //Finds the shotPoint of the current player
+        gunPoint = GameObject.Find("ShotPoint" + this.gameObject.name);
+
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -105,6 +109,9 @@ public class MaxMovement : MonoBehaviour
         {
             shootGun.Shoot();
             anim.SetBool("isShooting", true);
+            
+            //Instantiate(bullet,gunPoint.transform, true);
+            
         }
 
         // Jump
