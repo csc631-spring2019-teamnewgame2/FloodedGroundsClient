@@ -990,7 +990,6 @@ GameObject:
   - component: {fileID: 993505325}
   - component: {fileID: 993505324}
   - component: {fileID: 993505323}
-  - component: {fileID: 993505322}
   m_Layer: 5
   m_Name: TW3_Style
   m_TagString: Untagged
@@ -1021,43 +1020,6 @@ RectTransform:
   m_AnchoredPosition: {x: 594, y: 322}
   m_SizeDelta: {x: 800, y: 433.67004}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &993505322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993505320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 732e07aa25b3dc34abb6f761f7aa0994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasAlpha: {fileID: 0}
-  status: {fileID: 0}
-  title: {fileID: 0}
-  titleDescription: {fileID: 0}
-  progressBar: {fileID: 0}
-  hintsText: {fileID: 0}
-  HintList: []
-  changeHintWithTimer: 0
-  hintTimerValue: 5
-  imageObject: {fileID: 0}
-  fadingAnimator: {fileID: 0}
-  ImageList: []
-  changeImageWithTimer: 0
-  imageTimerValue: 5
-  imageFadingSpeed: 1
-  objectAnimator: {fileID: 0}
-  virtualLoadingTimer: 5
-  enableVirtualLoading: 0
-  enableTitleDesc: 1
-  enableRandomHints: 1
-  enableRandomImages: 1
-  enablePressAnyKey: 1
-  titleText: 
-  titleDescText: 
-  fadingAnimationSpeed: 2
 --- !u!225 &993505323
 CanvasGroup:
   m_ObjectHideFlags: 0
