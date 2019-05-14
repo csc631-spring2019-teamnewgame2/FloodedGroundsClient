@@ -14,6 +14,9 @@ public class Footfall : MonoBehaviour
     public bool isIndoors;
     public bool isMoving;
 
+    int frames = 0;
+    int framesDiv = 20;
+
     void Awake()
     {
         var target = GameObject.Find("Max 1");
@@ -25,27 +28,39 @@ public class Footfall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isIndoors)
-        {
-            emitter.SetParameter("Surface_index", 2.1f);
-        }
-            
+        if (anim.GetBool("isRunning") == true)
+            framesDiv = 20;
         else
+            framesDiv = 30;
+
+        if (frames % framesDiv == 0)
         {
-            emitter.SetParameter("Surface_index", 1.1f);
+            if (isIndoors)
+            {
+                emitter.SetParameter("Surface_index", 2.1f);
+            }
+
+            else
+            {
+                emitter.SetParameter("Surface_index", 1.1f);
+            }
+
+            isMoving = anim.GetBool("isWalking");
+
+            if (isMoving)
+            {
+                GetComponent<FMODUnity.StudioEventEmitter>().Play();
+            }
+
+            else
+            {
+                GetComponent<FMODUnity.StudioEventEmitter>().Stop();
+            }
         }
 
-        isMoving = anim.GetBool("isWalking");
-
-        if (isMoving)
-        {
-            GetComponent<FMODUnity.StudioEventEmitter>().Play();
-        }
-
-        else
-        {
-            GetComponent<FMODUnity.StudioEventEmitter>().Stop();
-        }
+        frames += 1;
+        if (frames == 60)
+            frames = 0;
     }
 
     void OnTriggerEnter(Collider other)
