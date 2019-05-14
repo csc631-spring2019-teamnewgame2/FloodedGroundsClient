@@ -19,6 +19,7 @@ public class ShootRaycast : MonoBehaviour
     }
 
     public ParticleSystem monsterBlood;
+    private Animator anim;
 
     // For fire rates 
     public float nextFire;
@@ -42,24 +43,25 @@ public class ShootRaycast : MonoBehaviour
         // This script is intended to be attached to gun as component
         // equip = this.tag;
 
-        // Temp while this script is on player FPS camera
-        equip = "Pistol";
+        anim = GameObject.FindGameObjectWithTag("Bog_lord").GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        foreach (Vector3 v in shotgunRays)
-        {
-            Debug.DrawRay(this.transform.position, v, Color.magenta);
-        }
         //Debug.DrawRay(this.transform.position, this.transform.forward * gun_stats[equip].range, Color.magenta);
     }
 
     public void Shoot()
     {
+        // List of particle positions to send to server 
+        List<Vector3> particlePos = new List<Vector3>();
         RaycastHit hit;
 
+        equip = hud.gunEquipped;
+
+        bool playAnimation = false;
+    
         if (hud.ammoIn > 0 && Time.time > nextFire)
         {
             // Update the time when our player can fire next
@@ -75,7 +77,16 @@ public class ShootRaycast : MonoBehaviour
             // 4. Applying pistol fire rate
             if ((equip == "Pistol" | equip == "AK-47") && Physics.Raycast(this.transform.position, this.transform.forward, out hit, gun_stats[equip].range) && hit.collider.gameObject.tag == "Bog_lord")
             {
-                Instantiate(monsterBlood, hit.collider.gameObject.transform);
+                // Trigger Bog_lord isHit animation 
+                playAnimation = true;
+
+                // Send this list to server
+                particlePos.Add(hit.point);
+
+                // spawn monsterBlood particle effect, then destroy clone gameObject
+                var rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                Destroy(Instantiate(monsterBlood.gameObject, hit.point, rot), 2f);
+
                 Debug.Log("Bog lord has been shot with pistol/ak-47!");
             }
 
@@ -89,19 +100,30 @@ public class ShootRaycast : MonoBehaviour
                     v3Offset = Quaternion.AngleAxis(Random.Range(0.0f, 360.0f), transform.forward) * v3Offset;
                     Vector3 v3Hit = transform.forward * distance + v3Offset;
 
-                    //shotgunRays.Add(v3Hit);
+                    // shotgunRays.Add(v3Hit);
                     // will add up shotgun spread rays that hit Bog lord to apply the total as damage to Bog lord
                     if (Physics.Raycast(this.transform.position, v3Hit, out hit, gun_stats[equip].range) && hit.collider.gameObject.tag == "Bog_lord")
                     {
+                        // spawn monsterBlood particle effect, then destroy clone gameObject
+                        var rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                        Destroy(Instantiate(monsterBlood.gameObject, hit.point, rot), 2f);
+
+                        playAnimation = true;
+                        particlePos.Add(hit.point);
                         raysHit += 1;
                     }
                 }
-
                 
                 //Instantiate(monsterBlood, hit.collider.gameObject.transform)
                 // applyDmgBog(raysHit);
                 Debug.Log(raysHit);
                 Debug.Log("Bog lord has been shot with shotgun!");
+            }
+
+            if (playAnimation)
+            {
+                // Needs to be fixed. Monster gets stuck in isHit animation
+                //anim.SetBool("isHit", true);
             }
         }
     }

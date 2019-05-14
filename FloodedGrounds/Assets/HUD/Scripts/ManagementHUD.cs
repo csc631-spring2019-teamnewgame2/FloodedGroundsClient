@@ -107,9 +107,11 @@ public class ManagementHUD : MonoBehaviour
 
     public void AmmoPickup(int add)
     {
-        ammoOut += add;
+        myGuns["Pistol"] = new Tuple<int, int>(myGuns["Pistol"].Item1, myGuns["Pistol"].Item2 + 24);
+        myGuns["AK-47"] = new Tuple<int, int>(myGuns["AK-47"].Item1, myGuns["AK-47"].Item2 + 60);
+        myGuns["Shotgun"] = new Tuple<int, int>(myGuns["Shotgun"].Item1, myGuns["Shotgun"].Item2 + 16);
 
-        ammoDisplay.text = ammoIn.ToString() + " <size=8>/ " + ammoOut.ToString() + "</size>";
+        UpdateHUDAmmo();
     }
 
     public void InteractHint()
