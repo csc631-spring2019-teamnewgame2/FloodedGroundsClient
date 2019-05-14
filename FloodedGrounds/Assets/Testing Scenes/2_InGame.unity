@@ -118,44 +118,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1816023689}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &263203651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263203650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Emitters:
-  - Target: {fileID: 263203659}
-    Params:
-    - Name: Surface_index
-      Value: 1.1
-  TriggerEvent: 4
-  CollisionTag: Indoors
---- !u!114 &263203652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 263203650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Emitters:
-  - Target: {fileID: 263203659}
-    Params:
-    - Name: Surface_index
-      Value: 2.1
-  TriggerEvent: 3
-  CollisionTag: Indoors
 --- !u!114 &263203659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc63d6ce791142628c4af0ed07be546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputSFX: event:/Characters/Footsteps/PlayerFootsteps
+  playerObj: {fileID: 263203650}
   isIndoors: 0
   isMoving: 0
 --- !u!1001 &692444012
