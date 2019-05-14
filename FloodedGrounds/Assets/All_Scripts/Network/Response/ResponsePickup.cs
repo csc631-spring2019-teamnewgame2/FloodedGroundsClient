@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class ResponsePickup : NetworkResponse
 {
-    private ConnectionManager connectionManager;
+    //The name of the object picked up
+    private string pickupItem;
 
     override
     public void parse()
     {
+        pickupItem = DataReader.ReadString(dataStream);
     }
 
     override
     public ExtendedEventArgs process()
     {
-        //Get the name of the object picked up
-        string pickupItem = DataReader.ReadString(dataStream);
-
         //Disable the object
         GameObject.Find(pickupItem).SetActive(false);
 

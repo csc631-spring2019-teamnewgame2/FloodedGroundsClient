@@ -5,8 +5,8 @@ public class Constants {
 
     //Constants
     public static readonly string CLIENT_VERSION = "1.00";
-    public static readonly string REMOTE_HOST = "13.52.133.88";
-    //public static readonly string REMOTE_HOST = "localhost";
+    //public static readonly string REMOTE_HOST = "13.52.133.88";
+    public static readonly string REMOTE_HOST = "localhost";
     public static readonly int REMOTE_PORT = 9252;
     public static readonly int updatesPerSecond = 30;
     public static readonly int maxUpdateNumber = 10000;
@@ -54,6 +54,10 @@ public class Constants {
     public static readonly short CMSG_PICKUP = 140;
     public static readonly short SMSG_PICKUP = 240;
 
+    //Hit: x5x
+    public static readonly short CMSG_HIT = 150;
+    public static readonly short SMSG_HIT = 250;
+
     //Other
     public static readonly string IMAGE_RESOURCES_PATH = "Images/";
 	public static readonly string PREFAB_RESOURCES_PATH = "Prefabs/";
@@ -75,7 +79,10 @@ public class Constants {
     public static string GUY2 = "Winston";
 
     //Dictionary to map ids to the characters
-    public static Dictionary<int, string> characterIDs;
+    public static Dictionary<int, string> IDtoCharacter;
+
+    //Dictionary to map characters to the ids
+    public static Dictionary<string, int> CharacterToID;
 
     //Animation Parameters
     public static readonly string[] monsterAnimParams = { "isJumping", "isWalking", "isDead", "isAttacking", "isHit", "isShouting" };
@@ -109,11 +116,17 @@ public class Constants {
     //Static constructor to populate the dictionarys
     static Constants()
     {
-        characterIDs = new Dictionary<int, string>();
-        characterIDs.Add(0, MONSTER);
-        characterIDs.Add(1, GIRL);
-        characterIDs.Add(2, GUY1);
-        characterIDs.Add(3, GUY2);
+        IDtoCharacter = new Dictionary<int, string>();
+        IDtoCharacter.Add(0, MONSTER);
+        IDtoCharacter.Add(1, GIRL);
+        IDtoCharacter.Add(2, GUY1);
+        IDtoCharacter.Add(3, GUY2);
+
+        CharacterToID = new Dictionary<string, int>();
+        CharacterToID.Add(MONSTER, 0);
+        CharacterToID.Add(GIRL, 1);
+        CharacterToID.Add(GUY1, 2);
+        CharacterToID.Add(GUY2, 3);
 
         characterAnimations = new Dictionary<string, string[]>();
         characterAnimations.Add(MONSTER, monsterAnimParams);

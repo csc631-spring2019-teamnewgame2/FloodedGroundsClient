@@ -124,7 +124,7 @@ public class MaxMovement : MonoBehaviour
 
     void Shooting()
     {
-        Debug.Log("Shots fired");
+
     }
 
     void Movement()

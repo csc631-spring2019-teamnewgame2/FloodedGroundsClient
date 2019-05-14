@@ -264,7 +264,6 @@ public class MonsterMovement2 : MonoBehaviour
     void CheckIfDead()
     {
         playerHealth = HPCanvas.GetComponent<RectTransform>().rect.xMax;
-        Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.xMax);
         if (playerHealth <= 0)
         {
             anim.SetBool("isDead", true);

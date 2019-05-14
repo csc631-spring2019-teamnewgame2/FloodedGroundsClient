@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.All_Scripts.Network.Request;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -87,6 +88,14 @@ public class ShootRaycast : MonoBehaviour
                 var rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Destroy(Instantiate(monsterBlood.gameObject, hit.point, rot), 2f);
 
+                List<Vector3> particleHitPos = new List<Vector3>();
+                particlePos.Add(hit.point);
+
+                RequestHit requestHit = new RequestHit();
+                requestHit.setData(Constants.MONSTER, gun_stats[equip].damage, 1, particleHitPos);
+                requestHit.send();
+                Main.GetConnectionManager().send(requestHit);
+
                 Debug.Log("Bog lord has been shot with pistol/ak-47!");
             }
 
@@ -111,6 +120,11 @@ public class ShootRaycast : MonoBehaviour
                         playAnimation = true;
                         particlePos.Add(hit.point);
                         raysHit += 1;
+
+                        RequestHit requestHit = new RequestHit();
+                        requestHit.setData(Constants.MONSTER, raysHit, raysHit, particlePos);
+                        requestHit.send();
+                        Main.GetConnectionManager().send(requestHit);
                     }
                 }
                 

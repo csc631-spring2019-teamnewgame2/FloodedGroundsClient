@@ -52,6 +52,7 @@ public class ConnectionManager : MonoBehaviour
 			theStream.Read(buffer, 0, bufferSize);
 			MemoryStream dataStream = new MemoryStream(buffer);
 			short response_id = DataReader.ReadShort(dataStream);
+
 			NetworkResponse response = NetworkResponseTable.get(response_id);
 			if (response != null) {
 				response.dataStream = dataStream;

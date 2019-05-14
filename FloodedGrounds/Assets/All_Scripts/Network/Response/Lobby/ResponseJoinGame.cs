@@ -20,7 +20,7 @@ public class ResponseJoinGame : NetworkResponse
     override
     public void parse()
     {
-        character = Constants.characterIDs[DataReader.ReadShort(dataStream)];        
+        character = Constants.IDtoCharacter[DataReader.ReadShort(dataStream)];        
     }
 
     override

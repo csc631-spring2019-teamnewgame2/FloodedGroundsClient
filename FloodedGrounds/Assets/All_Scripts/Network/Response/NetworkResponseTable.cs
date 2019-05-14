@@ -20,6 +20,7 @@ public class NetworkResponseTable {
         responseTable.Add(Constants.SMSG_JOINGAME, new ResponseJoinGame());
 
         responseTable.Add(Constants.SMSG_PICKUP, new ResponsePickup());
+        responseTable.Add(Constants.SMSG_HIT, new ResponseHit());
     }
 	
 	public static NetworkResponse get(short response_id) {
