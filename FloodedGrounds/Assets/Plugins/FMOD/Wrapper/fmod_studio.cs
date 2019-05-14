@@ -8,6 +8,7 @@ using System;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections;
+using FMODUnity;
 
 namespace FMOD.Studio
 {
@@ -1238,6 +1239,11 @@ namespace FMOD.Studio
         public bool isValid()
         {
             return hasHandle() && FMOD_Studio_ParameterInstance_IsValid(this.handle);
+        }
+
+        public static implicit operator ParameterInstance(ParamRef v)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

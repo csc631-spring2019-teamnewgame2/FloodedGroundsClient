@@ -6,36 +6,45 @@ public class Footfall : MonoBehaviour
 {
     [FMODUnity.EventRef]
     public string inputSFX;
-
+    
+    FMODUnity.StudioEventEmitter emitter;
+    FMOD.Studio.ParameterInstance myParameter;
     Animator anim;
-
+    
     public bool isIndoors;
     public bool isMoving;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        var target = GameObject.Find("Max 1");
+        emitter = target.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Surface_index", 1.1f);
         anim = gameObject.GetComponent<Animator>();
-        InvokeRepeating("CallFootsteps", 0, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (anim.GetBool("isWalking"))
+        if (isIndoors)
         {
-            isMoving = true;
+            emitter.SetParameter("Surface_index", 2.1f);
+        }
+            
+        else
+        {
+            emitter.SetParameter("Surface_index", 1.1f);
+        }
+
+        isMoving = anim.GetBool("isWalking");
+
+        if (isMoving)
+        {
+            GetComponent<FMODUnity.StudioEventEmitter>().Play();
         }
 
         else
-            isMoving = false;
-    }
-
-    void CallFootsteps()
-    {
-        if (isMoving && isIndoors)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(inputSFX);
+            GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         }
     }
 
