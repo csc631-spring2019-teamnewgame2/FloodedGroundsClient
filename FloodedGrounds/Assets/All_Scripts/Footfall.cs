@@ -4,39 +4,58 @@ using UnityEngine;
 
 public class Footfall : MonoBehaviour
 {
-    [FMODUnity.EventRef]
-    public string inputSFX;
-
+    FMODUnity.StudioEventEmitter emitter;
+    FMOD.Studio.ParameterInstance myParameter;
     Animator anim;
+
+    public GameObject playerObj;
 
     public bool isIndoors;
     public bool isMoving;
 
-    // Start is called before the first frame update
-    void Start()
+    int frames = 0;
+    int framesDiv = 0;
+
+    void Awake()
     {
+        //var target = GameObject.Find(playerObj);
+        var target = playerObj;
+        emitter = target.GetComponent<FMODUnity.StudioEventEmitter>();
+        emitter.SetParameter("Surface_index", 1.1f);
         anim = gameObject.GetComponent<Animator>();
-        InvokeRepeating("CallFootsteps", 0, 1);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (anim.GetBool("isWalking"))
-        {
-            isMoving = true;
-        }
+        // Get current animation status
+        isMoving = anim.GetBool("isWalking");
 
+        // Updates to Play() more/less if running/walking
+        if (anim.GetBool("isRunning") == true)
+            framesDiv = 20;
         else
-            isMoving = false;
-    }
+            framesDiv = 30;
 
-    void CallFootsteps()
-    {
-        if (isMoving && isIndoors)
+        if (isIndoors)
+            // Walking on wooden floors sfx adaption
+            emitter.SetParameter("Surface_index", 2.1f);
+        else
+            // Walking on dirt sfx adaption
+            emitter.SetParameter("Surface_index", 1.1f);
+
+        if (frames % framesDiv == 0)
         {
-            FMODUnity.RuntimeManager.PlayOneShot(inputSFX);
+            if (isMoving)
+                GetComponent<FMODUnity.StudioEventEmitter>().Play();
+
+            else
+                GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         }
+
+        frames += 1;
+        if (frames == 60)
+            frames = 0;
     }
 
     void OnTriggerEnter(Collider other)
