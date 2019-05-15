@@ -113,23 +113,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 0}
---- !u!114 &759778731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1113881873718931544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb024a3dd698ac4dbde31afdc926804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axes: 2
-  minVert: -45
-  maxVert: 45
-  sensitivity: 10
-  rotX: 0
 --- !u!1 &920223247
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +319,6 @@ GameObject:
   - component: {fileID: 8253841776644322980}
   - component: {fileID: 2271579278636920139}
   - component: {fileID: 2352317985257898712}
-  - component: {fileID: 2080110613}
   - component: {fileID: 2080110618}
   - component: {fileID: 2080110619}
   - component: {fileID: 2080110621}
@@ -436,22 +418,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc63d6ce791142628c4af0ed07be546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputSFX: event:/Characters/Footsteps/PlayerFootsteps
+  playerObj: {fileID: 0}
   isIndoors: 0
   isMoving: 0
---- !u!114 &2080110613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2080110612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ListenerNumber: 0
 --- !u!114 &2080110618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -902,6 +871,23 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.42903373, y: 0.38165987, z: 0.0010709465}
     m_Extent: {x: 0.061864436, y: 0.05758612, z: 0.10022544}
   m_DirtyAABB: 0
+--- !u!114 &759778731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113881873718931544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb024a3dd698ac4dbde31afdc926804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  axes: 2
+  minVert: -45
+  maxVert: 45
+  sensitivity: 10
+  rotX: 0
 --- !u!1 &1117769936044464000
 GameObject:
   m_ObjectHideFlags: 0
