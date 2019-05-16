@@ -17,6 +17,11 @@ public class MaxMovement : MonoBehaviour
     public GameObject youLoseScreen;
     public float GameOverResetTime;
 
+    //Jump variables
+    public float speed2 = 6.0f;
+    public float jumpSpeed = 8.0f;
+    public float gravity2 = 20.0f;
+    private Vector3 moveDirection = Vector3.zero;
 
     Animator anim;
     private Rigidbody rb;
@@ -46,6 +51,9 @@ public class MaxMovement : MonoBehaviour
 
     void Start()
     {
+        //Leave gravityEnabled to false for jumping to work
+        gravityEnabled = false;
+
         //Finds the shotPoint of the current player
         gunPoint = GameObject.Find("ShotPoint" + this.gameObject.name);
 
@@ -67,7 +75,8 @@ public class MaxMovement : MonoBehaviour
     void LateUpdate()
     {
         //CheckCamera();
-        CheckForWaterHeight();
+        //CheckForWaterHeight();
+        Jump();
         CheckIfDead();
         Movement();
         GetInput();
@@ -301,7 +310,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetLayerWeight(1, 0);
 
             //Reset game in X amount of seconds
-            Invoke("GameOverSceneReset", GameOverResetTime);
+            //Invoke("GameOverSceneReset", GameOverResetTime);
 
         }
         else
@@ -323,5 +332,25 @@ public class MaxMovement : MonoBehaviour
     {
         //Reloads current scene
         SceneManager.LoadScene("SceneLoader");
+    }
+
+    void Jump()
+    {
+        if (controller.isGrounded)
+        {
+
+            moveDirection = new Vector3(0f, 0.0f, 0f);
+            moveDirection *= speed2;
+
+            if (Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
+        }
+
+        moveDirection.y -= gravity2 * Time.deltaTime;
+
+        // Move the controller
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }
