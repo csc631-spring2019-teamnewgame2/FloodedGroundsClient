@@ -783,6 +783,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef65911a4bc574649a4322bfdfc97abe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsterBlood: {fileID: 8842116100651747322, guid: 28f6a58558e573f42bca4b55ca242fa8,
+    type: 3}
+  humanBlood: {fileID: 8013325308416730822, guid: 2fc8eca7b3854c84699038b9922bb303,
+    type: 3}
 --- !u!4 &677089174
 Transform:
   m_ObjectHideFlags: 0

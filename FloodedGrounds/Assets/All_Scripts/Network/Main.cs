@@ -20,7 +20,11 @@ public class Main : MonoBehaviour
     //Determine what state the game is in
     private static string character = null;
     private static ConnectionManager cManager;
-       
+
+    //Blood effects
+    public ParticleSystem monsterBlood;
+    public ParticleSystem humanBlood;
+
     public static void setCharacter(string _character)
     {
         character = _character;

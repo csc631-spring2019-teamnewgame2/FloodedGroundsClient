@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.All_Scripts.Network.Request;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,49 +27,20 @@ public class BogLordAttack : MonoBehaviour
         
     }
 
-    
-
     void OnCollisionEnter(Collision other)
     {
-        //This onCollisionEnter function currently works on the (self) of whichever player you're controlling.
-        //Ex. If you hit "Max" and you're the bog lord, instead of his HP decreasing, your own decreases. This could be handled with networking.
+        List<Vector3> particlePos = new List<Vector3>();
+        List<Vector3> particleAngle = new List<Vector3>();
 
-        if (other.gameObject.tag == "Izzy")
-        {
-            // Trigger isHit animation for Izzy
-            //animIzzy.SetBool("isHit", true);
+        var rot = Quaternion.FromToRotation(Vector3.up, other.contacts[0].normal);
+        Destroy(Instantiate(humanBlood.gameObject, other.contacts[0].point, rot), 2f);
 
-            // spawn humanBlood particle effect, then destroy clone gameObject
-            var rot = Quaternion.FromToRotation(Vector3.up, other.contacts[0].normal);
-            Destroy(Instantiate(humanBlood.gameObject, other.contacts[0].point, rot), 2f);
+        particlePos.Add(other.contacts[0].point);
+        particleAngle.Add(rot.eulerAngles);
 
-            other.gameObject.GetComponent<MaxMovement>().TakeDamageFromBogLord(AttackDamage);
-            Debug.Log(other.gameObject.name + " was hit!!");
-        }
-        if (other.gameObject.tag == "Winston")
-        {
-            // Trigger isHit animation for Winston
-            //animWinston.SetBool("isHit", true);
-
-            // spawn humanBlood particle effect, then destroy clone gameObject
-            var rot = Quaternion.FromToRotation(Vector3.up, other.contacts[0].normal);
-            Destroy(Instantiate(humanBlood.gameObject, other.contacts[0].point, rot), 2f);
-
-            other.gameObject.GetComponent<MaxMovement>().TakeDamageFromBogLord(AttackDamage);
-            Debug.Log(other.gameObject.name + " was hit!!");
-        }
-        if (other.gameObject.tag == "Max")
-        {
-            // Trigger isHit animation for Max
-            //animMax.SetBool("isHit", true);
-
-            // spawn humanBlood particle effect, then destroy clone gameObject
-            var rot = Quaternion.FromToRotation(Vector3.up, other.contacts[0].normal);
-            Destroy(Instantiate(humanBlood.gameObject, other.contacts[0].point, rot), 2f);
-
-            other.gameObject.GetComponent<MaxMovement>().TakeDamageFromBogLord(AttackDamage);
-            Debug.Log(other.gameObject.name + " was hit!!");
-        }
-
+        RequestHit requestHit = new RequestHit();
+        requestHit.setData(other.gameObject.tag, (int)AttackDamage, 1, particlePos, particleAngle);
+        requestHit.send();
+        Main.GetConnectionManager().send(requestHit);
     }
 }

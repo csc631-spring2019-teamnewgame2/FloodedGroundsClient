@@ -82,9 +82,6 @@ public class ShootRaycast : MonoBehaviour
                 // Trigger Bog_lord isHit animation 
                 playAnimation = true;
 
-                // Send this list to server
-                particlePos.Add(hit.point);
-
                 // spawn monsterBlood particle effect, then destroy clone gameObject
                 var rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Destroy(Instantiate(monsterBlood.gameObject, hit.point, rot), 2f);

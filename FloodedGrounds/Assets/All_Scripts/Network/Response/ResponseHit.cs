@@ -35,13 +35,13 @@ public class ResponseHit : NetworkResponse
     {
         Debug.Log(hitPlayer + " got hit for " + damage);
 
+        GameObject player = GameObject.FindGameObjectsWithTag(attackingPlayer)[0];
         ParticleSystem blood = null;
 
-        if (attackingPlayer != Constants.MONSTER)
-        {
-            GameObject player = GameObject.FindGameObjectsWithTag(attackingPlayer)[0];
-            blood = player.transform.Find("FPS Camera").gameObject.GetComponent<ShootRaycast>().monsterBlood;
-        }
+        if (hitPlayer == Constants.MONSTER)
+            blood = GameObject.Find("MainObject").GetComponent<Main>().monsterBlood;
+        else
+            blood = GameObject.Find("MainObject").GetComponent<Main>().humanBlood;
 
         for(int i = 0; i < numParticles; i++)
         {
