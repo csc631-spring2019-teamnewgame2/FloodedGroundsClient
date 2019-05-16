@@ -51,6 +51,9 @@ public class MaxMovement : MonoBehaviour
 
     void Start()
     {
+        //Leave gravityEnabled to false for jumping to work
+        gravityEnabled = false;
+
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -329,8 +332,6 @@ public class MaxMovement : MonoBehaviour
     {
         if (controller.isGrounded)
         {
-            // We are grounded, so recalculate
-            // move direction directly from axes
 
             moveDirection = new Vector3(0f, 0.0f, 0f);
             moveDirection *= speed2;

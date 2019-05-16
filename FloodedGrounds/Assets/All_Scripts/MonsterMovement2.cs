@@ -19,6 +19,12 @@ public class MonsterMovement2 : MonoBehaviour
     private float playerHealth;
     public GameObject HPCanvas;
 
+    //Jump variables
+    public float speed2 = 4.0f;
+    public float jumpSpeed = 6.0f;
+    public float gravity2 = 15.0f;
+    private Vector3 moveDirection = Vector3.zero;
+
     Animator anim;
     private Rigidbody rb;
     CharacterController controller;
@@ -38,6 +44,9 @@ public class MonsterMovement2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //gravityEnabled must be false for jumping to work.
+        gravityEnabled = false;
+
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -321,5 +330,25 @@ public class MonsterMovement2 : MonoBehaviour
     {
         rightHand.SetActive(false);
         leftHand.SetActive(false);
+    }
+
+    void Jump()
+    {
+        if (controller.isGrounded)
+        {
+
+            moveDirection = new Vector3(0f, 0.0f, 0f);
+            moveDirection *= speed2;
+
+            if (Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
+        }
+
+        moveDirection.y -= gravity2 * Time.deltaTime;
+
+        // Move the controller
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }
