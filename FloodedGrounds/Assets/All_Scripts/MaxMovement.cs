@@ -40,6 +40,12 @@ public class MaxMovement : MonoBehaviour
     //ShootRaycast
     ShootRaycast shootGun;
 
+    //Jump variables
+    public float speed2 = 6.0f;
+    public float jumpSpeed = 8.0f;
+    public float gravity2 = 20.0f;
+    private Vector3 moveDirection = Vector3.zero;
+
     public List<GameObject> heldGuns = new List<GameObject>();
     public GameObject equipped;
 
@@ -63,8 +69,9 @@ public class MaxMovement : MonoBehaviour
     void LateUpdate()
     {
         //CheckCamera();
-        CheckForWaterHeight();
+        //CheckForWaterHeight();
         CheckIfDead();
+        Jump();
         Movement();
         GetInput();
     }
@@ -316,5 +323,27 @@ public class MaxMovement : MonoBehaviour
     {
         //Reloads current scene
         SceneManager.LoadScene("SceneLoader");
+    }
+
+    void Jump()
+    {
+        if (controller.isGrounded)
+        {
+            // We are grounded, so recalculate
+            // move direction directly from axes
+
+            moveDirection = new Vector3(0f, 0.0f, 0f);
+            moveDirection *= speed;
+
+            if (Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
+        }
+
+        moveDirection.y -= gravity * Time.deltaTime;
+
+        // Move the controller
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }
