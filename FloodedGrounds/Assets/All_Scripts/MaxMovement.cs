@@ -333,7 +333,7 @@ public class MaxMovement : MonoBehaviour
             // move direction directly from axes
 
             moveDirection = new Vector3(0f, 0.0f, 0f);
-            moveDirection *= speed;
+            moveDirection *= speed2;
 
             if (Input.GetButton("Jump"))
             {
@@ -341,7 +341,7 @@ public class MaxMovement : MonoBehaviour
             }
         }
 
-        moveDirection.y -= gravity * Time.deltaTime;
+        moveDirection.y -= gravity2 * Time.deltaTime;
 
         // Move the controller
         controller.Move(moveDirection * Time.deltaTime);
