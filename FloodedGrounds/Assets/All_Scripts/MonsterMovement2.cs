@@ -310,6 +310,15 @@ public class MonsterMovement2 : MonoBehaviour
         anim.SetBool("isHit", false);
     }
 
+    public void TakeDamageFromPlayer(float damage)
+    {
+        //Store current visual HP bar into "Playerhealth"
+        playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
+
+        //Set the new visual HP bar's stat the same width minus 50
+        HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerHealth - damage);
+    }
+
     void StartCollider()
     {
         rightHand.SetActive(true);
