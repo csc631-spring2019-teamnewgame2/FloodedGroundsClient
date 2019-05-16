@@ -9,19 +9,25 @@ public class ResponseHit : NetworkResponse
     private int damage;
     private int numParticles;
     private List<Vector3> particlePositions;
+    private List<Vector3> particleAngles;
 
     override
     public void parse()
     {
         particlePositions = new List<Vector3>();
+        particleAngles = new List<Vector3>();
 
         attackingPlayer = hitPlayer = Constants.IDtoCharacter[DataReader.ReadShort(dataStream)];
         hitPlayer = Constants.IDtoCharacter[DataReader.ReadShort(dataStream)];
         damage = DataReader.ReadShort(dataStream);
         numParticles = DataReader.ReadShort(dataStream);
 
+        //Get all of the positions and angles
         for (int i = 0; i < numParticles; i++)
+        {
             particlePositions.Add(new Vector3(DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream)));
+            particleAngles.Add(new Vector3(DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream), DataReader.ReadFloat(dataStream)));
+        }
     }
 
     override
@@ -37,11 +43,11 @@ public class ResponseHit : NetworkResponse
             blood = player.transform.Find("FPS Camera").gameObject.GetComponent<ShootRaycast>().monsterBlood;
         }
 
-        foreach(Vector3 position in particlePositions)
+        for(int i = 0; i < numParticles; i++)
         {
             // spawn monsterBlood particle effect, then destroy clone gameObject
-            var rot = Quaternion.FromToRotation(Vector3.up, new Vector3(0.7f, 0f, 0.7f));
-            Object.Destroy(Object.Instantiate(blood.gameObject, position, rot), 2f);
+            Quaternion angle = Quaternion.Euler(particleAngles[i].x, particleAngles[i].y, particleAngles[i].z);
+            Object.Destroy(Object.Instantiate(blood.gameObject, particlePositions[i], angle), 2f);
         }
 
         return null;

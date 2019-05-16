@@ -10,18 +10,20 @@ namespace Assets.All_Scripts.Network.Request
         private int damage;
         private int numParticles;
         private List<Vector3> particlesPositions;
+        private List<Vector3> particleAngles;
 
         public RequestHit()
         {
             request_id = Constants.CMSG_HIT;
         }
 
-        public void setData(string hitPlayer, int damage, int numParticles, List<Vector3> particlesPositions)
+        public void setData(string hitPlayer, int damage, int numParticles, List<Vector3> particlesPositions, List<Vector3> particleAngles)
         {
             this.hitPlayer = hitPlayer;
             this.damage = damage;
             this.numParticles = numParticles;
             this.particlesPositions = particlesPositions;
+            this.particleAngles = particleAngles;
         }
 
         public void send()
@@ -34,12 +36,17 @@ namespace Assets.All_Scripts.Network.Request
             //Add the number of particles
             packet.addShort16((short)numParticles);
 
-            //Add all of the particles
-            foreach (Vector3 position in particlesPositions)
+            for (int i = 0; i < numParticles; i++)
             {
-                packet.addFloat32(position.x);
-                packet.addFloat32(position.y);
-                packet.addFloat32(position.z);
+                //Add all of the positions
+                packet.addFloat32(particlesPositions[i].x);
+                packet.addFloat32(particlesPositions[i].y);
+                packet.addFloat32(particlesPositions[i].z);
+
+                //Add all of the angles
+                packet.addFloat32(particleAngles[i].x);
+                packet.addFloat32(particleAngles[i].y);
+                packet.addFloat32(particleAngles[i].z);
             }
         }
     }

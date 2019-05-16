@@ -55,8 +55,9 @@ public class ShootRaycast : MonoBehaviour
 
     public void Shoot()
     {
-        // List of particle positions to send to server 
+        // List of particle positions and angles to send to server 
         List<Vector3> particlePos = new List<Vector3>();
+        List<Vector3> particleAngle = new List<Vector3>();
         RaycastHit hit;
 
         equip = hud.gunEquipped;
@@ -87,12 +88,12 @@ public class ShootRaycast : MonoBehaviour
                 // spawn monsterBlood particle effect, then destroy clone gameObject
                 var rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Destroy(Instantiate(monsterBlood.gameObject, hit.point, rot), 2f);
-
-                List<Vector3> particleHitPos = new List<Vector3>();
+                
                 particlePos.Add(hit.point);
+                particleAngle.Add(rot.eulerAngles);
 
                 RequestHit requestHit = new RequestHit();
-                requestHit.setData(Constants.MONSTER, gun_stats[equip].damage, 1, particleHitPos);
+                requestHit.setData(Constants.MONSTER, gun_stats[equip].damage, 1, particlePos, particleAngle);
                 requestHit.send();
                 Main.GetConnectionManager().send(requestHit);
 
@@ -119,15 +120,16 @@ public class ShootRaycast : MonoBehaviour
 
                         playAnimation = true;
                         particlePos.Add(hit.point);
+                        particleAngle.Add(rot.eulerAngles);
                         raysHit += 1;
-
-                        RequestHit requestHit = new RequestHit();
-                        requestHit.setData(Constants.MONSTER, raysHit, raysHit, particlePos);
-                        requestHit.send();
-                        Main.GetConnectionManager().send(requestHit);
                     }
                 }
-                
+
+                RequestHit requestHit = new RequestHit();
+                requestHit.setData(Constants.MONSTER, raysHit, raysHit, particlePos, particleAngle);
+                requestHit.send();
+                Main.GetConnectionManager().send(requestHit);
+
                 //Instantiate(monsterBlood, hit.collider.gameObject.transform)
                 // applyDmgBog(raysHit);
                 Debug.Log(raysHit);
