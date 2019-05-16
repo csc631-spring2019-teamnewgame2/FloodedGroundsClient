@@ -12,6 +12,12 @@ public class MonsterMovement2 : MonoBehaviour
     float recoveringHP = 0f;
     private bool died = false;
 
+    //Jump variables
+    public float speed2 = 3.0f;
+    public float jumpSpeed = 4.0f;
+    public float gravity2 = 10.0f;
+    private Vector3 moveDirection = Vector3.zero;
+
     public GameObject rightHand;
     public GameObject leftHand;
     public GameObject youLoseScreen;
@@ -38,6 +44,9 @@ public class MonsterMovement2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Leave gravityEnabled to false for jumping to work
+        gravityEnabled = false;
+
         rb = this.GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
@@ -55,7 +64,7 @@ public class MonsterMovement2 : MonoBehaviour
     {
         //CheckCamera();
         CheckForWaterHeight();
-        
+        Jump();
         Movement();
         GetInput();
     }
@@ -330,5 +339,25 @@ public class MonsterMovement2 : MonoBehaviour
     {
         rightHand.SetActive(false);
         leftHand.SetActive(false);
+    }
+
+    void Jump()
+    {
+        if (controller.isGrounded)
+        {
+
+            moveDirection = new Vector3(0f, 0.0f, 0f);
+            moveDirection *= speed2;
+
+            if (Input.GetButton("Jump"))
+            {
+                moveDirection.y = jumpSpeed;
+            }
+        }
+
+        moveDirection.y -= gravity2 * Time.deltaTime;
+
+        // Move the controller
+        controller.Move(moveDirection * Time.deltaTime);
     }
 }

@@ -23,6 +23,21 @@ public class MaxMovement : MonoBehaviour
     public float gravity2 = 20.0f;
     private Vector3 moveDirection = Vector3.zero;
 
+    //Gun points and muzzles
+    public GameObject Shotgun;
+    public GameObject Pistol;
+    public GameObject AK47;
+    public GameObject ShotgunPoint;
+    public GameObject PistolPoint;
+    public GameObject AK47Point;
+
+
+    public GameObject ShotgunMuzzleFlash;
+    public GameObject PistolMuzzleFlash;
+    public GameObject AK47MuzzleFlash;
+
+    private GameObject GunPoint;
+
     Animator anim;
     private Rigidbody rb;
     CharacterController controller;
@@ -118,9 +133,9 @@ public class MaxMovement : MonoBehaviour
         {
             shootGun.Shoot();
             anim.SetBool("isShooting", true);
-            
+            MuzzleFlash();
             //Instantiate(bullet,gunPoint.transform, true);
-            
+
         }
 
         // Jump
@@ -352,5 +367,33 @@ public class MaxMovement : MonoBehaviour
 
         // Move the controller
         controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    void MuzzleFlash()
+    {
+
+        if (Shotgun.activeSelf == true)
+        {
+            Quaternion ShotGunRotation = Shotgun.transform.rotation;
+
+            GameObject temp = Instantiate(ShotgunMuzzleFlash, ShotgunPoint.transform.position, ShotGunRotation);
+            Destroy(temp, 2f);
+        }
+
+        if (Pistol.activeSelf == true)
+        {
+            Quaternion PistolRotation = Pistol.transform.rotation;
+
+            GameObject temp = Instantiate(PistolMuzzleFlash, PistolPoint.transform.position, PistolRotation);
+            Destroy(temp, 2f);
+        }
+
+        if (AK47.activeSelf == true)
+        {
+            Quaternion AK47Rotation = AK47.transform.rotation;
+
+            GameObject temp = Instantiate(AK47MuzzleFlash, AK47Point.transform.position, AK47Rotation);
+            Destroy(temp, 2f);
+        }
     }
 }
