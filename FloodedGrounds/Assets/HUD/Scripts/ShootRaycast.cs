@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.All_Scripts.Network.Request;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -54,14 +55,15 @@ public class ShootRaycast : MonoBehaviour
 
     public void Shoot()
     {
-        // List of particle positions to send to server 
+        // List of particle positions and angles to send to server 
         List<Vector3> particlePos = new List<Vector3>();
+        List<Vector3> particleAngle = new List<Vector3>();
         RaycastHit hit;
 
         equip = hud.gunEquipped;
 
         bool playAnimation = false;
-    
+
         if (hud.ammoIn > 0 && Time.time > nextFire)
         {
             // Update the time when our player can fire next
@@ -87,6 +89,14 @@ public class ShootRaycast : MonoBehaviour
                 var rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 Destroy(Instantiate(monsterBlood.gameObject, hit.point, rot), 2f);
 
+                particlePos.Add(hit.point);
+                particleAngle.Add(rot.eulerAngles);
+
+                RequestHit requestHit = new RequestHit();
+                requestHit.setData(Constants.MONSTER, gun_stats[equip].damage, 1, particlePos, particleAngle);
+                requestHit.send();
+                Main.GetConnectionManager().send(requestHit);
+
                 Debug.Log("Bog lord has been shot with pistol/ak-47!");
             }
 
@@ -110,10 +120,16 @@ public class ShootRaycast : MonoBehaviour
 
                         playAnimation = true;
                         particlePos.Add(hit.point);
+                        particleAngle.Add(rot.eulerAngles);
                         raysHit += 1;
                     }
                 }
-                
+
+                RequestHit requestHit = new RequestHit();
+                requestHit.setData(Constants.MONSTER, raysHit, raysHit, particlePos, particleAngle);
+                requestHit.send();
+                Main.GetConnectionManager().send(requestHit);
+
                 //Instantiate(monsterBlood, hit.collider.gameObject.transform)
                 // applyDmgBog(raysHit);
                 Debug.Log(raysHit);

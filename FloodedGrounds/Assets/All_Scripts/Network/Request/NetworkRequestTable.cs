@@ -3,12 +3,14 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class NetworkRequestTable {
+public class NetworkRequestTable
+{
 
-	public static Dictionary<short, NetworkRequest> requestTable { get; set; }
-	
-	public static void init() {
-		requestTable = new Dictionary<short, NetworkRequest>();
+    public static Dictionary<short, NetworkRequest> requestTable { get; set; }
+
+    public static void init()
+    {
+        requestTable = new Dictionary<short, NetworkRequest>();
 
         add(Constants.CMSG_HEARTBEAT, new RequestHeartbeat());
         add(Constants.CMSG_PUSHUPDATE, new RequestPushUpdate());
@@ -24,19 +26,21 @@ public class NetworkRequestTable {
 
         add(Constants.CMSG_PICKUP, new RequestPickup());
     }
-	
-	public static void add(short request_id, NetworkRequest request) {
-		requestTable.Add(request_id, request);
-	}
-	
-	public static NetworkRequest get(short request_id) {
-		NetworkRequest request = null;
-		
-		if (requestTable.ContainsKey(request_id))
-			request = requestTable[request_id];
-		else
-			Debug.Log("Request [" + request_id + "] Not Found");
-		
-		return request;
-	}
+
+    public static void add(short request_id, NetworkRequest request)
+    {
+        requestTable.Add(request_id, request);
+    }
+
+    public static NetworkRequest get(short request_id)
+    {
+        NetworkRequest request = null;
+
+        if (requestTable.ContainsKey(request_id))
+            request = requestTable[request_id];
+        else
+            Debug.Log("Request [" + request_id + "] Not Found");
+
+        return request;
+    }
 }

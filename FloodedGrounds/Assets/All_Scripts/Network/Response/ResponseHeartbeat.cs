@@ -41,7 +41,7 @@ public class ResponseHeartbeat : NetworkResponse
             if (!dropPacket)
             {
                 //Get the character this update is for
-                string character = Constants.characterIDs[DataReader.ReadShort(dataStream)];
+                string character = Constants.IDtoCharacter[DataReader.ReadShort(dataStream)];
                 GameObject player = Constants.components[character].player;
 
                 //Get the parameters for the character model

@@ -264,7 +264,7 @@ public class MonsterMovement2 : MonoBehaviour
     void CheckIfDead()
     {
         playerHealth = HPCanvas.GetComponent<RectTransform>().rect.xMax;
-        Debug.Log(HPCanvas.GetComponent<RectTransform>().rect.xMax);
+
         if (playerHealth <= 0)
         {
             anim.SetBool("isDead", true);
@@ -309,6 +309,15 @@ public class MonsterMovement2 : MonoBehaviour
 
         // If not receiving raycast shot
         anim.SetBool("isHit", false);
+    }
+
+    public void TakeDamageFromPlayer(float damage)
+    {
+        //Store current visual HP bar into "Playerhealth"
+        playerHealth = HPCanvas.GetComponent<RectTransform>().rect.width;
+
+        //Set the new visual HP bar's stat the same width minus 50
+        HPCanvas.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, playerHealth - damage);
     }
 
     void StartCollider()

@@ -51,7 +51,7 @@ public class Main : MonoBehaviour
 
         //Make all of the player tags face the camera
         //Loop through all of the characters
-        foreach (string name in Constants.characterIDs.Values)
+        foreach (string name in Constants.IDtoCharacter.Values)
             //Skip the character being played
             if (name != Main.getCharacter())
                 //Loop through all of the children of the object

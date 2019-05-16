@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Constants {
+public class Constants
+{
 
     //Constants
     public static readonly string CLIENT_VERSION = "1.00";
@@ -21,7 +22,7 @@ public class Constants {
     public static readonly short SMSG_HEARTBEAT = 201;
     public static readonly short CMSG_PUSHUPDATE = 102;
     public static readonly short CMSG_KEEPALIVE = 103;
-    
+
     //Authentication:  x1x
     public static readonly short CMSG_REGISTER = 111;
     public static readonly short SMSG_REGISTER = 211;
@@ -54,17 +55,22 @@ public class Constants {
     public static readonly short CMSG_PICKUP = 140;
     public static readonly short SMSG_PICKUP = 240;
 
+    //Hit: x5x
+    public static readonly short CMSG_HIT = 150;
+    public static readonly short SMSG_HIT = 250;
+
     //Other
     public static readonly string IMAGE_RESOURCES_PATH = "Images/";
-	public static readonly string PREFAB_RESOURCES_PATH = "Prefabs/";
-	public static readonly string TEXTURE_RESOURCES_PATH = "Textures/";
-	
-	//GUI Window IDs
-	public enum GUI_ID {
-		Login
-	};
+    public static readonly string PREFAB_RESOURCES_PATH = "Prefabs/";
+    public static readonly string TEXTURE_RESOURCES_PATH = "Textures/";
 
-	public static int USER_ID = -1;
+    //GUI Window IDs
+    public enum GUI_ID
+    {
+        Login
+    };
+
+    public static int USER_ID = -1;
 
 
 
@@ -75,7 +81,10 @@ public class Constants {
     public static string GUY2 = "Winston";
 
     //Dictionary to map ids to the characters
-    public static Dictionary<int, string> characterIDs;
+    public static Dictionary<int, string> IDtoCharacter;
+
+    //Dictionary to map characters to the ids
+    public static Dictionary<string, int> CharacterToID;
 
     //Animation Parameters
     public static readonly string[] monsterAnimParams = { "isJumping", "isWalking", "isDead", "isAttacking", "isHit", "isShouting" };
@@ -109,11 +118,17 @@ public class Constants {
     //Static constructor to populate the dictionarys
     static Constants()
     {
-        characterIDs = new Dictionary<int, string>();
-        characterIDs.Add(0, MONSTER);
-        characterIDs.Add(1, GIRL);
-        characterIDs.Add(2, GUY1);
-        characterIDs.Add(3, GUY2);
+        IDtoCharacter = new Dictionary<int, string>();
+        IDtoCharacter.Add(0, MONSTER);
+        IDtoCharacter.Add(1, GIRL);
+        IDtoCharacter.Add(2, GUY1);
+        IDtoCharacter.Add(3, GUY2);
+
+        CharacterToID = new Dictionary<string, int>();
+        CharacterToID.Add(MONSTER, 0);
+        CharacterToID.Add(GIRL, 1);
+        CharacterToID.Add(GUY1, 2);
+        CharacterToID.Add(GUY2, 3);
 
         characterAnimations = new Dictionary<string, string[]>();
         characterAnimations.Add(MONSTER, monsterAnimParams);
@@ -131,7 +146,7 @@ public class Constants {
     // static method to populate scene specific dictionary
     public static void loadSceneAConstants()
     {
-       
+
 
         components = new Dictionary<string, characterComponents>();
         GameObject monster = GameObject.FindWithTag(MONSTER);
