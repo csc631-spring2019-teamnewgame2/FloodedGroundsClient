@@ -12,7 +12,7 @@ public class PlayerRaycasting : MonoBehaviour
     public float maxDistance = 3;
     public float sphereRadius = 0.5f;
 
-    private float currentHitDistance;
+    public float currentHitDistance;
 
     public GameObject player;
     private MaxMovement list;
@@ -74,7 +74,7 @@ public class PlayerRaycasting : MonoBehaviour
                 Main.GetConnectionManager().send(pickup);
 
                 Destroy(hit.collider.gameObject);
-                counter.AmmoPickup(120);
+                counter.AmmoPickup();
             }
         }
         else
@@ -142,6 +142,84 @@ public class PlayerRaycasting : MonoBehaviour
                 Main.GetConnectionManager().send(pickup);
 
                 list.heldGuns.Add(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(hit.collider.gameObject);
+            }
+        }
+        else
+        {
+            currentHitDistance = maxDistance;
+        }
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "CarKey")
+        {
+            //Debug.Log("Raycast hit keys");
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                RequestPickup pickup = new RequestPickup();
+                pickup.setPickupName(hit.collider.gameObject.name);
+                pickup.send();
+                Main.GetConnectionManager().send(pickup);
+
+                counter.hasKeys = true;
+                //Debug.Log("Interact keys");
+                //list.heldGuns.Add(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(hit.collider.gameObject);
+            }
+        }
+        else
+        {
+            currentHitDistance = maxDistance;
+        }
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "Gas")
+        {
+            //Debug.Log("Raycast hit gas");
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                RequestPickup pickup = new RequestPickup();
+                pickup.setPickupName(hit.collider.gameObject.name);
+                pickup.send();
+                Main.GetConnectionManager().send(pickup);
+
+                counter.hasGas = true;
+                //Debug.Log("Interact gas");
+                //list.heldGuns.Add(hit.collider.gameObject);
+                hit.collider.gameObject.SetActive(false);
+                //Destroy(hit.collider.gameObject);
+            }
+        }
+        else
+        {
+            currentHitDistance = maxDistance;
+        }
+
+        if (Physics.SphereCast(this.transform.position, sphereRadius, this.transform.forward, out hit, maxDistance) && hit.collider.gameObject.tag == "SteeringWheel")
+        {
+            //Debug.Log("Raycast hit steering wheel");
+            currentHitDistance = hit.distance;
+
+            counter.InteractHint();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                RequestPickup pickup = new RequestPickup();
+                pickup.setPickupName(hit.collider.gameObject.name);
+                pickup.send();
+                Main.GetConnectionManager().send(pickup);
+
+                counter.hasSteeringWheel = true;
+                //Debug.Log("Interact steering wheel");
+                //list.heldGuns.Add(hit.collider.gameObject);
                 hit.collider.gameObject.SetActive(false);
                 //Destroy(hit.collider.gameObject);
             }

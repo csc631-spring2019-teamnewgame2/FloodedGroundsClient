@@ -21,6 +21,9 @@ TagManager:
   - Shotgun
   - AK-47
   - ShotPoint
+  - CarKey
+  - Gas
+  - SteeringWheel
   layers:
   - Default
   - TransparentFX

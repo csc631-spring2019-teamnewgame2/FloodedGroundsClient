@@ -8,6 +8,7 @@ public class ManagementHUD : MonoBehaviour
 {
     public int ammoIn, ammoOut;
     public string gunEquipped;
+    public bool hasKeys, hasGas, hasSteeringWheel;
 
     private Dictionary<string, Tuple<int, int>> myGuns = new Dictionary<string, Tuple<int, int>>();
     private Dictionary<string, int> maxMag = new Dictionary<string, int>();
@@ -35,6 +36,9 @@ public class ManagementHUD : MonoBehaviour
         ammoOut = 0;
 
         hintText = interactHint.GetComponent<TextFadeOut>();
+        hasKeys = false;
+        hasGas = false;
+        hasSteeringWheel = false;
     }
 
     // Updating HUD depending on which weapon is equipped 
@@ -105,7 +109,7 @@ public class ManagementHUD : MonoBehaviour
         medpack.text = _medPack.ToString();
     }
 
-    public void AmmoPickup(int add)
+    public void AmmoPickup()
     {
         myGuns["Pistol"] = new Tuple<int, int>(myGuns["Pistol"].Item1, myGuns["Pistol"].Item2 + 24);
         myGuns["AK-47"] = new Tuple<int, int>(myGuns["AK-47"].Item1, myGuns["AK-47"].Item2 + 60);
@@ -120,7 +124,6 @@ public class ManagementHUD : MonoBehaviour
         interactHint.enabled = true;
         hintText.FadeOut();
     }
-
 
 
     // Update is called once per frame
