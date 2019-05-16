@@ -5,7 +5,7 @@
             <value>MonsterArrive</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>0</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -122,7 +122,6 @@
             <destination>{7b43f458-7106-4f8e-b08d-17eab96bcbc9}</destination>
             <destination>{45c9dd66-2b7a-4a7f-8389-6b177b0ceaed}</destination>
             <destination>{825f1459-a59c-4c97-9165-d5b51def2236}</destination>
-            <destination>{1160cd10-e68e-4333-abe2-e3cde09600d2}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{2cad1b30-9236-4ea7-8450-27ac2d20bf7f}"/>
@@ -167,7 +166,6 @@
             <destination>{3aa79b3d-da17-492b-a491-d2da40c7a888}</destination>
         </relationship>
     </object>
-    <object class="SpatialiserEffect" id="{1160cd10-e68e-4333-abe2-e3cde09600d2}"/>
     <object class="Automator" id="{c9971b0c-06c5-456c-a520-c66b3ac02f14}">
         <property name="nameOfPropertyBeingAutomated">
             <value>lowGain</value>

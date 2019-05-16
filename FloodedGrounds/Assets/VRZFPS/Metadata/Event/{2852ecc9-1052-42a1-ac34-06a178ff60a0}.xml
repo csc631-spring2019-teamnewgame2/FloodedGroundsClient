@@ -5,7 +5,7 @@
             <value>LowHealthSpeech</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>0</value>
         </property>
         <relationship name="folder">
             <destination>{55f2228c-b148-4329-bb49-0d820f66a8e1}</destination>
@@ -135,10 +135,10 @@
             <value>29.5</value>
         </property>
         <property name="start">
-            <value>0.02</value>
+            <value>1</value>
         </property>
         <property name="length">
-            <value>5.9799999999999969</value>
+            <value>4.9999999999999964</value>
         </property>
         <relationship name="audioFile">
             <destination>{3669b58c-d1b4-48d8-8967-44942eacf787}</destination>
@@ -170,7 +170,6 @@
             <destination>{7e1d570b-330c-4056-84cb-8d77b954de6b}</destination>
             <destination>{eb55451c-82ef-43d1-968e-471b518f4bb3}</destination>
             <destination>{fee1b655-293f-461c-aad2-e2b7726cc800}</destination>
-            <destination>{2c3c305f-dc3b-4d4b-b4ad-1c83382ecedf}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{569056d0-95b4-4863-a826-53583f973bbb}"/>
@@ -215,7 +214,6 @@
             <destination>{84077c30-85f4-4769-b2c6-2c7e90d7506f}</destination>
         </relationship>
     </object>
-    <object class="SpatialiserEffect" id="{2c3c305f-dc3b-4d4b-b4ad-1c83382ecedf}"/>
     <object class="Automator" id="{a08458da-b5b4-4d01-8eef-28db064b7e11}">
         <property name="nameOfPropertyBeingAutomated">
             <value>lowGain</value>
