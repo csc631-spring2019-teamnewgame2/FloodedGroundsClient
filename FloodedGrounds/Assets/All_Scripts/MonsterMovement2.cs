@@ -274,17 +274,18 @@ public class MonsterMovement2 : MonoBehaviour
     {
         playerHealth = HPCanvas.GetComponent<RectTransform>().rect.xMax;
 
-        if (playerHealth <= 0)
+        if (playerHealth <= 0 && died == false)
         {
+            
             anim.SetBool("isDead", true);
            // Debug.Log("Is dead");
             died = true;
+            youLoseScreen.SetActive(true);
         }
         
 
         if(died == true)
-        {
-            youLoseScreen.SetActive(true);
+        {            
             //Debug.Log("i die");
             if (recoveringHP < maxHP)
             {

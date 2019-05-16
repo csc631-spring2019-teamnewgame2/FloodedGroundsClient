@@ -325,7 +325,7 @@ public class MaxMovement : MonoBehaviour
             anim.SetLayerWeight(1, 0);
 
             //Reset game in X amount of seconds
-            //Invoke("GameOverSceneReset", GameOverResetTime);
+            Invoke("GameOverSceneReset", GameOverResetTime);
 
         }
         else
@@ -346,7 +346,7 @@ public class MaxMovement : MonoBehaviour
     void GameOverSceneReset()
     {
         //Reloads current scene
-        SceneManager.LoadScene("SceneLoader");
+        Main.gameState = Main.GameState.MAIN_MENU;
     }
 
     void Jump()
@@ -371,28 +371,23 @@ public class MaxMovement : MonoBehaviour
 
     void MuzzleFlash()
     {
+        Quaternion rot = gameObject.transform.rotation;
 
-        if (Shotgun.activeSelf == true)
+        if (Shotgun.activeSelf)
         {
-            Quaternion ShotGunRotation = Shotgun.transform.rotation;
-
-            GameObject temp = Instantiate(ShotgunMuzzleFlash, ShotgunPoint.transform.position, ShotGunRotation);
+            GameObject temp = Instantiate(ShotgunMuzzleFlash, ShotgunPoint.transform.position, rot);
             Destroy(temp, 2f);
         }
 
-        if (Pistol.activeSelf == true)
+        if (Pistol.activeSelf)
         {
-            Quaternion PistolRotation = Pistol.transform.rotation;
-
-            GameObject temp = Instantiate(PistolMuzzleFlash, PistolPoint.transform.position, PistolRotation);
+            GameObject temp = Instantiate(PistolMuzzleFlash, PistolPoint.transform.position, rot);
             Destroy(temp, 2f);
         }
 
-        if (AK47.activeSelf == true)
+        if (AK47.activeSelf)
         {
-            Quaternion AK47Rotation = AK47.transform.rotation;
-
-            GameObject temp = Instantiate(AK47MuzzleFlash, AK47Point.transform.position, AK47Rotation);
+            GameObject temp = Instantiate(AK47MuzzleFlash, AK47Point.transform.position, rot);
             Destroy(temp, 2f);
         }
     }
