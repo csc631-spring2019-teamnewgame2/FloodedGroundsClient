@@ -71,8 +71,8 @@ public class Main : MonoBehaviour
         switch (movementScript)
         {
             case "MonsterMovement":
-                player.GetComponent<MonsterMovement2>().enabled = true;
-                player.GetComponent<MonsterMovement2>().gravityEnabled = true;
+                //player.GetComponent<MonsterMovement2>().enabled = true;
+                //player.GetComponent<MonsterMovement2>().gravityEnabled = true;
                 break;
             case "PlayerMovement2":
                 player.GetComponent<MaxMovement>().enabled = true;

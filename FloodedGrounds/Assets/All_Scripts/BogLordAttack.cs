@@ -41,6 +41,6 @@ public class BogLordAttack : MonoBehaviour
         RequestHit requestHit = new RequestHit();
         requestHit.setData(other.gameObject.tag, (int)AttackDamage, 1, particlePos, particleAngle);
         requestHit.send();
-        Main.GetConnectionManager().send(requestHit);
+        //Main.GetConnectionManager().send(requestHit);
     }
 }

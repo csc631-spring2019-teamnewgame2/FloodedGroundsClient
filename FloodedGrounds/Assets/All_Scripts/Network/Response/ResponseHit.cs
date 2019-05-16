@@ -50,8 +50,8 @@ public class ResponseHit : NetworkResponse
             Object.Destroy(Object.Instantiate(blood.gameObject, particlePositions[i], angle), 2f);
         }
 
-        if(Main.getCharacter() == hitPlayer)
-            GameObject.FindWithTag("Bog_lord").GetComponent<MonsterMovement2>().TakeDamageFromPlayer(damage);
+        //if(Main.getCharacter() == hitPlayer)
+        //    GameObject.FindWithTag("Bog_lord").GetComponent<MonsterMovement2>().TakeDamageFromPlayer(damage);
 
         return null;
     }
