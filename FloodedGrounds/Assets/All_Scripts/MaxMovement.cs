@@ -14,6 +14,23 @@ public class MaxMovement : MonoBehaviour
     private float playerHealth;
     Vector3 moveDir = Vector3.zero;
 
+
+    //Gun points and muzzles
+    public GameObject Shotgun;
+    public GameObject Pistol;
+    public GameObject AK47;
+    public GameObject ShotgunPoint;
+    public GameObject PistolPoint;
+    public GameObject AK47Point;
+
+
+    public GameObject ShotgunMuzzleFlash;
+    public GameObject PistolMuzzleFlash;
+    public GameObject AK47MuzzleFlash;
+
+    private GameObject GunPoint;
+
+
     public GameObject youLoseScreen;
     public float GameOverResetTime;
 
@@ -51,6 +68,16 @@ public class MaxMovement : MonoBehaviour
 
     void Start()
     {
+        //Find all 3 guns held by current player's name
+        //Shotgun = GameObject.Find("Shotgun" + this.gameObject.name);
+        //Pistol = GameObject.Find("Pistol" + this.gameObject.name);
+        //AK47 = GameObject.Find("AK-47" + this.gameObject.name);
+
+        //Find all 3 gun shot points by current player's name
+        //ShotgunPoint = GameObject.Find("ShotgunPoint" + this.gameObject.name);
+        //PistolPoint = GameObject.Find("PistolPoint" + this.gameObject.name);
+        //AK47Point = GameObject.Find("AKPoint" + this.gameObject.name);
+
         //Leave gravityEnabled to false for jumping to work
         gravityEnabled = false;
 
@@ -118,8 +145,7 @@ public class MaxMovement : MonoBehaviour
         {
             shootGun.Shoot();
             anim.SetBool("isShooting", true);
-            
-            //Instantiate(bullet,gunPoint.transform, true);
+            MuzzleFlash();
             
         }
 
@@ -352,5 +378,27 @@ public class MaxMovement : MonoBehaviour
 
         // Move the controller
         controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    void MuzzleFlash()
+    {
+       
+        if(Shotgun.activeSelf == true)
+        {
+            GameObject temp = Instantiate(ShotgunMuzzleFlash, ShotgunPoint.transform.position, Quaternion.identity);
+            Destroy(temp, 2f);
+        }
+
+        if (Pistol.activeSelf == true)
+        {
+            GameObject temp = Instantiate(PistolMuzzleFlash, PistolPoint.transform.position, Quaternion.identity);
+            Destroy(temp, 2f);
+        }
+
+        if (AK47.activeSelf == true)
+        {
+            GameObject temp = Instantiate(AK47MuzzleFlash, AK47Point.transform.position, Quaternion.identity);
+            Destroy(temp, 2f);
+        }
     }
 }
