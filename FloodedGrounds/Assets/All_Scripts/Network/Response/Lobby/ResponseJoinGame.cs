@@ -26,9 +26,8 @@ public class ResponseJoinGame : NetworkResponse
     override
     public ExtendedEventArgs process()
     {
-        //ResponseJoinGameEventArgs args = new ResponseJoinGameEventArgs();
-        //args.character = character;
-        //return args;
-        return null;
+        ResponseJoinGameEventArgs args = new ResponseJoinGameEventArgs();
+        args.character = character;
+        return args;
     }
 }
